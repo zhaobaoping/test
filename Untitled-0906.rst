@@ -1,9 +1,6 @@
 Installation Guide for BUMO
 ===========================
+ .. code:: javascript
 
-
-
-.. code :: javascript
-
-function init(bar)
+ function init(bar)
 {}
