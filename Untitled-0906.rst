@@ -10,8 +10,7 @@ Installation Guide for BUMO
   {
        return;
        
-}  
-
+  }  
 
 
 
@@ -21,7 +20,7 @@ Installation Guide for BUMO
 
 错误码如下表所示：
 +----------------------+--------+----------------------------------+
-| 异常                 | 错误码 | 描述                             |
+| 异常                 | 错误码  | 描述                             |
 +======================+========+==================================+
 | CONNECTNETWORK_ERROR | 11007  | Failed to connect to the network |
 +----------------------+--------+----------------------------------+
@@ -32,8 +31,8 @@ Installation Guide for BUMO
 
 
 +--------------------+--------------------+------------------+
-|  aaaaaaaa aa       | bbbbbbb            |ccccccccccccccccc |
-|      e             |       e            |eeeeeeeeeeeeeeeeee|
+|  aaaaaaaa aa       | bbbbbbb            | cccccccccccccc   |
+|      e             |       e            | eeeeeeeeeeeeee   |
 +====================+====================+==================+
 |       u            |      u             |      u           |
 +--------------------+--------------------+------------------+
