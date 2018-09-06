@@ -18,11 +18,8 @@ Installation Guide for BUMO
 
 
 
-
-
-.. code:: javascript
-
-//初始化请求参数
+.. code:: javascript//初始化请求参数
+  
    Long blockNumber = 617247L;// 第617247区块
    BlockGetTransactionsRequest request = new BlockGetTransactionsRequest();
    request.setBlockNumber(blockNumber);
