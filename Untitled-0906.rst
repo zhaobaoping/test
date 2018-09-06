@@ -1,6 +1,14 @@
 Installation Guide for BUMO
 ===========================
+
+
+
  .. code:: javascript
 
- function init(bar)
-{}
+  "use strict"
+  function init(bar)
+  {
+       return;
+  }
+  
+
