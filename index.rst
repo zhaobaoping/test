@@ -12,6 +12,6 @@ Contents:
    :maxdepth: 4
    
    
-   docs/try image
+   try image
 
  
