@@ -9,13 +9,17 @@ Installation Guide for BUMO
   function init(bar)
   {
        return;
-  }
-  
+       
+}  
 
-        
-        
-        错误码如下表所示：
 
+
+
+
+
+
+
+错误码如下表所示：
 +----------------------+--------+----------------------------------+
 | 异常                 | 错误码 | 描述                             |
 +======================+========+==================================+
@@ -28,7 +32,7 @@ Installation Guide for BUMO
 
 
 +--------------------+--------------------+------------------+
-|  aaaaaaaa aa       | bbbbbbb            |cccccccccccccccccccccccccccccccccccccccccccccccccccc       |
+|  aaaaaaaa aa       | bbbbbbb            |ccccccccccccccccc |
 |      e             |       e            |eeeeeeeeeeeeeeeeee|
 +====================+====================+==================+
 |       u            |      u             |      u           |
