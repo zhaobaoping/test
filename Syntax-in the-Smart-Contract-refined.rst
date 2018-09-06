@@ -176,7 +176,7 @@ compression is an irreversible operation.
    before the conditional statement block, and a new value is assigned
    to it when used
 
--  Use ‘+=’ and ‘-=’ to substitute ‘++’ and ‘--’
+-  Use ‘+=’ and ‘-=’ to substitute ‘++’ and ‘- -’
 
 -  Prohibit to use keywords like ‘eval’, ‘void’ and ‘this’
 
