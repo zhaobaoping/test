@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 4
    
    
+   Syntax in the Smart Contract refined
    try image
 
  
