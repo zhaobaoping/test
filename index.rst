@@ -14,5 +14,6 @@ Contents:
    
    Syntax in the Smart Contract refined
    try image
+   BUMO JAVA SDK指南
 
  
