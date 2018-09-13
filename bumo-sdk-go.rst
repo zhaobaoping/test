@@ -7,73 +7,73 @@ Bumo Go SDK
 本文档简要概述Bumo Go
 SDK常用接口文档，方便开发者更方便地写入和查询BU区块链。
 
--  `配置 <#配置>`__
+-  `配置`_
 
-   -  `包引用 <#包引用>`__
+   -  `包引用`_
 
--  `名词解析 <#名词解析>`__
--  `参数与响应 <#参数与响应>`__
+-  `名词解析`_
+-  `参数与响应`_
 
-   -  `请求参数 <#请求参数>`__
-   -  `响应结果 <#响应结果>`__
+   -  `请求参数`_
+   -  `响应结果`_
 
--  `使用方法 <#使用方法>`__
+-  `使用方法`_
 
-   -  `包导入 <#包导入>`__
-   -  `生成SDK实例 <#生成sdk实例>`__
-   -  `生成公私钥地址 <#生成公私钥地址>`__
-   -  `有效性校验 <#有效性校验>`__
-   -  `查询 <#查询>`__
-   -  `提交交易 <#提交交易>`__
+   -  `包导入`_
+   -  `生成SDK实例`_
+   -  `生成公私钥地址`_
+   -  `有效性校验`_
+   -  `查询`_
+   -  `提交交易`_
 
-      -  `获取账户nonce值 <#获取账户nonce值>`__
-      -  `构建操作 <#构建操作>`__
-      -  `构建交易Blob <#构建交易blob>`__
-      -  `签名交易 <#签名交易>`__
-      -  `广播交易 <#广播交易>`__
+      -  `获取账户nonce值`_
+      -  `构建操作`_
+      -  `构建交易Blob`_
+      -  `签名交易`_
+      -  `广播交易`_
 
--  `账户服务 <#账户服务>`__
+-  `账户服务`_
 
-   -  `CheckValid <#checkvalid>`__
-   -  `Create <#create>`__
-   -  `GetInfo <#getinfo-account>`__
-   -  `GetNonce <#getnonce>`__
-   -  `GetBalance <#getbalance-account>`__
-   -  `GetAssets <#getassets>`__
-   -  `GetMetadata <#getmetadata>`__
+   -  `CheckValid`_
+   -  `Create`_
+   -  `GetInfo`_
+   -  `GetNonce`_
+   -  `GetBalance`_
+   -  `GetAssets`_
+   -  `GetMetadata`_
 
--  `资产服务 <#资产服务>`__
+-  `资产服务`_
 
-   -  `GetInfo <#getinfo-asset>`__
+   -  `GetInfo`_
 
--  `合约服务 <#合约服务>`__
+-  `合约服务`_
 
-   -  `GetInfo <#getinfo-contract>`__
+   -  `GetInfo`_
 
--  `交易服务 <#交易服务>`__
+-  `交易服务`_
 
-   -  `操作说明 <#操作说明>`__
-   -  `BuildBlob <#buildblob>`__
-   -  `EvaluateFee <#evaluatefee>`__
-   -  `Sign <#sign>`__
-   -  `Submit <#submit>`__
-   -  `GetInfo <#getinfo-transaction>`__
+   -  `操作说明`_
+   -  `BuildBlob`_
+   -  `EvaluateFee`_
+   -  `Sign`_
+   -  `Submit`_
+   -  `GetInfo`_
 
--  `区块服务 <#区块服务>`__
+-  `区块服务`_
 
-   -  `GetNumber <#getnumber>`__
-   -  `CheckStatus <#checkstatus>`__
-   -  `GetTransactions <#gettransactions>`__
-   -  `GetInfo <#getinfo-block>`__
-   -  `GetLatest <#getlatest>`__
-   -  `GetValidators <#getvalidators>`__
-   -  `GetLatestValidators <#getlatestvalidators>`__
-   -  `GetReward <#getreward>`__
-   -  `GetLatestReward <#getlatestreward>`__
-   -  `GetFees <#getfees>`__
-   -  `GetLatestFees <#getlatestfees>`__
+   -  `GetNumber`_
+   -  `CheckStatus`_
+   -  `GetTransactions`_
+   -  `GetInfo`_
+   -  `GetLatest`_
+   -  `GetValidators`_
+   -  `GetLatestValidators`_
+   -  `GetReward`_
+   -  `GetLatestReward`_
+   -  `GetFees`_
+   -  `GetLatestFees`_
 
--  `错误码 <#错误码>`__
+-  `错误码`_
 
 配置
 ----
@@ -435,7 +435,7 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 +---------+------------------+----------------+
 | Nonce   | int64            | 账户交易序列号 |
 +---------+------------------+----------------+
-| Priv    | `Priv <#priv>`__ | 账户权限       |
+| Priv    | `Priv`_          | 账户权限       |
 +---------+------------------+----------------+
 
 Priv
@@ -446,9 +446,9 @@ Priv
 +==============+============================+==============+
 | MasterWeight | int64                      | 账户自身权重 |
 +--------------+----------------------------+--------------+
-| Signers      | [] `Signer <#signer>`__    | 签名者权重   |
+| Signers      | [] `Signer`_               | 签名者权重   |
 +--------------+----------------------------+--------------+
-| Thresholds   | `Threshold <#threshold>`__ | 门限         |
+| Thresholds   | `Threshold`_               | 门限         |
 +--------------+----------------------------+--------------+
 
 Signer
@@ -470,7 +470,7 @@ Threshold
 +================+====================================+====================+
 | TxThreshold    | string                             | 交易默认门限       |
 +----------------+------------------------------------+--------------------+
-| TypeThresholds | `TypeThreshold <#typethreshold>`__ | 不同类型交易的门限 |
+| TypeThresholds | `TypeThreshold`_                   | 不同类型交易的门限 |
 +----------------+------------------------------------+--------------------+
 
 TypeThreshold
@@ -654,18 +654,18 @@ GetAssets(model.AccountGetAssetsRequest) model.AccountGetAssetsResponse
 +--------+-----------------------+----------+
 | 参数   | 类型                  | 描述     |
 +========+=======================+==========+
-| Assets | [] `Asset <#asset>`__ | 账户资产 |
+| Assets | [] `Asset`_           | 账户资产 |
 +--------+-----------------------+----------+
 
 Asset
 ^^^^^
 
 +--------+----------------+--------------+
-| 参数   | 类型           | 描述         |
+| 参数   | 类型            | 描述         |
 +========+================+==============+
-| Key    | `Key <#key>`__ | 资产惟一标识 |
+| Key    | `Key`_         | 资产惟一标识  |
 +--------+----------------+--------------+
-| Amount | int64          | 资产数量     |
+| Amount | int64          | 资产数量      |
 +--------+----------------+--------------+
 
 #### Key
@@ -736,7 +736,7 @@ model.AccountGetMetadataResponse
 +-----------+-----------------------------+------+
 | 参数      | 类型                        | 描述 |
 +===========+=============================+======+
-| Metadatas | [] `Metadata <#metadata>`__ | 账户 |
+| Metadatas | [] `Metadata`_             | 账户 |
 +-----------+-----------------------------+------+
 
 Metadata
@@ -818,7 +818,7 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
 +--------+-----------------------+----------+
 | 参数   | 类型                  | 描述     |
 +========+=======================+==========+
-| Assets | [] `Asset <#asset>`__ | 账户资产 |
+| Assets | [] `Asset`_          | 账户资产 |
 +--------+-----------------------+----------+
 
 ..
@@ -1002,14 +1002,13 @@ BaseOperation
 |                       |                       | max(uint32)]          |
 +-----------------------+-----------------------+-----------------------+
 | signers               | []                    | 选填，签名者权重列表  |
-|                       | `Signer <#signer>`__  |                       |
+|                       | `Signer`_             |                       |
 +-----------------------+-----------------------+-----------------------+
 | txThreshold           | string                | 选填，交易门限，大小[0, |
 |                       |                       |                       |
 |                       |                       | max(int64)]           |
 +-----------------------+-----------------------+-----------------------+
-| typeThreshold         | `TypeThreshold <#type | 选填，指定类型交易门限 |
-|                       | threshold>`__         |                       |
+| typeThreshold         | `TypeThreshold`_      | 选填，指定类型交易门限  |
 +-----------------------+-----------------------+-----------------------+
 | metadata              | string                | 选填，备注            |
 +-----------------------+-----------------------+-----------------------+
@@ -1651,7 +1650,7 @@ Sign(model.TransactionSignRequest) model.TransactionSignResponse
 +------------+-------------------------------+------------------+
 | 参数       | 类型                          | 描述             |
 +============+===============================+==================+
-| Signatures | [] `Signature <#signature>`__ | 签名后的数据列表 |
+| Signatures | [] `Signature`_              | 签名后的数据列表 |
 +------------+-------------------------------+------------------+
 
 Signature
@@ -1718,7 +1717,7 @@ Submit(model.TransactionSubmitRequest) model.TransactionSubmitResponse
 +===========+===============================+================+
 | blob      | string                        | 必填，交易blob |
 +-----------+-------------------------------+----------------+
-| signature | [] `Signature <#signature>`__ | 必填，签名列表 |
+| signature | [] `Signature`_               | 必填，签名列表 |
 +-----------+-------------------------------+----------------+
 
 ..
@@ -1787,9 +1786,7 @@ model.TransactionGetInfoResponse
 | TotalCount            | int64                 | 返回的总交易数        |
 +-----------------------+-----------------------+-----------------------+
 | Transactions          | []                    | 交易内容              |
-|                       | `TransactionHistory < |                       |
-|                       | #transactionhistory>` |                       |
-|                       | __                    |                       |
+|                       | `TransactionHistory`_ |                       |
 +-----------------------+-----------------------+-----------------------+
 
 TransactionHistory
@@ -1810,9 +1807,9 @@ TransactionHistory
 +--------------+--------------------------------+--------------+
 | LedgerSeq    | int64                          | 区块序列号   |
 +--------------+--------------------------------+--------------+
-| Transactions | `Transaction <#transaction>`__ | 交易内容列表 |
+| Transactions | `Transaction`_                 | 交易内容列表 |
 +--------------+--------------------------------+--------------+
-| Signatures   | [] `Signature <#signature>`__  | 签名列表     |
+| Signatures   | [] `Signature`_                | 签名列表     |
 +--------------+--------------------------------+--------------+
 | TxSize       | int64                          | 交易大小     |
 +--------------+--------------------------------+--------------+
@@ -1831,7 +1828,7 @@ Transaction
 +---------------+-------------------------------+----------------------+
 | Nonce         | int64                         | 交易序列号           |
 +---------------+-------------------------------+----------------------+
-| Operations    | [] `Operation <#operation>`__ | 操作列表             |
+| Operations    | [] `Operation`_               | 操作列表             |
 +---------------+-------------------------------+----------------------+
 
 ContractTrigger
@@ -1840,7 +1837,7 @@ ContractTrigger
 +-------------+----------------------------------------------+----------+
 | 成员        | 类型                                         | 描述     |
 +=============+==============================================+==========+
-| Transaction | `TriggerTransaction <#triggertransaction>`__ | 触发交易 |
+| Transaction | `TriggerTransaction`_                       | 触发交易 |
 +-------------+----------------------------------------------+----------+
 
 Operation
@@ -1855,19 +1852,19 @@ Operation
 +---------------+------------------------------------+--------------------+
 | Metadata      | string                             | 备注               |
 +---------------+------------------------------------+--------------------+
-| CreateAccount | `CreateAccount <#createaccount>`__ | 创建账户操作       |
+| CreateAccount | `CreateAccount`_                   | 创建账户操作       |
 +---------------+------------------------------------+--------------------+
-| IssueAsset    | `IssueAsset <#issueasset>`__       | 发行资产操作       |
+| IssueAsset    | `IssueAsset`_                      | 发行资产操作       |
 +---------------+------------------------------------+--------------------+
-| PayAsset      | `PayAsset <#payasset>`__           | 转移资产操作       |
+| PayAsset      | `PayAsset`_                        | 转移资产操作       |
 +---------------+------------------------------------+--------------------+
-| PayCoin       | `PayCoin <#paycoin>`__             | 发送BU操作         |
+| PayCoin       | `PayCoin`_                         | 发送BU操作         |
 +---------------+------------------------------------+--------------------+
-| SetMetadata   | `SetMetadata <#setmetadata>`__     | 设置metadata操作   |
+| SetMetadata   | `SetMetadata`_                     | 设置metadata操作   |
 +---------------+------------------------------------+--------------------+
-| SetPrivilege  | `SetPrivilege <#setprivilege>`__   | 设置账户权限操作   |
+| SetPrivilege  | `SetPrivilege`_                    | 设置账户权限操作   |
 +---------------+------------------------------------+--------------------+
-| Log           | `Log <#log>`__                     | 记录日志           |
+| Log           | `Log`_                             | 记录日志           |
 +---------------+------------------------------------+--------------------+
 
 TriggerTransaction
