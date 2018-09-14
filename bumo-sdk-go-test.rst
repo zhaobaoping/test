@@ -8,10 +8,12 @@ Bumo go SDK
 
 - `配置`_
    - `包引用`_
+
 - `名词解析`_
 
 - `参数与响应`_
    - `请求参数`_
+   - `响应结果`_
 
 
 
@@ -27,6 +29,7 @@ Bumo go SDK
 
        //获取包
        go get github.com/bumoproject/bumo-sdk-go
+
 
 名词解析
 --------
@@ -51,6 +54,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 
 账户nonce值：每个账户都维护一个序列号，用于用户提交交易时标识交易执行顺序的
 
+
 参数与响应
 ----------
 
@@ -62,3 +66,41 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 请求参数的成员，是各个方法的入参的成员变量名。
 
 例如：Account.GetInfo()的入参成员是address，那么AccountGetInfoRequest的结构如下：
+
+::
+
+ type AccountGetInfoRequest struct {
+       address string
+   }
+
+
+响应结果
+^^^^^^^^
+
+响应结果的格式，包含错误码，错误描述和result，格式是[类名][方法名]Response。
+
+例如Account.GetInfo()的结构体名是AccountGetInfoResponse：
+
+::
+
+   type AccountGetInfoResponse struct {
+       ErrorCode int
+       ErrorDesc string
+       Result  AccountGetInfoResult
+   }
+
+说明：
+
+(1) ErrorCode: 0表示无错误，大于0表示有错误
+
+(2) ErrorDesc: 空表示无错误，有内容表示有错误
+
+(3) Result:
+    返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
+    例如Account.GetNonce()的结构体名是AccountGetNonceResult：
+
+::
+
+   type AccountGetNonceResult struct {
+       Nonce int64
+   }
