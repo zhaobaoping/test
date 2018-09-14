@@ -72,4 +72,15 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  Result  AccountGetInfoResult
  }
 
- 
+说明：
+(1) ErrorCode: 0表示无错误，大于0表示有错误
+(2) ErrorDesc: 空表示无错误，有内容表示有错误
+(3) Result:
+返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
+例如Account.GetNonce()的结构体名是AccountGetNonceResult：
+
+::
+
+ type AccountGetNonceResult struct {
+ Nonce int64
+ }
