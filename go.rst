@@ -111,7 +111,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 
  var testSdk sdk.sdk
 
-调用SDK的接口Inite
+调用SDK的接口Init
 
 ::
 
@@ -120,4 +120,25 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  reqData.SetUrl(url)
  reqData := testSdk.Init(reqData)
 
- 
+生成公私钥地址
+~~~~~~~~~~~~~
+
+通过调用Account的Create生成账户，例如：
+
+::
+
+resData :=testSdk.Account.Create()
+
+有效性校验
+~~~~~~~~~~
+
+此接口用于校验信息的有效性，直接调用相应的接口即可，比如，校验账户地址有效性，调用如下：
+
+::
+
+ //初始化传入参数
+ var reqData model.AccountCheckValidRequest
+ var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+ reqData.SetAddress(address)
+ //调用接口检查
+ resData := testSdk.Account.CheckValid(reqData)
