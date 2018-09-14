@@ -131,15 +131,14 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 生成SDK实例
 ~~~~~~~~~~~
 
-   初始化Sdk结构体
+初始化Sdk结构体
 
 ::
 
    var testSdk sdk.Sdk
 
-..
 
-   调用SDK的接口Init
+调用SDK的接口Init
 
 ::
 
@@ -152,9 +151,4 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 生成公私钥地址
 ~~~~~~~~~~~~~~
 
-   通过调用Account的Create生成账户，例如：
-
-::
-
-   resData := testSdk.Account.Create()
-
+通过调用Account的Create生成账户，例如：
