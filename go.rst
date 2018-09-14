@@ -3,6 +3,7 @@ Bumo Go SDK
 
 概述
 ----
+
 本文档简要概述Bumo Go SDK常用接口文档，方便开发者更方便地写入和查询BU区块链。
 
 配置
@@ -48,7 +49,9 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 ~~~~~~~~
 
 请求参数的格式，是[类名][方法名]Request，比如Account.GetInfo()的请求参数是AccountGetInfoRequest。
+
 请求参数的成员，是各个方法的入参的成员变量名。
+
 例如：Account.GetInfo()的入参成员是address，那么AccountGetInfoRequest的结构如下：
 
 ::
@@ -72,12 +75,19 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  Result  AccountGetInfoResult
  }
 
-说明：
-(1) ErrorCode: 0表示无错误，大于0表示有错误
-(2) ErrorDesc: 空表示无错误，有内容表示有错误
-(3) Result:
-返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
-例如Account.GetNonce()的结构体名是AccountGetNonceResult：
+.. note:: |
+
+ 说明：
+
+ (1) ErrorCode: 0表示无错误，大于0表示有错误
+
+ (2) ErrorDesc: 空表示无错误，有内容表示有错误
+
+ (3) Result:
+
+ 返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
+
+ 例如：Account.GetNonce()的结构体名是AccountGetNonceResult：
 
 ::
 
@@ -200,6 +210,7 @@ resData :=testSdk.Account.Create()
  gasPrice和feeLimit的单位是MO，且 1BU =10^8 MO
 
 ::
+
  //初始化传入参数
  var reqDataBlob model.TransactionBuildBlobRequest
  reqDataBlob.SetSourceAddress(surceAddress)
@@ -224,3 +235,35 @@ resData :=testSdk.Account.Create()
  reqData.SetPrivateKeys(PrivateKey)
  //调用Sign接口
  resDataSign := testSdk.Transaction.Sign(reqData)
+
+广播交易
+^^^^^^^^
+
+该接口用于向BU区块链发送交易，触发交易的执行。接口调用如下：
+
+::
+
+ var reqData model.TransactionSubmitRequest
+ reqData.SetBlob(resDataBlob.Result.Blob)
+ reqData.SetSignatures(resDataSign.Result.Signatures)
+ //调用Submit接口
+ resDataSubmit := testSdk.Transaction.Submit(reqData)
+
+账户服务
+--------
+
+账户服务主要是账户相关的接口，包括5个接口：CheckValid, GetInfo,
+GetNonce, GetBalance, GetAssets, GetMetadata。
+
+CheckValid
+~~~~~~~~~~~
+
+接口说明:
+
+该接口用于检测账户地址的有效性。
+
+调用方法：
+
+CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
+
+
