@@ -190,3 +190,37 @@ resData :=testSdk.Account.Create()
  var address string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
  buSendOperation.SetAmount(amount)
  buSendOperation.SetDestAddress(address)
+
+构建交易Blob
+^^^^^^^^^^^^
+
+该接口用于生成交易Blob串，接口调用如下：
+
+.. note:: |
+ gasPrice和feeLimit的单位是MO，且 1BU =10^8 MO
+
+::
+ //初始化传入参数
+ var reqDataBlob model.TransactionBuildBlobRequest
+ reqDataBlob.SetSourceAddress(surceAddress)
+ reqDataBlob.SetFeeLimit(feeLimit)
+ reqDataBlob.SetGasPrice(gasPrice)
+ reqDataBlob.SetNonce(senderNonce)
+ reqDataBlob.SetOperation(buSendOperation)
+ //调用BuildBlob接口
+ resDataBlob := testSdk.Transaction.BuildBlob(reqDataBlob)
+
+签名交易
+^^^^^^^^
+
+该接口用于交易发起者使用私钥对交易进行签名。接口调用如下：
+
+::
+
+ //初始化传入参数
+ PrivateKey := []string{"privbUPxs6QGkJaNdgWS2hisny6ytx1g833cD7V9C3YET9mJ25wdcq6h"}
+ var reqData model.TransactionSignRequest
+ reqData.SetBlob(resDataBlob.Result.Blob)
+ reqData.SetPrivateKeys(PrivateKey)
+ //调用Sign接口
+ resDataSign := testSdk.Transaction.Sign(reqData)
