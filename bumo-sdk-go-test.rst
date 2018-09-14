@@ -32,8 +32,8 @@ Bumo go SDK
 
 ::
 
-       //获取包
-       go get github.com/bumoproject/bumo-sdk-go
+ //获取包
+  go get github.com/bumoproject/bumo-sdk-go
 
 
 名词解析
@@ -74,8 +74,8 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 
 ::
 
- type AccountGetInfoRequest struct {
-       address string
+   type AccountGetInfoRequest struct {
+        address string
    }
 
 
@@ -96,9 +96,9 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 
 说明：
 
-(1) ErrorCode: 0表示无错误，大于0表示有错误
+(1) ErrorCode: 0表示无错误，大于0表示有错误。
 
-(2) ErrorDesc: 空表示无错误，有内容表示有错误
+(2) ErrorDesc: 空表示无错误，有内容表示有错误。
 
 (3) Result:
 返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
@@ -118,7 +118,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 包导入
 ~~~~~~
 
-   导入使用的包
+导入使用的包
 
 ::
 
