@@ -17,7 +17,8 @@ Bumo go SDK
 
 - `使用方法`_
    - `包导入`_
-   -`生成SDK实例`_
+   - `生成SDK实例`_
+   - `生成公私钥地址`_
 
 
 
@@ -146,3 +147,14 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
    var reqData model.SDKInitRequest
    reqData.SetUrl(url)
    resData := testSdk.Init(reqData)
+
+
+生成公私钥地址
+~~~~~~~~~~~~~~
+
+   通过调用Account的Create生成账户，例如：
+
+::
+
+   resData := testSdk.Account.Create()
+
