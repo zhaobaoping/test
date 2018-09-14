@@ -101,3 +101,14 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  "github.com/bumoproject/bumo-sdk-go/src/model"
  "github.com/bumoproject/bumo-sdk-go/src/sdk"
  )
+
+生成SDK实例
+~~~~~~~~~~~
+
+初始化SDK结构
+
+::
+
+ var testSdk sdk.sdk
+
+调用SDK的接口Inite
