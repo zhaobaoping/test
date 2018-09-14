@@ -13,8 +13,5 @@ Contents:
    
    
    go
-   Syntax in the Smart Contract refined
-   try image
-   BUMO JAVA SDK 指南
 
  
