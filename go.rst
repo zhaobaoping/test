@@ -142,3 +142,51 @@ resData :=testSdk.Account.Create()
  reqData.SetAddress(address)
  //调用接口检查
  resData := testSdk.Account.CheckValid(reqData)
+
+查询
+~~~~
+
+调用相应的接口，例如：查询账户信息
+
+::
+
+ //初始化传入参数
+ var reqData model.AccountGetInfoRequest
+ var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+ reqData.SetAddress(address)
+ //调用接口查询 
+ resData := testSdk.Account.GetInfo(reqData)
+
+提交交易
+~~~~~~~~
+
+提交交易的过程包括以下几步：获取账户nonce值，构建操作，构建交易Blob,签名交易和广播交易
+
+获取账户nonce值
+^^^^^^^^^^^^^^^
+
+开发者可自己维护各个账户nonce，在提交完一个交易后，自动递增1，这样可以在短时间内发送多笔交易，否则，必须等上一个交易执行完成后，账户的nonce值才会加1。接口调用如下：
+
+::
+
+ //初始化请求参数
+ var reqData model.AccountGetNonceRequest
+ var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+ reqData.SetAddress(address)
+ resData := testSdk.Account.GetNonce(resData)
+ //调用GetNonce接口
+ resData := testSdk.Account.GetNonce(reqData)
+
+构建操作
+^^^^^^^^
+
+这里的操作是指在交易中做的一些动作。例如：构建发送BU操作BUSendOperation，调用如下:
+
+::
+
+ var buSendOperation model.buSendOperation
+ buSendOperation.Init()
+ var amount int64 = 100
+ var address string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
+ buSendOperation.SetAmount(amount)
+ buSendOperation.SetDestAddress(address)
