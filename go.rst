@@ -282,6 +282,4 @@ CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
 | IsValid | string | 账户地址是否有效 |
 +---------+--------+----------------+
 
-..
 
- 错误码：
