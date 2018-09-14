@@ -95,3 +95,9 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 
 导入使用的包
 
+::
+
+ import(
+ "github.com/bumoproject/bumo-sdk-go/src/model"
+ "github.com/bumoproject/bumo-sdk-go/src/sdk"
+ )
