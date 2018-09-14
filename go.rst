@@ -56,3 +56,20 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  type AccountGetInfoRequest struct {
  address string
  }
+
+响应结果
+^^^^^^^^
+
+响应结果的格式，包含错误码，错误描述和result，格式是[类名][方法名]Response。
+
+例如: Account.GetInfo()的结构体名是AccountGetInfoResponse：
+
+::
+
+ type AccountGetInfoResponse struct {
+ ErrorCode int
+ ErrorDesc string
+ Result  AccountGetInfoResult
+ }
+
+ 
