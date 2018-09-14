@@ -112,3 +112,12 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  var testSdk sdk.sdk
 
 调用SDK的接口Inite
+
+::
+
+ url :="http://seed1.bumotest.io:26002"
+ var reqData model.SDKInitRequest
+ reqData.SetUrl(url)
+ reqData := testSdk.Init(reqData)
+
+ 
