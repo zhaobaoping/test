@@ -46,3 +46,13 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 
 请求参数
 ~~~~~~~~
+
+请求参数的格式，是[类名][方法名]Request，比如Account.GetInfo()的请求参数是AccountGetInfoRequest。
+请求参数的成员，是各个方法的入参的成员变量名。
+例如：Account.GetInfo()的入参成员是address，那么AccountGetInfoRequest的结构如下：
+
+::
+
+ type AccountGetInfoRequest struct {
+ address string
+ }
