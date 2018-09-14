@@ -17,7 +17,7 @@ Bumo go SDK
 
 - `使用方法`_
    - `包导入`_
-   - `生成SDK实例`_
+  
    
 
 
@@ -128,24 +128,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
        "github.com/bumoproject/bumo-sdk-go/src/sdk"
    )
 
-生成SDK实例
-~~~~~~~~~~~
 
-初始化Sdk结构体
-
-::
-
-   var testSdk sdk.Sdk
-
-
-调用SDK的接口Init
-
-::
-
-   url := "http://seed1.bumotest.io:26002"
-   var reqData model.SDKInitRequest
-   reqData.SetUrl(url)
-   resData := testSdk.Init(reqData)
 
 
 
