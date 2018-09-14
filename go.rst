@@ -683,3 +683,213 @@ Metadata
 资产服务
 --------
 
+资产服务主要是资产相关的接口，目前有1个接口：GetInfo
+
+GetInfo-Asset
+^^^^^^^^^^^^^^
+
+接口说明：
+
+取账户指定资产数量
+
+调用方法：
+
+GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
+
+请求参数：
+
++---------+--------+-----------------------------+
+| 参数    | 类型   | 描述                        |
++=========+========+=============================+
+| address | string | 必填，待查询的账户地址      |
++---------+--------+-----------------------------+
+| code    | string | 必填，资产编码，长度[1, 64] |
++---------+--------+-----------------------------+
+| issuer  | string | 必填，资产发行账户地址      |
++---------+--------+-----------------------------+
+
+响应参数：
+
++--------+-----------------------+----------+
+| 参数   | 类型                  | 描述     |
++========+=======================+==========+
+| Assets | [] `Asset <#asset>`__ | 账户资产 |
++--------+-----------------------+----------+
+
+错误码：
+
++-------------------------+-------------------------+------------------+
+| 异常                    | 错误码                  | 描述             |
++=========================+=========================+==================+
+| INVALID_ADDRESS_ERROR   | 11006                   | Invalid address  |
++-------------------------+-------------------------+------------------+
+| CONNECTNETWORK_ERROR    | 11007                   | Fail to Connect  |
+|                         |                         | network          |
++-------------------------+-------------------------+------------------+
+| INVALID_ASSET_CODE_ERRO | 11023                   | The length of    |
+| R                       |                         | asset code must  |
+|                         |                         | be between 1 and |
+|                         |                         | 1024             |
++-------------------------+-------------------------+------------------+
+| INVALID_ISSUER_ADDRESS_ | 11027                   | Invalid issuer   |
+| ERROR                   |                         | address          |
++-------------------------+-------------------------+------------------+
+| SYSTEM_ERROR            | 20000                   | System error     |
++-------------------------+-------------------------+------------------+
+
+示例：
+
+::
+
+ var reqData model.AssetGetInfoRequest
+ var address string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
+ reqData.SetAddress(address)
+ reqData.SetIssuer("buQnc3AGCo6ycWJCce516MDbPHKjK7ywwkuo")
+ reqData.SetCode("HNC")
+ resData := testSdk.Token.Asset.GetInfo(reqData)
+ if resData.ErrorCode == 0 {
+ data, _ := json.Marshal(resData.Result.Assets)
+ fmt.Println("Assets:", string(data))
+ }
+
+合约服务：
+--------
+
+合约服务主要是合约相关的接口,目前有1个接口:GetInfo
+
+GetInfo-contract
+^^^^^^^^^^^^^^^^^
+
+接口说明：
+
+获取合约信息
+
+调用方法：
+
+GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse
+
+请求参数：
+
++-----------------+--------+--------------------+
+| 参数            | 类型   | 描述               |
++=================+========+====================+
+| contractAddress | string | 必填，合约账户地址 |
++-----------------+--------+--------------------+
+
+响应数据：
+
++---------+--------+-----------------+
+| 参数    | 类型   | 描述            |
++=========+========+=================+
+| Type    | int64  | 合约类型，默认0 |
++---------+--------+-----------------+
+| Payload | string | 合约代码        |
++---------+--------+-----------------+
+
+错误码：
+
++-------------------------+-------------------------+------------------+
+| 异常                    | 错误码                  | 描述             |
++=========================+=========================+==================+
+| INVALID_CONTRACTADDRESS | 11037                   | Invalid contract |
+| _ERROR                  |                         | address          |
++-------------------------+-------------------------+------------------+
+| CONTRACTADDRESS_NOT_CON | 11038                   | contractAddress  |
+| TRACTACCOUNT_ERROR      |                         | is not a         |
+|                         |                         | contract account |
++-------------------------+-------------------------+------------------+
+| CONNECTNETWORK_ERROR    | 11007                   | Fail to Connect  |
+|                         |                         | network          |
++-------------------------+-------------------------+------------------+
+| SYSTEM_ERROR            | 20000                   | System error     |
++-------------------------+-------------------------+------------------+
+
+示例：
+
+::
+
+ var reqData model.ContractGetInfoRequest
+ var address string = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"
+ reqData.SetAddress(address)
+ resData := testSdk.Contract.GetInfo(reqData)
+ if resData.ErrorCode == 0 {
+ data, _ := json.Marshal(resData.Result.Contract)
+ fmt.Println("Contract:", string(data))
+ }
+
+交易服务
+--------
+
+交易服务主要是交易相关的接口，目前有5个接口：BuildBlob, EvaluateFee,
+Sign, Submit, GetInfo。
+
+其中调用BuildBlob之前需要构建一些操作，目前操作有16种，分别包括AccountActivateOperation，AccountSetMetadataOperation,
+AccountSetPrivilegeOperation, AssetIssueOperation, AssetSendOperation,
+BUSendOperation, Ctp10TokenIssueOperation, Ctp10TokenTransferOperation,
+Ctp10TokenTransferFromOperation, Ctp10TokenApproveOperation,
+Ctp10TokenAssignOperation, Ctp10TokenChangeOwnerOperation,
+ContractInvokeByAssetOperation, ContractInvokeByBUOperation,
+LogCreateOperation,ContractCreateOperation
+
+操作说明
+~~~~~~~~
+
+BaseOperation
+^^^^^^^^^^^^^^
+
+操作对象，根据不同的操作生成，详情如下：
+
+AccountActivateOperation
+
++---------------+--------+---------------------------------------+
+| 成员变量      | 类型   | 描述                                  |
++===============+========+=======================================+
+| sourceAddress | string | 选填，操作源账户                      |
++---------------+--------+---------------------------------------+
+| destAddress   | string | 必填，目标账户地址                    |
++---------------+--------+---------------------------------------+
+| initBalance   | int64  | 必填，初始化资产，大小[1, max(int64)] |
++---------------+--------+---------------------------------------+
+| metadata      | string | 选填，备注                            |
++---------------+--------+---------------------------------------+
+
+AccountSetMetadataOperation
+
++---------------+--------+---------------------------------------+
+| 成员变量      | 类型   | 描述                                  |
++===============+========+=======================================+
+| sourceAddress | string | 选填，操作源账户                      |
++---------------+--------+---------------------------------------+
+| key           | string | 必填，metadata的关键词，长度[1, 1024] |
++---------------+--------+---------------------------------------+
+| value         | string | 选填，metadata的内容，长度[0, 256K]   |
++---------------+--------+---------------------------------------+
+| version       | int64  | 选填，metadata的版本                  |
++---------------+--------+---------------------------------------+
+| deleteFlag    | bool   | 选填，是否删除metadata                |
++---------------+--------+---------------------------------------+
+| metadata      | string | 选填，备注                            |
++---------------+--------+---------------------------------------+
+
+AccountSetPrivilegeOperation
+
++-----------------------+-----------------------+-----------------------+
+| 成员变量              | 类型                  | 描述                  |
++=======================+=======================+=======================+
+| sourceAddress         | string                | 选填，操作源账户      |
++-----------------------+-----------------------+-----------------------+
+| masterWeight          | string                | 选填，账户自身权重，大小[0, |
+|                       |                       | max(uint32)]          |
++-----------------------+-----------------------+-----------------------+
+| signers               | [] `Signer <#signer>`_ | 选填，签名者权重列表  |
++-----------------------+-----------------------+-----------------------+
+| txThreshold           | string                | 选填，交易门限，大小[0, |
+|                       |                       |                       |
+|                       |                       | max(int64)]           |
++-----------------------+-----------------------+-----------------------+
+| typeThreshold         | `TypeThreshold`_      | 选填，指定类型交易门限 |
++-----------------------+-----------------------+-----------------------+
+| metadata              | string                | 选填，备注            |
++-----------------------+-----------------------+-----------------------+
+
+
