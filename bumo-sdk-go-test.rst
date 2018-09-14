@@ -18,7 +18,7 @@ Bumo go SDK
 - `使用方法`_
    - `包导入`_
    - `生成SDK实例`_
-   - `生成公私钥地址`_
+   
 
 
 
@@ -101,8 +101,8 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
 (2) ErrorDesc: 空表示无错误，有内容表示有错误
 
 (3) Result:
-    返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
-    例如Account.GetNonce()的结构体名是AccountGetNonceResult：
+返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
+例如Account.GetNonce()的结构体名是AccountGetNonceResult：
 
 ::
 
@@ -148,7 +148,4 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
    resData := testSdk.Init(reqData)
 
 
-生成公私钥地址
-~~~~~~~~~~~~~~
 
-通过调用Account的Create生成账户，例如：
