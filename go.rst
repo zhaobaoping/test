@@ -436,3 +436,250 @@ Threshold
 
 GetNonce
 ~~~~~~~~
+
+接口说明：
+
+该接口用于获取账户的nonce
+
+调用方法：
+
+GetNonce(model.AccountGetNonceRequest) model.AccountGetNonceResponse
+
+请求参数：
+
++---------+--------+------------------+
+| 参数    | 类型   | 描述             |
++=========+========+==================+
+| address | string | 待检测的账户地址 |
++---------+--------+------------------+
+
+响应数据：
+
++---------+--------+------------------+
+| 参数    | 类型   | 描述             |
++=========+========+==================+
+| address | string | 待检测的账户地址 |
++---------+--------+------------------+
+
+错误码：
+
++-----------------------+--------+-------------------------+
+| 异常                  | 错误码 | 描述                    |
++=======================+========+=========================+
+| INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
++-----------------------+--------+-------------------------+
+| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
++-----------------------+--------+-------------------------+
+| SYSTEM_ERROR          | 20000  | System error            |
++-----------------------+--------+-------------------------+
+
+示例
+
+::
+
+ var reqData model.AccountGetNonceRequest
+ var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+ reqData.SetAddress(address)
+ if resData.ErrorCode == 0 {
+ fmt.Println(resData.Result.Nonce)
+ }
+
+GetBalance-Account
+~~~~~~~~~~~~~~~~~~~
+
+接口说明：
+
+该接口用于获取账户的Balance
+
+调用方法：
+
+GetBalance(model.AccountGetBalanceRequest)
+model.AccountGetBalanceResponse
+
+请求参数：
+
++---------+--------+------------------+
+| 参数    | 类型   | 描述             |
++=========+========+==================+
+| address | string | 待检测的账户地址 |
++---------+--------+------------------+
+
+响应数据：
+
++---------+-------+--------------+
+| 参数    | 类型  | 描述         |
++=========+=======+==============+
+| Balance | int64 | 该账户的余额 |
++---------+-------+--------------+
+
+错误码：
+
++-----------------------+--------+-------------------------+
+| 异常                  | 错误码 | 描述                    |
++=======================+========+=========================+
+| INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
++-----------------------+--------+-------------------------+
+| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
++-----------------------+--------+-------------------------+
+| SYSTEM_ERROR          | 20000  | System error            |
++-----------------------+--------+-------------------------+
+
+示例
+
+::
+
+ var reqData model.AccountGetBalanceRequest
+ var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+ reqData.SetAddress(address)
+ resData := testSdk.Account.GetBalance(reqData)
+ if resData.ErrorCode == 0 {
+ fmt.Println("Balance", resData.Result.Balance)
+ }
+
+GetAssets
+~~~~~~~~~~
+
+接口说明：
+
+该接口用于获取账户的nonce
+
+调用方法：
+
+GetAssets(model.AccountGetAssetsRequest) model.AccountGetAssetsResponse
+
+请求参数：
+
++---------+--------+------------------+
+| 参数    | 类型   | 描述             |
++=========+========+==================+
+| address | string | 待检测的账户地址 |
++---------+--------+------------------+
+
+响应数据：
+
++--------+-----------------------+----------+
+| 参数   | 类型                  | 描述     |
++========+=======================+==========+
+| Assets | [] `Asset <#asset>`__ | 账户资产 |
++--------+-----------------------+----------+
+
+Asset
+~~~~~
+
++--------+----------------+--------------+
+| 参数   | 类型           | 描述         |
++========+================+==============+
+| Key    | `Key <#key>`__ | 资产惟一标识 |
++--------+----------------+--------------+
+| Amount | int64          | 资产数量     |
++--------+----------------+--------------+
+
+Key
+~~~~
+
++--------+--------+----------------------+
+| 参数   | 类型   | 描述                 |
++========+========+======================+
+| Code   | string | 资产编码，长度[1 64] |
++--------+--------+----------------------+
+| Issuer | string | 资产发行账户地址     |
++--------+--------+----------------------+
+
+错误码：
+
++-----------------------+--------+-------------------------+
+| 异常                  | 错误码 | 描述                    |
++=======================+========+=========================+
+| INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
++-----------------------+--------+-------------------------+
+| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
++-----------------------+--------+-------------------------+
+| SYSTEM_ERROR          | 20000  | System error            |
++-----------------------+--------+-------------------------+
+
+示例：
+
+::
+
+ var reqData model.AccountGetAssetsRequest
+ var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+ reqData.SetAddress(address)
+ resData := testSdk.Account.GetAssets(reqData)
+ if resData.ErrorCode == 0 {
+ data, _ := json.Marshal(resData.Result.Assets)
+ fmt.Println("Assets:", string(data))
+ }
+
+GetMetadata
+~~~~~~~~~~~~
+
+接口说明：
+
+获取账户的metadata信息
+
+调用方法：
+
+GetMetadata(model.AccountGetMetadataRequest)
+model.AccountGetMetadataResponse
+
+请求参数：
+
++---------+--------+-------------------------------------+
+| 参数    | 类型   | 描述                                |
++=========+========+=====================================+
+| address | string | 待检测的账户地址                    |
++---------+--------+-------------------------------------+
+| key     | string | 选填，metadata关键字，长度[1, 1024] |
++---------+--------+-------------------------------------+
+
+响应数据：
+
++-----------+-----------------------------+------+
+| 参数      | 类型                        | 描述 |
++===========+=============================+======+
+| Metadatas | [] `Metadata <#metadata>`__ | 账户 |
++-----------+-----------------------------+------+
+
+Metadata
+~~~~~~~~
+
++---------+--------+------------------+
+| 参数    | 类型   | 描述             |
++=========+========+==================+
+| Key     | string | metadata的关键词 |
++---------+--------+------------------+
+| Value   | string | metadata的内容   |
++---------+--------+------------------+
+| Version | int64  | metadata的版本   |
++---------+--------+------------------+
+
+错误码：
+
++-----------------------+--------+----------------------------------------------+
+| 异常                  | 错误码 | 描述                                         |
++=======================+========+==============================================+
+| INVALID_ADDRESS_ERROR | 11006  | Invalid address                              |
++-----------------------+--------+----------------------------------------------+
+| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network                      |
++-----------------------+--------+----------------------------------------------+
+| INVALID_DATAKEY_ERROR | 11011  | The length of key must be between 1 and 1024 |
++-----------------------+--------+----------------------------------------------+
+| SYSTEM_ERROR          | 20000  | System error                                 |
++-----------------------+--------+----------------------------------------------+
+
+示例：
+
+::
+
+ var reqData model.AccountGetMetadataRequest
+ var address string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
+ reqData.SetAddress(address)
+ resData := testSdk.Account.GetMetadata(reqData)
+ if resData.ErrorCode == 0 {
+ data, _ := json.Marshal(resData.Result.Metadatas)
+ fmt.Println("Metadatas:", string(data))
+ }
+
+资产服务
+--------
+
