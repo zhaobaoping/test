@@ -12,3 +12,11 @@ Bumo Go SDK
 ~~~~~~
 
 所依赖的golang包在src文件夹中寻找，依赖的golang包如下：
+
+::
+
+ //获取包
+ go get github.com/bumoproject/bumo-sdk-go
+
+名词解析
+--------
