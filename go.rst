@@ -84,3 +84,22 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口
  type AccountGetNonceResult struct {
  Nonce int64
  }
+
+使用方法
+--------
+
+这里介绍SDK的使用流程，首先需要生成SDK实例，然后调用相应服务的接口，其中服务包括账户服务、资产服务、合约服务、交易服务、区块服务，接口按使用分类分为生成公私钥地址接口、有效性校验接口、查询接口、提交交易相关接口。
+
+包导入
+~~~~~~
+
+导入使用的包
+
+::
+
+ import(
+ "github.com/bumoproject/bumo-sdk-go/src/model"
+ "github.com/bumoproject/bumo-sdk-go/src/sdk"
+ )
+
+
