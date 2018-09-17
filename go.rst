@@ -1188,32 +1188,3 @@ model.TransactionEvaluateFeeResponse
 | SYSTEM_ERROR            | 20000                   | System error     |
 +-------------------------+-------------------------+------------------+
 
-示例:
-
-::
-
-   var reqDataOperation model.BUSendOperation
-   reqDataOperation.Init()
-   var amount int64 = 100
-   reqDataOperation.SetAmount(amount)
-   var destAddress string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
-   reqDataOperation.SetDestAddress(destAddress)
-
-   var reqDataEvaluate model.TransactionEvaluateFeeRequest
-   var sourceAddress string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
-   reqDataEvaluate.SetSourceAddress(sourceAddress)
-   var nonce int64 = 88
-   reqDataEvaluate.SetNonce(nonce)
-   var signatureNumber string = "3"
-   reqDataEvaluate.SetSignatureNumber(signatureNumber)
-   var SetCeilLedgerSeq int64 = 50
-   reqDataEvaluate.SetCeilLedgerSeq(SetCeilLedgerSeq)
-   reqDataEvaluate.SetOperation(reqDataOperation)
-   resDataEvaluate := testSdk.Transaction.EvaluateFee(reqDataEvaluate)
-   if resDataEvaluate.ErrorCode == 0 {
-       data, _ := json.Marshal(resDataEvaluate.Result)
-       fmt.Println("Evaluate:", string(data))
-   }
-
-BuildBlob
-^^^^^^^^^
