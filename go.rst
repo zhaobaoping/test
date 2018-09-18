@@ -1891,3 +1891,231 @@ GetNumber() model.BlockGetNumberResponse
    if resData.ErrorCode == 0 {
        fmt.Println("BlockNumber:", resData.Result.BlockNumber)
    }
+
+CheckStatus
+^^^^^^^^^^^
+
+接口说明:
+
+检查区块同步。
+
+调用方法：
+
+CheckStatus() model.BlockCheckStatusResponse
+
+响应数据：
+
++---------------+------+--------------+
+| 参数          | 类型 | 描述         |
++===============+======+==============+
+| IsSynchronous | bool | 区块是否同步 |
++---------------+------+--------------+
+
+错误码：
+
++----------------------+--------+-------------------------+
+| 异常                 | 错误码 | 描述                    |
++======================+========+=========================+
+| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
++----------------------+--------+-------------------------+
+| SYSTEM_ERROR         | 20000  | System error            |
++----------------------+--------+-------------------------+
+
+示例：
+
+::
+
+   resData := testSdk.Block.CheckStatus()
+   if resData.ErrorCode == 0 {
+       fmt.Println("IsSynchronous:", resData.Result.IsSynchronous)
+   }
+
+GetTransactions
+^^^^^^^^^^^^^^^^
+
+接口说明:
+
+根据高度查询交易。
+
+调用方法：
+
+GetTransactions(model.BlockGetTransactionRequest)
+model.BlockGetTransactionResponse
+
+请求参数：
+
++-------------+-------+------------------------+
+| 参数        | 类型  | 描述                   |
++=============+=======+========================+
+| blockNumber | int64 | 必填，待查询的区块高度 |
++-------------+-------+------------------------+
+
+响应数据:
+
++-----------------------+--------------------------+-----------------------+
+| 参数                  | 类型                     | 描述                  |
++=======================+==========================+=======================+
+| TotalCount            | int64                    | 返回的总交易数        |
++-----------------------+--------------------------+-----------------------+
+| Transactions          | [] `TransactionHistory`_ | 交易内容              |
+|                       |                          |                       |
++-----------------------+--------------------------+-----------------------+
+
+错误码:
+
++---------------------------+--------+--------------------------------+
+| 异常                      | 错误码 | 描述                           |
++===========================+========+================================+
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
++---------------------------+--------+--------------------------------+
+| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
++---------------------------+--------+--------------------------------+
+| SYSTEM_ERROR              | 20000  | System error                   |
++---------------------------+--------+--------------------------------+
+
+示例：
+
+::
+
+   var reqData model.BlockGetTransactionRequest
+   var blockNumber int64 = 581283
+   reqData.SetBlockNumber(blockNumber)
+   resData := testSdk.Block.GetTransactions(reqData)
+   if resData.ErrorCode == 0 {
+       data, _ := json.Marshal(resData.Result.Transactions)
+       fmt.Println("Transactions:", string(data))
+   }
+
+GetInfo-block
+^^^^^^^^^^^^^
+
+接口说明:
+
+获取区块信息。
+
+调用方法:
+
+GetInfo(model.BlockGetInfoRequest) model.BlockGetInfoResponse
+
+请求参数:
+
++-------------+-------+------------------+
+| 参数        | 类型  | 描述             |
++=============+=======+==================+
+| blockNumber | int64 | 待查询的区块高度 |
++-------------+-------+------------------+
+
+响应数据:
+
++-----------+--------+--------------+
+| 参数      | 类型   | 描述         |
++===========+========+==============+
+| CloseTime | int64  | 区块关闭时间 |
++-----------+--------+--------------+
+| Number    | int64  | 区块高度     |
++-----------+--------+--------------+
+| TxCount   | int64  | 交易总量     |
++-----------+--------+--------------+
+| Version   | string | 区块版本     |
++-----------+--------+--------------+
+
+错误码:
+
++---------------------------+--------+--------------------------------+
+| 异常                      | 错误码 | 描述                           |
++===========================+========+================================+
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
++---------------------------+--------+--------------------------------+
+| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
++---------------------------+--------+--------------------------------+
+| SYSTEM_ERROR              | 20000  | System error                   |
++---------------------------+--------+--------------------------------+
+
+示例:
+
+::
+
+   var reqData model.BlockGetInfoRequest
+   var blockNumber int64 = 581283
+   reqData.SetBlockNumber(blockNumber)
+   resData := testSdk.Block.GetInfo(reqData)
+   if resData.ErrorCode == 0 {
+       data, _ := json.Marshal(resData.Result.Header)
+       fmt.Println("Header:", string(data))
+   }
+
+GetLatest
+^^^^^^^^^^
+
+接口说明:
+
+获取最新区块信息。
+
+调用方法:
+
+GetLatest() model.BlockGetLatestResponse
+
+响应数据:
+
++-----------+--------+--------------+
+| 参数      | 类型   | 描述         |
++===========+========+==============+
+| CloseTime | int64  | 区块关闭时间 |
++-----------+--------+--------------+
+| Number    | int64  | 区块高度     |
++-----------+--------+--------------+
+| TxCount   | int64  | 交易总量     |
++-----------+--------+--------------+
+| Version   | string | 区块版本     |
++-----------+--------+--------------+
+
+错误码:
+
++----------------------+--------+-------------------------+
+| 异常                 | 错误码 | 描述                    |
++======================+========+=========================+
+| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
++----------------------+--------+-------------------------+
+| SYSTEM_ERROR         | 20000  | System error            |
++----------------------+--------+-------------------------+
+
+示例:
+
+::
+
+   resData := testSdk.Block.GetLatest()
+   if resData.ErrorCode == 0 {
+       data, _ := json.Marshal(resData.Result.Header)
+       fmt.Println("Header:", string(data))
+   }
+
+GetValidators
+^^^^^^^^^^^^^^
+
+接口说明:
+
+获取指定区块中所有验证节点数。
+
+调用方法:
+
+GetValidators(model.BlockGetValidatorsRequest)
+model.BlockGetValidatorsResponse
+
+请求参数:
+
++-------------+-------+------------------+
+| 参数        | 类型  | 描述             |
++=============+=======+==================+
+| blockNumber | int64 | 待查询的区块高度 |
++-------------+-------+------------------+
+
+响应数据:
+
++------------+---------------------------------------+--------------+
+| 参数       | 类型                                  | 描述         |
++============+=======================================+==============+
+| validators | [] `ValidatorInfo`_                   | 验证节点列表 |
++------------+---------------------------------------+--------------+
+
+ValidatorInfo
+^^^^^^^^^^^^^^
