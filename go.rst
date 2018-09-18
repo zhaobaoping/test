@@ -1151,3 +1151,73 @@ model.TransactionEvaluateFeeResponse
 |                   |                     | 交易执行失败。必须大于等于0，   |
 |                   |                     | 是0时不限制                     |
 +-------------------+---------------------+---------------------------------+
+
+ 响应数据
+
++----------+-------+----------+
+| 成员变量 | 类型  | 描述     |
++==========+=======+==========+
+| FeeLimit | int64 | 交易费用 |
++----------+-------+----------+
+| GasPrice | int64 | 打包费用 |
++----------+-------+----------+
+
+..
+
+   错误码
+
++-------------------------+-------------------------+------------------+
+| 异常                    | 错误码                  | 描述             |
++=========================+=========================+==================+
+| INVALID_SOURCEADDRESS_E | 11002                   | Invalid          |
+| RROR                    |                         | sourceAddress    |
++-------------------------+-------------------------+------------------+
+| INVALID_NONCE_ERROR     | 11048                   | Nonce must be    |
+|                         |                         | between 1 and    |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_OPERATIONS_ERRO | 11051                   | Operations       |
+| R                       |                         | cannot be        |
+|                         |                         | resolved         |
++-------------------------+-------------------------+------------------+
+| OPERATIONS_ONE_ERROR    | 11053                   | One of           |
+|                         |                         | operations error |
++-------------------------+-------------------------+------------------+
+| INVALID_SIGNATURENUMBER | 11054                   | SignatureNumber  |
+| _ERROR                  |                         | must be between  |
+|                         |                         | 1 and max(int32) |
++-------------------------+-------------------------+------------------+
+| SYSTEM_ERROR            | 20000                   | System error     |
++-------------------------+-------------------------+------------------+
+
+
+
+示例:
+
+::
+
+   var reqDataOperation model.BUSendOperation
+   reqDataOperation.Init()
+   var amount int64 = 100
+   reqDataOperation.SetAmount(amount)
+   var destAddress string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
+   reqDataOperation.SetDestAddress(destAddress)
+
+   var reqDataEvaluate model.TransactionEvaluateFeeRequest
+   var sourceAddress string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
+   reqDataEvaluate.SetSourceAddress(sourceAddress)
+   var nonce int64 = 88
+   reqDataEvaluate.SetNonce(nonce)
+   var signatureNumber string = "3"
+   reqDataEvaluate.SetSignatureNumber(signatureNumber)
+   var SetCeilLedgerSeq int64 = 50
+   reqDataEvaluate.SetCeilLedgerSeq(SetCeilLedgerSeq)
+   reqDataEvaluate.SetOperation(reqDataOperation)
+   resDataEvaluate := testSdk.Transaction.EvaluateFee(reqDataEvaluate)
+   if resDataEvaluate.ErrorCode == 0 {
+       data, _ := json.Marshal(resDataEvaluate.Result)
+       fmt.Println("Evaluate:", string(data))
+   }
+
+BuildBlob
+^^^^^^^^^
