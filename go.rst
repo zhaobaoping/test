@@ -77,28 +77,22 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 
 .. note:: |
 
- 说明：
+ 1. ErrorCode: 0表示无错误，大于0表示有错误。
 
- (1) ErrorCode: 0表示无错误，大于0表示有错误
+ 2. ErrorDesc: 空表示无错误，有内容表示有错误。
 
- (2) ErrorDesc: 空表示无错误，有内容表示有错误
+ 3. Result:
+    返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
+    例如：Account.GetNonce()的结构体名是AccountGetNonceResult：
 
- (3) Result:
-
- 返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
-
- 例如：Account.GetNonce()的结构体名是AccountGetNonceResult：
-
-::
-
- type AccountGetNonceResult struct {
- Nonce int64
- }
+    type AccountGetNonceResult struct {
+    Nonce int64
+    }
 
 使用方法
 --------
 
-这里介绍SDK的使用流程，然后调用相应服务的接口，其中服务包括账户服务、资产服务、合约服务、交易服务、区块服务，接口按使用分类分为生成公私钥地址接口、有效性校验接口、查询接口、提交交易相关接口。
+这里介绍SDK的使用流程，首先需要生成SDK实例,然后调用相应服务的接口，其中服务包括账户服务、资产服务、合约服务、交易服务、区块服务，接口按使用分类分为生成公私钥地址接口、有效性校验接口、查询接口、提交交易相关接口。
 
 包导入
 ~~~~~~
@@ -128,7 +122,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
  url :="http://seed1.bumotest.io:26002"
  var reqData model.SDKInitRequest
  reqData.SetUrl(url)
- reqData := testSdk.Init(reqData)
+ resData := testSdk.Init(reqData)
 
 生成公私钥地址
 ~~~~~~~~~~~~~
@@ -194,7 +188,7 @@ resData :=testSdk.Account.Create()
 
 ::
 
- var buSendOperation model.buSendOperation
+ var buSendOperation model.BUSendOperation
  buSendOperation.Init()
  var amount int64 = 100
  var address string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
@@ -207,13 +201,14 @@ resData :=testSdk.Account.Create()
 该接口用于生成交易Blob串，接口调用如下：
 
 .. note:: |
- gasPrice和feeLimit的单位是MO，且 1BU =10^8 MO。
+ 
+  gasPrice和feeLimit的单位是MO，且 1 BU =10^8 MO。
 
 ::
 
  //初始化传入参数
  var reqDataBlob model.TransactionBuildBlobRequest
- reqDataBlob.SetSourceAddress(surceAddress)
+ reqDataBlob.SetSourceAddress(sourceAddress)
  reqDataBlob.SetFeeLimit(feeLimit)
  reqDataBlob.SetGasPrice(gasPrice)
  reqDataBlob.SetNonce(senderNonce)
@@ -243,6 +238,7 @@ resData :=testSdk.Account.Create()
 
 ::
 
+ //初始化传入参数
  var reqData model.TransactionSubmitRequest
  reqData.SetBlob(resDataBlob.Result.Blob)
  reqData.SetSignatures(resDataSign.Result.Signatures)
@@ -252,8 +248,8 @@ resData :=testSdk.Account.Create()
 账户服务
 --------
 
-账户服务主要是账户相关的接口，包括5个接口：CheckValid, GetInfo,
-GetNonce, GetBalance, GetAssets, GetMetadata。
+账户服务主要是账户相关的接口，包括7个接口：CheckValid, Create,GetInfo-Account,
+GetNonce, GetBalance-Account, GetAssets, GetMetadata。
 
 CheckValid
 ~~~~~~~~~~~
@@ -366,11 +362,10 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 +---------+------------------+----------------+
 | Nonce   | int64            | 账户交易序列号 |
 +---------+------------------+----------------+
-| Priv    | `Priv <#priv>`_  | 账户权限       |
+| Priv    | `priv`_  | 账户权限       |
 +---------+------------------+----------------+
 
-Priv
-~~~~
+**Priv**
 
 +--------------+----------------------------+--------------+
 | 参数         | 类型                       | 描述         |
@@ -383,8 +378,7 @@ Priv
 +--------------+----------------------------+--------------+
 
 
-Signer
-~~~~~~
+**Signer**
 
 +---------+--------+--------------+
 | 参数    | 类型   | 描述         |
@@ -394,8 +388,7 @@ Signer
 | Weight  | int64  | 签名账户权重 |
 +---------+--------+--------------+
 
-Threshold
-~~~~~~~~~~
+**Threshold**
 
 +----------------+------------------------------------+--------------------+
 | 参数           | 类型                               | 描述               |
@@ -439,7 +432,7 @@ GetNonce
 
 调用方法：
 
-GetNonce(model.AccountGetNonceRequest) model.AccountGetNonceResponse
+GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse
 
 请求参数：
 
@@ -454,7 +447,7 @@ GetNonce(model.AccountGetNonceRequest) model.AccountGetNonceResponse
 +---------+--------+------------------+
 | 参数    | 类型   | 描述             |
 +=========+========+==================+
-| address | string | 待检测的账户地址 |
+| address | int16 | 该账户的交易序列号 |
 +---------+--------+------------------+
 
 错误码：
@@ -489,8 +482,7 @@ GetBalance-Account
 
 调用方法：
 
-GetBalance(model.AccountGetBalanceRequest)
-model.AccountGetBalanceResponse
+GetBalance(model.AccountGetBalanceRequest)model.AccountGetBalanceResponse
 
 请求参数：
 
@@ -541,7 +533,7 @@ GetAssets
 
 调用方法：
 
-GetAssets(model.AccountGetAssetsRequest) model.AccountGetAssetsResponse
+GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse
 
 请求参数：
 
@@ -556,11 +548,10 @@ GetAssets(model.AccountGetAssetsRequest) model.AccountGetAssetsResponse
 +--------+-----------------------+----------+
 | 参数   | 类型                  | 描述     |
 +========+=======================+==========+
-| Assets | [] `Asset <#asset>`__ | 账户资产 |
+| Assets | [] `Asset`_          | 账户资产 |
 +--------+-----------------------+----------+
 
-Asset
-~~~~~
+**Asset**
 
 +--------+----------------+--------------+
 | 参数   | 类型           | 描述         |
@@ -570,8 +561,7 @@ Asset
 | Amount | int64          | 资产数量     |
 +--------+----------------+--------------+
 
-Key
-~~~~
+**Key**
 
 +--------+--------+----------------------+
 | 参数   | 类型   | 描述                 |
@@ -615,8 +605,7 @@ GetMetadata
 
 调用方法：
 
-GetMetadata(model.AccountGetMetadataRequest)
-model.AccountGetMetadataResponse
+GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse
 
 请求参数：
 
@@ -636,8 +625,7 @@ model.AccountGetMetadataResponse
 | Metadatas | [] `Metadata <#metadata>`__ | 账户 |
 +-----------+-----------------------------+------+
 
-Metadata
-~~~~~~~~
+**Metadata**
 
 +---------+--------+------------------+
 | 参数    | 类型   | 描述             |
@@ -679,14 +667,14 @@ Metadata
 资产服务
 --------
 
-资产服务主要是资产相关的接口，目前有1个接口：GetInfo
+资产服务主要是资产相关的接口，目前有1个接口：GetInfo。
 
 GetInfo-Asset
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 接口说明：
 
-取账户指定资产数量。
+获取账户指定资产数量。
 
 调用方法：
 
@@ -704,7 +692,7 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
 | issuer  | string | 必填，资产发行账户地址      |
 +---------+--------+-----------------------------+
 
-响应参数：
+响应数据：
 
 +--------+-----------------------+----------+
 | 参数   | 类型                  | 描述     |
@@ -714,24 +702,24 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
 
 错误码：
 
-+-------------------------+-------------------------+------------------+
-| 异常                    | 错误码                  | 描述             |
-+=========================+=========================+==================+
-| INVALID_ADDRESS_ERROR   | 11006                   | Invalid address  |
-+-------------------------+-------------------------+------------------+
-| CONNECTNETWORK_ERROR    | 11007                   | Fail to Connect  |
-|                         |                         | network          |
-+-------------------------+-------------------------+------------------+
-| INVALID_ASSET_CODE_ERRO | 11023                   | The length of    |
-| R                       |                         | asset code must  |
-|                         |                         | be between 1 and |
-|                         |                         | 1024             |
-+-------------------------+-------------------------+------------------+
-| INVALID_ISSUER_ADDRESS_ | 11027                   | Invalid issuer   |
-| ERROR                   |                         | address          |
-+-------------------------+-------------------------+------------------+
-| SYSTEM_ERROR            | 20000                   | System error     |
-+-------------------------+-------------------------+------------------+
++--------------------------+-------------------------+------------------+
+| 异常                     | 错误码                  | 描述             |
++==========================+=========================+==================+
+| INVALID_ADDRESS_ERROR    | 11006                   | Invalid address  |
++--------------------------+-------------------------+------------------+
+| CONNECTNETWORK_ERROR     | 11007                   | Fail to Connect  |
+|                          |                         | network          |
++--------------------------+-------------------------+------------------+
+| INVALID_ASSET_CODE_ERROR | 11023                   | The length of    |
+|                          |                         | asset code must  |
+|                          |                         | be between 1 and |
+|                          |                         | 1024             |
++--------------------------+-------------------------+------------------+
+| INVALID_ISSUER_ADDRES S_ | 11027                   | Invalid issuer   |
+| ERROR                    |                         | address          |
++--------------------------+-------------------------+------------------+
+| SYSTEM_ERROR             | 20000                   | System error     |
++--------------------------+-------------------------+------------------+
 
 示例：
 
@@ -748,13 +736,13 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
  fmt.Println("Assets:", string(data))
  }
 
-合约服务：
+合约服务
 --------
 
 合约服务主要是合约相关的接口,目前有1个接口:GetInfo。
 
 GetInfo-contract
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
 接口说明：
 
@@ -816,8 +804,8 @@ GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse
 交易服务
 --------
 
-交易服务主要是交易相关的接口，目前有5个接口：BuildBlob, EvaluateFee,
-Sign, Submit, GetInfo。
+交易服务主要是交易相关的接口，目前有5个接口：EvaluateFee,BuildBlob, 
+Sign, Submit, GetInfo-transaction。
 
 其中调用BuildBlob之前需要构建一些操作，目前操作有16种，分别包括AccountActivateOperation，AccountSetMetadataOperation,
 AccountSetPrivilegeOperation, AssetIssueOperation, AssetSendOperation,
@@ -1121,8 +1109,7 @@ EvaluateFee
 
 调用方法:
 
-EvaluateFee(model.TransactionEvaluateFeeRequest)
-model.TransactionEvaluateFeeResponse
+EvaluateFee(model.TransactionEvaluateFeeRequest)model.TransactionEvaluateFeeResponse
 
 请求参数:
 
@@ -1220,8 +1207,7 @@ BuildBlob
 
 调用方法:
 
-BuildBlob(model.TransactionBuildBlobRequest)
-model.TransactionBuildBlobResponse
+BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 
 请求参数:
 
@@ -1490,8 +1476,7 @@ Sign(model.TransactionSignRequest) model.TransactionSignResponse
 | Signatures | [] `Signature <#signature>`__ | 签名后的数据列表 |
 +------------+-------------------------------+------------------+
 
-Signature
-^^^^^^^^^
+**Signature**
 
 +-----------+-------+------------+
 | 成员变量  | 类型  | 描述       |
@@ -1537,7 +1522,7 @@ Submit
 
 接口说明：
 
-提交。
+提交交易。
 
 调用方法：
 
@@ -1610,11 +1595,10 @@ model.TransactionGetInfoResponse
 +=======================+===========================+=======================+
 | TotalCount            | int64                     | 返回的总交易数        |
 +-----------------------+---------------------------+-----------------------+
-| Transactions          | []`TransactionHistory`_   | 交易内容              |
+| Transactions          | [] `TransactionHistory`_   | 交易内容              |
 +-----------------------+---------------------------+-----------------------+
 
-TransactionHistory
-^^^^^^^^^^^^^^^^^^^
+**TransactionHistory**
 
 +--------------+--------------------------------+--------------+
 | 成员变量     | 类型                           | 描述         |
@@ -1631,15 +1615,14 @@ TransactionHistory
 +--------------+--------------------------------+--------------+
 | LedgerSeq    | int64                          | 区块序列号   |
 +--------------+--------------------------------+--------------+
-| Transactions | `Transaction <#transaction>`__ | 交易内容列表 |
+| Transactions | `Transaction`_                 | 交易内容列表 |
 +--------------+--------------------------------+--------------+
-| Signatures   | [] `Signature <#signature>`__  | 签名列表     |
+| Signatures   | [] `Signature`_                | 签名列表     |
 +--------------+--------------------------------+--------------+
 | TxSize       | int64                          | 交易大小     |
 +--------------+--------------------------------+--------------+
 
-Transaction
-^^^^^^^^^^^
+**Transaction**
 
 +---------------+-------------------------------+----------------------+
 | 成员          | 类型                          | 描述                 |
@@ -1652,11 +1635,10 @@ Transaction
 +---------------+-------------------------------+----------------------+
 | Nonce         | int64                         | 交易序列号           |
 +---------------+-------------------------------+----------------------+
-| Operations    | [] `Operation `_              | 操作列表             |
+| Operations    | []  `Operation`_              | 操作列表             |
 +---------------+-------------------------------+----------------------+
 
-ContractTrigger
-^^^^^^^^^^^^^^^
+**ContractTrigger**
 
 +-------------+-----------------------------------+----------+
 | 成员        | 类型                              | 描述     |
@@ -1664,8 +1646,7 @@ ContractTrigger
 | Transaction | `TriggerTransaction`_             | 触发交易 |
 +-------------+-----------------------------------+----------+
 
-Operation
-^^^^^^^^^
+**Operation**
 
 +---------------+------------------------------------+--------------------+
 | 成员          | 类型                               | 描述               |
@@ -1678,21 +1659,20 @@ Operation
 +---------------+------------------------------------+--------------------+
 | CreateAccount | `CreateAccount`_                   | 创建账户操作       |
 +---------------+------------------------------------+--------------------+
-| IssueAsset    | `IssueAsset `_                     | 发行资产操作       |
+| IssueAsset    | `IssueAsset`_                      | 发行资产操作       |
 +---------------+------------------------------------+--------------------+
-| PayAsset      | `PayAsset `_                       | 转移资产操作       |
+| PayAsset      | `PayAsset`_                        | 转移资产操作       |
 +---------------+------------------------------------+--------------------+
 | PayCoin       | `PayCoin`_                         | 发送BU操作         |
 +---------------+------------------------------------+--------------------+
 | SetMetadata   | `SetMetadata`_                     | 设置metadata操作   |
 +---------------+------------------------------------+--------------------+
-| SetPrivilege  | `SetPrivilege `_                   | 设置账户权限操作   |
+| SetPrivilege  | `SetPrivilege`_                    | 设置账户权限操作   |
 +---------------+------------------------------------+--------------------+
-| Log           | `Log `_                            | 记录日志           |
+| Log           | `Log`_                             | 记录日志           |
 +---------------+------------------------------------+--------------------+
 
-TriggerTransaction
-^^^^^^^^^^^^^^^^^^
+**TriggerTransaction**
 
 +------+--------+----------+
 | 成员 | 类型   | 描述     |
@@ -1700,8 +1680,7 @@ TriggerTransaction
 | hash | string | 交易hash |
 +------+--------+----------+
 
-CreateAccount
-^^^^^^^^^^^^^
+**CreateAccount**
 
 +-------------+-----------------------------+--------------------+
 | 成员        | 类型                        | 描述               |
@@ -1712,15 +1691,14 @@ CreateAccount
 +-------------+-----------------------------+--------------------+
 | Priv        | `Priv`_                     | 账户权限           |
 +-------------+-----------------------------+--------------------+
-| Metadata    | [] `Metadata`_              | 账户               |
+| Metadata    | [] `Metadata`_             | 账户               |
 +-------------+-----------------------------+--------------------+
 | InitBalance | int64                       | 账户资产           |
 +-------------+-----------------------------+--------------------+
 | InitInput   | string                      | 合约init函数的入参 |
 +-------------+-----------------------------+--------------------+
 
-Contract
-^^^^^^^^
+**Contract**
 
 +---------+--------+----------------------+
 | 成员    | 类型   | 描述                 |
@@ -1730,8 +1708,7 @@ Contract
 | Payload | string | 对应语种的合约代码   |
 +---------+--------+----------------------+
 
-Metadata
-^^^^^^^^
+**Metadata**
 
 +---------+--------+------------------+
 | 成员    | 类型   | 描述             |
@@ -1743,8 +1720,7 @@ Metadata
 | Version | int64  | metadata的版本   |
 +---------+--------+------------------+
 
-IssueAsset
-^^^^^^^^^^
+**IssueAsset**
 
 +--------+--------+----------------------+
 | 成员   | 类型   | 描述                 |
@@ -1754,8 +1730,7 @@ IssueAsset
 | Amount | int64  | 资产数量             |
 +--------+--------+----------------------+
 
-PayAsset
-^^^^^^^^
+**PayAsset**
 
 +-------------+----------------------------+----------------------+
 | 成员        | 类型                       | 描述                 |
@@ -1767,8 +1742,7 @@ PayAsset
 | Input       | string                     | 合约main函数入参     |
 +-------------+----------------------------+----------------------+
 
-PayCoin
-^^^^^^^
+**PayCoin**
 
 +-------------+--------+----------------------+
 | 成员        | 类型   | 描述                 |
@@ -1780,8 +1754,7 @@ PayCoin
 | Input       | string | 合约main函数入参     |
 +-------------+--------+----------------------+
 
-SetMetadata
-^^^^^^^^^^^
+**SetMetadata**
 
 +------------+--------+------------------+
 | 成员       | 类型   | 描述             |
@@ -1795,8 +1768,7 @@ SetMetadata
 | DeleteFlag | bool   | 是否删除metadata |
 +------------+--------+------------------+
 
-SetPrivilege
-^^^^^^^^^^^^
+**SetPrivilege**
 
 +-----------------------+-----------------------+-----------------------+
 | 成员                  | 类型                  | 描述                  |
@@ -1804,7 +1776,7 @@ SetPrivilege
 | MasterWeight          | string                | 账户自身权重，大小[0, |
 |                       |                       | max(uint32)]          |
 +-----------------------+-----------------------+-----------------------+
-| Signers               | []`Signer`_          | 签名者权重列表         |
+| Signers               | [] `Signer`_         | 签名者权重列表         |
 +-----------------------+-----------------------+-----------------------+
 | TxThreshold           | string                | 交易门限，大小[0,     |
 |                       |                       | max(int64)]           |
@@ -1812,8 +1784,7 @@ SetPrivilege
 | TypeThreshold         | `TypeThreshold`_      | 指定类型交易门限      |
 +-----------------------+-----------------------+-----------------------+
 
-Log
-^^^
+**Log**
 
 +-------+----------+----------+
 | 成员  | 类型     | 描述     |
@@ -1840,7 +1811,7 @@ Log
 --------
 
 区块服务主要是区块相关的接口，目前有11个接口：GetNumber, CheckStatus,
-GetTransactions , GetInfo, GetLatestInfo, GetValidators,
+GetTransactions , GetInfo-block, GetLatest, GetValidators,
 GetLatestValidators, GetReward, GetLatestReward, GetFees,
 GetLatestFees。
 
@@ -1929,8 +1900,7 @@ GetTransactions
 
 调用方法：
 
-GetTransactions(model.BlockGetTransactionRequest)
-model.BlockGetTransactionResponse
+GetTransactions(model.BlockGetTransactionRequest)model.BlockGetTransactionResponse
 
 请求参数：
 
@@ -2011,15 +1981,15 @@ GetInfo(model.BlockGetInfoRequest) model.BlockGetInfoResponse
 
 错误码:
 
-+---------------------------+--------+--------------------------------+
-| 异常                      | 错误码 | 描述                           |
-+===========================+========+================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
-+---------------------------+--------+--------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
-+---------------------------+--------+--------------------------------+
-| SYSTEM_ERROR              | 20000  | System error                   |
-+---------------------------+--------+--------------------------------+
++---------------------------+--------+------------------------------------+
+| 异常                      | 错误码 | 描述                               |
++===========================+========+====================================+
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be bigger than 0 |
++---------------------------+--------+------------------------------------+
+| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network           |
++---------------------------+--------+------------------------------------+
+| SYSTEM_ERROR              | 20000  | System error                      |
++---------------------------+--------+------------------------------------+
 
 示例:
 
@@ -2088,8 +2058,7 @@ GetValidators
 
 调用方法:
 
-GetValidators(model.BlockGetValidatorsRequest)
-model.BlockGetValidatorsResponse
+GetValidators(model.BlockGetValidatorsRequest)model.BlockGetValidatorsResponse
 
 请求参数:
 
@@ -2107,8 +2076,7 @@ model.BlockGetValidatorsResponse
 | validators | [] `ValidatorInfo`_                   | 验证节点列表 |
 +------------+---------------------------------------+--------------+
 
-ValidatorInfo
-~~~~~~~~~~~~~~
+**ValidatorInfo**
 
 +------------------+--------+--------------+
 | 参数             | 类型   | 描述         |
@@ -2212,11 +2180,10 @@ GetReward
 +=======================+=======================+=======================+
 | BlockReward           | int64                 | 区块奖励数            |
 +-----------------------+-----------------------+-----------------------+
-| ValidatorsReward      | []`ValidatorReward`_  | 验证节点奖励情况      |
+| ValidatorsReward      | [] `ValidatorReward`_ | 验证节点奖励情况      |
 +-----------------------+-----------------------+-----------------------+
 
-ValidatorReward
-~~~~~~~~~~~~~~~
+**ValidatorReward**
 
 +-----------+--------+--------------+
 | 成员变量  | 类型   | 描述         |
@@ -2228,15 +2195,15 @@ ValidatorReward
 
 错误码:
 
-+---------------------------+--------+--------------------------------+
-| 异常                      | 错误码 | 描述                           |
-+===========================+========+================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
-+---------------------------+--------+--------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
-+---------------------------+--------+--------------------------------+
-| SYSTEM_ERROR              | 20000  | System error                   |
-+---------------------------+--------+--------------------------------+
++---------------------------+--------+------------------------------------+
+| 异常                      | 错误码 | 描述                               |
++===========================+========+====================================+
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be bigger than 0  |
++---------------------------+--------+------------------------------------+
+| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network            |
++---------------------------+--------+------------------------------------+
+| SYSTEM_ERROR              | 20000  | System error                       |
++---------------------------+--------+------------------------------------+
 
 示例:
 
@@ -2317,8 +2284,7 @@ GetFees(model.BlockGetFeesRequest) model.BlockGetFeesResponse
 | Fees | `Fees`_          | 费用 |
 +------+------------------+------+
 
-Fees
-~~~~~
+**Fees**
 
 +-------------+-------+----------------------------------+
 | 成员变量    | 类型  | 描述                             |
@@ -2393,7 +2359,7 @@ GetLatestFees() model.BlockGetLatestFeesResponse
    }
 
 错误码
-~~~~~~
+-------
 
 公共错误码信息：
 
