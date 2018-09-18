@@ -1261,10 +1261,215 @@ model.TransactionBuildBlobResponse
 | metadata          | string              | 选填，备注                      |
 +-------------------+---------------------+---------------------------------+
 
-响应数据
+响应数据:
 
 +-----------------+--------+-----------------------------------+
 | 参数            | 类型   | 描述                              |
 +=================+========+===================================+
 | TransactionBlob | string | Transaction序列化后的16进制字符串 |
 +-----------------+--------+-----------------------------------+
+
+错误码:
+
++-------------------------+-------------------------+------------------+
+| 异常                    | 错误码                  | 描述             |
++=========================+=========================+==================+
+| INVALID_SOURCEADDRESS_E | 11002                   | Invalid          |
+| RROR                    |                         | sourceAddress    |
++-------------------------+-------------------------+------------------+
+| INVALID_NONCE_ERROR     | 11048                   | Nonce must be    |
+|                         |                         | between 1 and    |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_DESTADDRESS_ERR | 11003                   | Invalid          |
+| OR                      |                         | destAddress      |
++-------------------------+-------------------------+------------------+
+| INVALID_INITBALANCE_ERR | 11004                   | InitBalance must |
+| OR                      |                         | be between 1 and |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| SOURCEADDRESS_EQUAL_DES | 11005                   | SourceAddress    |
+| TADDRESS_ERROR          |                         | cannot be equal  |
+|                         |                         | to destAddress   |
++-------------------------+-------------------------+------------------+
+| INVALID_ISSUE_AMMOUNT_E | 11008                   | AssetAmount this |
+| RROR                    |                         | will be issued   |
+|                         |                         | must be between  |
+|                         |                         | 1 and max(int64) |
++-------------------------+-------------------------+------------------+
+| INVALID_DATAKEY_ERROR   | 11011                   | The length of    |
+|                         |                         | key must be      |
+|                         |                         | between 1 and    |
+|                         |                         | 1024             |
++-------------------------+-------------------------+------------------+
+| INVALID_DATAVALUE_ERROR | 11012                   | The length of    |
+|                         |                         | value must be    |
+|                         |                         | between 0 and    |
+|                         |                         | 256000           |
++-------------------------+-------------------------+------------------+
+| INVALID_DATAVERSION_ERR | 11013                   | The version must |
+| OR                      |                         | be equal or      |
+|                         |                         | bigger than 0    |
++-------------------------+-------------------------+------------------+
+| INVALID_MASTERWEIGHT    | 11015                   | MasterWeight     |
+| \_ERROR                 |                         | must be between  |
+|                         |                         | 0 and            |
+|                         |                         | max(uint32)      |
++-------------------------+-------------------------+------------------+
+| INVALID_SIGNER_ADDRESS_ | 11016                   | Invalid signer   |
+| ERROR                   |                         | address          |
++-------------------------+-------------------------+------------------+
+| INVALID_SIGNER_WEIGHT   | 11017                   | Signer weight    |
+| \_ERROR                 |                         | must be between  |
+|                         |                         | 0 and            |
+|                         |                         | max(uint32)      |
++-------------------------+-------------------------+------------------+
+| INVALID_TX_THRESHOLD_ER | 11018                   | TxThreshold must |
+| ROR                     |                         | be between 0 and |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_OPERATION_TYPE_ | 11019                   | Operation type   |
+| ERROR                   |                         | must be between  |
+|                         |                         | 1 and 100        |
++-------------------------+-------------------------+------------------+
+| INVALID_TYPE_THRESHOLD_ | 11020                   | TypeThreshold    |
+| ERROR                   |                         | must be between  |
+|                         |                         | 0 and max(int64) |
++-------------------------+-------------------------+------------------+
+| INVALID_ASSET_CODE      | 11023                   | The length of    |
+| \_ERROR                 |                         | key must be      |
+|                         |                         | between 1 and 64 |
++-------------------------+-------------------------+------------------+
+| INVALID_ASSET_AMOUNT_ER | 11024                   | AssetAmount must |
+| ROR                     |                         | be between 0 and |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_BU_AMOUNT_ERROR | 11026                   | BuAmount must be |
+|                         |                         | between 0 and    |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_ISSUER_ADDRESS_ | 11027                   | Invalid issuer   |
+| ERROR                   |                         | address          |
++-------------------------+-------------------------+------------------+
+| NO_SUCH_TOKEN_ERROR     | 11030                   | No such token    |
++-------------------------+-------------------------+------------------+
+| INVALID_TOKEN_NAME_ERRO | 11031                   | The length of    |
+| R                       |                         | token name must  |
+|                         |                         | be between 1 and |
+|                         |                         | 1024             |
++-------------------------+-------------------------+------------------+
+| INVALID_TOKEN_SYMBOL_ER | 11032                   | The length of    |
+| ROR                     |                         | symbol must be   |
+|                         |                         | between 1 and    |
+|                         |                         | 1024             |
++-------------------------+-------------------------+------------------+
+| INVALID_TOKEN_DECIMALS_ | 11033                   | Decimals must be |
+| ERROR                   |                         | between 0 and 8  |
++-------------------------+-------------------------+------------------+
+| INVALID_TOKEN_TOTALSUPP | 11034                   | TotalSupply must |
+| LY_ERROR                |                         | be between 1 and |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_TOKENOWNER_ERRP | 11035                   | Invalid token    |
+| R                       |                         | owner            |
++-------------------------+-------------------------+------------------+
+| INVALID_CONTRACTADDRESS | 11037                   | Invalid contract |
+| _ERROR                  |                         | address          |
++-------------------------+-------------------------+------------------+
+| CONTRACTADDRESS_NOT_CON | 11038                   | ContractAddress  |
+| TRACTACCOUNT_ERROR      |                         | is not a         |
+|                         |                         | contract account |
++-------------------------+-------------------------+------------------+
+| INVALID_TOKEN_AMOUNT_ER | 11039                   | Token amount     |
+| ROR                     |                         | must be between  |
+|                         |                         | 1 and max(int64) |
++-------------------------+-------------------------+------------------+
+| SOURCEADDRESS_EQUAL_CON | 11040                   | SourceAddress    |
+| TRACTADDRESS_ERROR      |                         | cannot be equal  |
+|                         |                         | to               |
+|                         |                         | contractAddress  |
++-------------------------+-------------------------+------------------+
+| INVALID_FROMADDRESS_ERR | 11041                   | Invalid          |
+| OR                      |                         | fromAddress      |
++-------------------------+-------------------------+------------------+
+| FROMADDRESS_EQUAL_DESTA | 11042                   | FromAddress      |
+| DDRESS_ERROR            |                         | cannot be equal  |
+|                         |                         | to destAddress   |
++-------------------------+-------------------------+------------------+
+| INVALID_SPENDER_ERROR   | 11043                   | Invalid spender  |
++-------------------------+-------------------------+------------------+
+| PAYLOAD_EMPTY_ERROR     | 11044                   | Payload cannot   |
+|                         |                         | be empty         |
++-------------------------+-------------------------+------------------+
+| INVALID_LOG_TOPIC       | 11045                   | The length of    |
+| \_ERROR                 |                         | key must be      |
+|                         |                         | between 1 and    |
+|                         |                         | 128              |
++-------------------------+-------------------------+------------------+
+| INVALID_LOG_DATA        | 11046                   | The length of    |
+| \_ERROR                 |                         | value must be    |
+|                         |                         | between 1 and    |
+|                         |                         | 1024             |
++-------------------------+-------------------------+------------------+
+| INVALID_CONTRACT_TYPE_E | 11047                   | Type must be     |
+| RROR                    |                         | equal or bigger  |
+|                         |                         | than 0           |
++-------------------------+-------------------------+------------------+
+| INVALID_NONCE_ERROR     | 11048                   | Nonce must be    |
+|                         |                         | between 1 and    |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID\_               | 11049                   | GasPrice must be |
+| GASPRICE_ERROR          |                         | between 1000 and |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| INVALID_FEELIMIT_ERROR  | 11050                   | FeeLimit must be |
+|                         |                         | between 1 and    |
+|                         |                         | max(int64)       |
++-------------------------+-------------------------+------------------+
+| OPERATIONS_EMPTY_ERROR  | 11051                   | Operations       |
+|                         |                         | cannot be empty  |
++-------------------------+-------------------------+------------------+
+| INVALID_CEILLEDGERSEQ_E | 11052                   | CeilLedgerSeq    |
+| RROR                    |                         | must be equal or |
+|                         |                         | bigger than 0    |
++-------------------------+-------------------------+------------------+
+| OPERATIONS_ONE_ERROR    | 11053                   | One of           |
+|                         |                         | operations       |
+|                         |                         | cannot be        |
+|                         |                         | resolved         |
++-------------------------+-------------------------+------------------+
+| SYSTEM_ERROR            | 20000                   | System error     |
++-------------------------+-------------------------+------------------+
+
+
+
+示例:
+
+::
+
+   var reqDataOperation model.BUSendOperation
+   reqDataOperation.Init()
+   var amount int64 = 100
+   var destAddress string = "buQVU86Jm4FeRW4JcQTD9Rx9NkUkHikYGp6z"
+   reqDataOperation.SetAmount(amount)
+   reqDataOperation.SetDestAddress(destAddress)
+
+   var reqDataBlob model.TransactionBuildBlobRequest
+   var sourceAddressBlob string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
+   reqDataBlob.SetSourceAddress(sourceAddressBlob)
+   var feeLimit int64 = 1000000000
+   reqDataBlob.SetFeeLimit(feeLimit)
+   var gasPrice int64 = 1000
+   reqDataBlob.SetGasPrice(gasPrice)
+   var nonce int64 = 88
+   reqDataBlob.SetNonce(nonce)
+   reqDataBlob.SetOperation(reqDataOperation)
+
+   resDataBlob := testSdk.Transaction.BuildBlob(reqDataBlob)
+   if resDataBlob.ErrorCode == 0 {
+       fmt.Println("Blob:", resDataBlob.Result)
+   }
+
+Sign
+^^^^
