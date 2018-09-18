@@ -1822,3 +1822,72 @@ SetPrivilege
 | TypeThreshold         | `TypeThreshold`_      | 指定类型交易门限      |
 +-----------------------+-----------------------+-----------------------+
 
+Log
+^^^
+
++-------+----------+----------+
+| 成员  | 类型     | 描述     |
++=======+==========+==========+
+| Topic | string   | 日志主题 |
++-------+----------+----------+
+| Data  | []string | 日志内容 |
++-------+----------+----------+
+
+示例：
+
+::
+
+   var reqData model.TransactionGetInfoRequest
+   var hash string = "cd33ad1e033d6dfe3db3a1d29a55e190935d9d1ff40a138d777e9406ebe0fdb1"
+   reqData.SetHash(hash)
+   resData := testSdk.Transaction.GetInfo(reqData)
+   if resData.ErrorCode == 0 {
+       data, _ := json.Marshal(resData.Result)
+       fmt.Println("info:", string(data)
+   }
+
+区块服务
+--------
+
+区块服务主要是区块相关的接口，目前有11个接口：GetNumber, CheckStatus,
+GetTransactions , GetInfo, GetLatestInfo, GetValidators,
+GetLatestValidators, GetReward, GetLatestReward, GetFees,
+GetLatestFees。
+
+GetNumber
+^^^^^^^^^
+
+接口说明：
+
+获取区块高度。
+
+调用方法：
+
+GetNumber() model.BlockGetNumberResponse 
+
+响应数据：
+
++-------------+-------+---------------------------------+
+| 参数        | 类型  | 描述                            |
++=============+=======+=================================+
+| BlockNumber | int64 | 最新的区块高度，对应底层字段seq |
++-------------+-------+---------------------------------+
+
+错误码：
+
++----------------------+--------+-------------------------+
+| 异常                 | 错误码 | 描述                    |
++======================+========+=========================+
+| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
++----------------------+--------+-------------------------+
+| SYSTEM_ERROR         | 20000  | System error            |
++----------------------+--------+-------------------------+
+
+示例：
+
+::
+
+   resData := testSdk.Block.GetNumber()
+   if resData.ErrorCode == 0 {
+       fmt.Println("BlockNumber:", resData.Result.BlockNumber)
+   }
