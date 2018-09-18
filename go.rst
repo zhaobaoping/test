@@ -1473,3 +1473,74 @@ model.TransactionBuildBlobResponse
 
 Sign
 ^^^^
+
+接口说明:
+
+该接口用于实现交易的签名。
+
+调用方法：
+
+Sign(model.TransactionSignRequest) model.TransactionSignResponse
+
+请求参数：
+
++-------------+-----------+------------------------+
+| 参数        | 类型      | 描述                   |
++=============+===========+========================+
+| blob        | string    | 必填，待签名的交易Blob |
++-------------+-----------+------------------------+
+| privateKeys | [] string | 必填，私钥列表         |
++-------------+-----------+------------------------+
+
+响应数据:
+
++------------+-------------------------------+------------------+
+| 参数       | 类型                          | 描述             |
++============+===============================+==================+
+| Signatures | [] `Signature <#signature>`__ | 签名后的数据列表 |
++------------+-------------------------------+------------------+
+
+Signature
+^^^^^^^^^
+
++-----------+-------+------------+
+| 成员变量  | 类型  | 描述       |
++===========+=======+============+
+| signData  | int64 | 签名后数据 |
++-----------+-------+------------+
+| publicKey | int64 | 公钥       |
++-----------+-------+------------+
+
+错误码:
+
++------------------------+--------+---------------------------------------+
+| 异常                   | 错误码 | 描述                                  |
++========================+========+=======================================+
+| INVALID_BLOB_ERROR     | 11056  | Invalid blob                          |
++------------------------+--------+---------------------------------------+
+| PRIVATEKEY_NULL_ERROR  | 11057  | PrivateKeys cannot be empty           |
++------------------------+--------+---------------------------------------+
+| PRIVATEKEY_ONE_ERROR   | 11058  | One of privateKeys error              |
++------------------------+--------+---------------------------------------+
+| GET_ENCPUBLICKEY_ERROR | 14000  | The function ‘GetEncPublicKey’ failed |
++------------------------+--------+---------------------------------------+
+| SIGN_ERROR             | 14001  | The function ‘Sign’ failed            |
++------------------------+--------+---------------------------------------+
+| SYSTEM_ERROR           | 20000  | System error                          |
++------------------------+--------+---------------------------------------+
+
+示例:
+
+::
+
+   PrivateKey := []string{"privbUPxs6QGkJaNdgWS2hisny6ytx1g833cD7V9C3YET9mJ25wdcq6h"}
+   var reqData model.TransactionSignRequest
+   reqData.SetBlob(resDataBlob.Result.Blob)
+   reqData.SetPrivateKeys(PrivateKey)
+   resDataSign := testSdk.Transaction.Sign(reqData)
+   if resDataSign.ErrorCode == 0 {
+       fmt.Println("Sign:", resDataSign.Result)
+   }
+
+Submit
+^^^^^^^
