@@ -1544,3 +1544,71 @@ Signature
 
 Submit
 ^^^^^^^
+
+接口说明：
+
+提交。
+
+调用方法：
+
+Submit(model.TransactionSubmitRequest) model.TransactionSubmitResponse
+
+请求参数：
+
++-----------+-------------------------------+----------------+
+| 参数      | 类型                          | 描述           |
++===========+===============================+================+
+| blob      | string                        | 必填，交易blob |
++-----------+-------------------------------+----------------+
+| signature | [] `Signature <#signature>`__ | 必填，签名列表 |
++-----------+-------------------------------+----------------+
+
+响应数据：
+
++------+--------+----------+
+| 参数 | 类型   | 描述     |
++======+========+==========+
+| Hash | string | 交易hash |
++------+--------+----------+
+
+错误码：
+
++--------------------+--------+--------------+
+| 异常               | 错误码 | 描述         |
++====================+========+==============+
+| INVALID_BLOB_ERROR | 11052  | Invalid blob |
++--------------------+--------+--------------+
+| SYSTEM_ERROR       | 20000  | System error |
++--------------------+--------+--------------+
+
+示例：
+
+::
+
+   var reqData model.TransactionSubmitRequest
+   reqData.SetBlob(resDataBlob.Result.Blob)
+   reqData.SetSignatures(resDataSign.Result.Signatures)
+   resDataSubmit := testSdk.Transaction.Submit(reqData.Result)
+   if resDataSubmit.ErrorCode == 0 {
+       fmt.Println("Hash:", resDataSubmit.Result.Hash)
+   }
+
+GetInfo-transaction
+^^^^^^^^^^^^^^^^^^^
+
+接口说明:
+
+根据hash查询交易。
+
+调用方法：
+
+GetInfo(model.TransactionGetInfoRequest)
+model.TransactionGetInfoResponse
+
+请求参数：
+
++------+--------+----------+
+| 参数 | 类型   | 描述     |
++======+========+==========+
+| hash | string | 交易hash |
++------+--------+----------+
