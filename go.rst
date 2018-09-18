@@ -1855,7 +1855,7 @@ GetLatestValidators, GetReward, GetLatestReward, GetFees,
 GetLatestFees。
 
 GetNumber
-^^^^^^^^^
+~~~~~~~~~~~
 
 接口说明：
 
@@ -1893,7 +1893,7 @@ GetNumber() model.BlockGetNumberResponse
    }
 
 CheckStatus
-^^^^^^^^^^^
+~~~~~~~~~~~~
 
 接口说明:
 
@@ -1931,7 +1931,7 @@ CheckStatus() model.BlockCheckStatusResponse
    }
 
 GetTransactions
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
 接口说明:
 
@@ -1987,7 +1987,7 @@ model.BlockGetTransactionResponse
    }
 
 GetInfo-block
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
 接口说明:
 
@@ -2045,7 +2045,7 @@ GetInfo(model.BlockGetInfoRequest) model.BlockGetInfoResponse
    }
 
 GetLatest
-^^^^^^^^^^
+~~~~~~~~~~
 
 接口说明:
 
@@ -2090,7 +2090,7 @@ GetLatest() model.BlockGetLatestResponse
    }
 
 GetValidators
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
 接口说明:
 
@@ -2118,4 +2118,4 @@ model.BlockGetValidatorsResponse
 +------------+---------------------------------------+--------------+
 
 ValidatorInfo
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
