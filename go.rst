@@ -48,16 +48,14 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 请求参数
 ~~~~~~~~
 
-请求参数的格式，是[类名][方法名]Request，比如Account.GetInfo()的请求参数是AccountGetInfoRequest。
-
-请求参数的成员，是各个方法的入参的成员变量名。
+请求参数的格式，是[类名][方法名]Request，比如Account.GetInfo()的请求参数是AccountGetInfoRequest。请求参数的成员，是各个方法的入参的成员变量名。
 
 例如：Account.GetInfo()的入参成员是address，那么AccountGetInfoRequest的结构如下：
 
 ::
 
  type AccountGetInfoRequest struct {
- address string
+   address string
  }
 
 响应结果
@@ -70,9 +68,9 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 ::
 
  type AccountGetInfoResponse struct {
- ErrorCode int
- ErrorDesc string
- Result  AccountGetInfoResult
+   ErrorCode int
+   ErrorDesc string
+   Result  AccountGetInfoResult
  }
 
 .. note:: |
@@ -83,6 +81,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 
  3. Result:
     返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
+    
     例如：Account.GetNonce()的结构体名是AccountGetNonceResult：
 
     type AccountGetNonceResult struct {
@@ -102,8 +101,8 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 ::
 
  import(
- "github.com/bumoproject/bumo-sdk-go/src/model"
- "github.com/bumoproject/bumo-sdk-go/src/sdk"
+   "github.com/bumoproject/bumo-sdk-go/src/model"
+   "github.com/bumoproject/bumo-sdk-go/src/sdk"
  )
 
 生成SDK实例
@@ -131,7 +130,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 
 ::
 
-resData :=testSdk.Account.Create()
+ resData :=testSdk.Account.Create()
 
 有效性校验
 ~~~~~~~~~~
@@ -295,7 +294,7 @@ CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
  reqData.SetAddress(address)
  resData := testSdk.Account.CheckValid(reqData)
  if resData.ErrorCode == 0 {
- fmt.Println(resData.Result.IsValid)
+   fmt.Println(resData.Result.IsValid)
  }
 
 Create
@@ -327,9 +326,9 @@ Create() model.AccountCreateResponse
 
  resData := testSdk.Account.Create()
  if resData.ErrorCode == 0 {
- fmt.Println("Address:",resData.Result.Address)
- fmt.Println("PrivateKey:",resData.Result.PrivateKey)
- fmt.Println("PublicKey:",resData.Result.PublicKey)
+   fmt.Println("Address:",resData.Result.Address)
+   fmt.Println("PrivateKey:",resData.Result.PrivateKey)
+   fmt.Println("PublicKey:",resData.Result.PublicKey)
  }
 
 GetInfo-Account
@@ -362,7 +361,7 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 +---------+------------------+----------------+
 | Nonce   | int64            | 账户交易序列号 |
 +---------+------------------+----------------+
-| Priv    | `priv`_  | 账户权限       |
+| Priv    | `<priv>`_        | 账户权限       |
 +---------+------------------+----------------+
 
 **Priv**
@@ -372,9 +371,9 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 +==============+============================+==============+
 | MasterWeight | int64                      | 账户自身权重 |
 +--------------+----------------------------+--------------+
-| Signers      | [] `Signer <#signer>`__    | 签名者权重   |
+| Signers      | [] `<Signer>`_             | 签名者权重   |
 +--------------+----------------------------+--------------+
-| Thresholds   | `Threshold <#threshold>`__ | 门限         |
+| Thresholds   | `<Threshold>`_             | 门限         |
 +--------------+----------------------------+--------------+
 
 
@@ -395,8 +394,18 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 +================+====================================+====================+
 | TxThreshold    | string                             | 交易默认门限       |
 +----------------+------------------------------------+--------------------+
-| TypeThresholds | `TypeThreshold <#typethreshold>`__ | 不同类型交易的门限 |
+| TypeThresholds | `<typethreshold>`_                 | 不同类型交易的门限 |
 +----------------+------------------------------------+--------------------+
+
+**TypeThreshold**
+
++-----------+-------+----------+
+| 参数      | 类型  | 描述     |
++===========+=======+==========+
+| Type      | int64 | 操作类型 |
++-----------+-------+----------+
+| Threshold | int64 | 门限     |
++-----------+-------+----------+
 
 错误码：
 
@@ -419,8 +428,8 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
  reqData.SetAddress(address)
  resData := testSdk.Account.GetInfo(reqData)
  if resData.ErrorCode == 0 {
- data, _ := json.Marshal(resData.Result)
- fmt.Println("Info:", string(data))
+   data, _ := json.Marshal(resData.Result)
+   fmt.Println("Info:", string(data))
  }
 
 GetNonce
@@ -447,7 +456,7 @@ GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse
 +---------+--------+------------------+
 | 参数    | 类型   | 描述             |
 +=========+========+==================+
-| address | int16 | 该账户的交易序列号 |
+| address | int16 | 该账户的交易序列号|
 +---------+--------+------------------+
 
 错误码：
@@ -470,7 +479,7 @@ GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse
  var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
  reqData.SetAddress(address)
  if resData.ErrorCode == 0 {
- fmt.Println(resData.Result.Nonce)
+   fmt.Println(resData.Result.Nonce)
  }
 
 GetBalance-Account
@@ -521,7 +530,7 @@ GetBalance(model.AccountGetBalanceRequest)model.AccountGetBalanceResponse
  reqData.SetAddress(address)
  resData := testSdk.Account.GetBalance(reqData)
  if resData.ErrorCode == 0 {
- fmt.Println("Balance", resData.Result.Balance)
+   fmt.Println("Balance", resData.Result.Balance)
  }
 
 GetAssets
@@ -548,7 +557,7 @@ GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse
 +--------+-----------------------+----------+
 | 参数   | 类型                  | 描述     |
 +========+=======================+==========+
-| Assets | [] `Asset`_          | 账户资产 |
+| Assets | [] `<Asset>`_         | 账户资产 |
 +--------+-----------------------+----------+
 
 **Asset**
@@ -556,7 +565,7 @@ GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse
 +--------+----------------+--------------+
 | 参数   | 类型           | 描述         |
 +========+================+==============+
-| Key    | `Key <#key>`__ | 资产惟一标识 |
+| Key    | `<key>`_       | 资产惟一标识 |
 +--------+----------------+--------------+
 | Amount | int64          | 资产数量     |
 +--------+----------------+--------------+
@@ -592,8 +601,8 @@ GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse
  reqData.SetAddress(address)
  resData := testSdk.Account.GetAssets(reqData)
  if resData.ErrorCode == 0 {
- data, _ := json.Marshal(resData.Result.Assets)
- fmt.Println("Assets:", string(data))
+   data, _ := json.Marshal(resData.Result.Assets)
+   fmt.Println("Assets:", string(data))
  }
 
 GetMetadata
@@ -622,7 +631,7 @@ GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse
 +-----------+-----------------------------+------+
 | 参数      | 类型                        | 描述 |
 +===========+=============================+======+
-| Metadatas | [] `Metadata <#metadata>`__ | 账户 |
+| Metadatas | [] `<metadata>`_            | 账户 |
 +-----------+-----------------------------+------+
 
 **Metadata**
@@ -660,8 +669,8 @@ GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse
  reqData.SetAddress(address)
  resData := testSdk.Account.GetMetadata(reqData)
  if resData.ErrorCode == 0 {
- data, _ := json.Marshal(resData.Result.Metadatas)
- fmt.Println("Metadatas:", string(data))
+   data, _ := json.Marshal(resData.Result.Metadatas)
+   fmt.Println("Metadatas:", string(data))
  }
 
 资产服务
@@ -697,7 +706,7 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
 +--------+-----------------------+----------+
 | 参数   | 类型                  | 描述     |
 +========+=======================+==========+
-| Assets | [] `Asset <#asset>`__ | 账户资产 |
+| Assets | [] `<asset>`_         | 账户资产 |
 +--------+-----------------------+----------+
 
 错误码：
@@ -732,8 +741,8 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
  reqData.SetCode("HNC")
  resData := testSdk.Token.Asset.GetInfo(reqData)
  if resData.ErrorCode == 0 {
- data, _ := json.Marshal(resData.Result.Assets)
- fmt.Println("Assets:", string(data))
+   data, _ := json.Marshal(resData.Result.Assets)
+   fmt.Println("Assets:", string(data))
  }
 
 合约服务
@@ -797,8 +806,8 @@ GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse
  reqData.SetAddress(address)
  resData := testSdk.Contract.GetInfo(reqData)
  if resData.ErrorCode == 0 {
- data, _ := json.Marshal(resData.Result.Contract)
- fmt.Println("Contract:", string(data))
+   data, _ := json.Marshal(resData.Result.Contract)
+   fmt.Println("Contract:", string(data))
  }
 
 交易服务
@@ -865,12 +874,12 @@ AccountSetPrivilegeOperation
 | masterWeight          | string                | 选填，账户自身权重，  |
 |                       |                       | 大小[0, max(uint32)]  |
 +-----------------------+-----------------------+-----------------------+
-| signers               | [] `Signer`_          | 选填，签名者权重列表  |
+| signers               | [] `<Signer>`_        | 选填，签名者权重列表  |
 +-----------------------+-----------------------+-----------------------+
 | txThreshold           | string                | 选填，交易门限，      |
 |                       |                       | 大小[0,max(int64)]    |
 +-----------------------+-----------------------+-----------------------+
-| typeThreshold         | `TypeThreshold`_      | 选填，指定类型交易门限|
+| typeThreshold         | `<TypeThreshold>`_    | 选填，指定类型交易门限|
 +-----------------------+-----------------------+-----------------------+
 | metadata              | string                | 选填，备注            |
 +-----------------------+-----------------------+-----------------------+
@@ -1295,7 +1304,7 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 |                         |                         | max(uint32)      |
 +-------------------------+-------------------------+------------------+
 | INVALID_SIGNER_ADDRESS_ | 11016                   | Invalid signer   |
-| ERROR                   |                         | address          |
+| \ERROR                  |                         | address          |
 +-------------------------+-------------------------+------------------+
 | INVALID_SIGNER_WEIGHT   | 11017                   | Signer weight    |
 | \_ERROR                 |                         | must be between  |
@@ -1307,11 +1316,11 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 |                         |                         | max(int64)       |
 +-------------------------+-------------------------+------------------+
 | INVALID_OPERATION_TYPE_ | 11019                   | Operation type   |
-| ERROR                   |                         | must be between  |
+| \ERROR                  |                         | must be between  |
 |                         |                         | 1 and 100        |
 +-------------------------+-------------------------+------------------+
 | INVALID_TYPE_THRESHOLD_ | 11020                   | TypeThreshold    |
-| ERROR                   |                         | must be between  |
+| \ERROR                  |                         | must be between  |
 |                         |                         | 0 and max(int64) |
 +-------------------------+-------------------------+------------------+
 | INVALID_ASSET_CODE      | 11023                   | The length of    |
@@ -1327,7 +1336,7 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 |                         |                         | max(int64)       |
 +-------------------------+-------------------------+------------------+
 | INVALID_ISSUER_ADDRESS_ | 11027                   | Invalid issuer   |
-| ERROR                   |                         | address          |
+| \ERROR                  |                         | address          |
 +-------------------------+-------------------------+------------------+
 | NO_SUCH_TOKEN_ERROR     | 11030                   | No such token    |
 +-------------------------+-------------------------+------------------+
@@ -1342,7 +1351,7 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 |                         |                         | 1024             |
 +-------------------------+-------------------------+------------------+
 | INVALID_TOKEN_DECIMALS_ | 11033                   | Decimals must be |
-| ERROR                   |                         | between 0 and 8  |
+| \ERROR                  |                         | between 0 and 8  |
 +-------------------------+-------------------------+------------------+
 | INVALID_TOKEN_TOTALSUPP | 11034                   | TotalSupply must |
 | LY_ERROR                |                         | be between 1 and |
@@ -1473,7 +1482,7 @@ Sign(model.TransactionSignRequest) model.TransactionSignResponse
 +------------+-------------------------------+------------------+
 | 参数       | 类型                          | 描述             |
 +============+===============================+==================+
-| Signatures | [] `Signature <#signature>`__ | 签名后的数据列表 |
+| Signatures | [] `<signature>`_             | 签名后的数据列表 |
 +------------+-------------------------------+------------------+
 
 **Signature**
@@ -1535,7 +1544,7 @@ Submit(model.TransactionSubmitRequest) model.TransactionSubmitResponse
 +===========+===============================+================+
 | blob      | string                        | 必填，交易blob |
 +-----------+-------------------------------+----------------+
-| signature | [] `Signature <#signature>`__ | 必填，签名列表 |
+| signature | [] `<signature>`_             | 必填，签名列表 |
 +-----------+-------------------------------+----------------+
 
 响应数据：
@@ -1590,13 +1599,13 @@ model.TransactionGetInfoResponse
 
 响应数据：
 
-+-----------------------+---------------------------+-----------------------+
-| 参数                  | 类型                      | 描述                  |
-+=======================+===========================+=======================+
-| TotalCount            | int64                     | 返回的总交易数        |
-+-----------------------+---------------------------+-----------------------+
-| Transactions          | [] `TransactionHistory`_   | 交易内容              |
-+-----------------------+---------------------------+-----------------------+
++-----------------------+------------------------------+-----------------------+
+| 参数                  | 类型                         | 描述                  |
++=======================+==============================+=======================+
+| TotalCount            | int64                        | 返回的总交易数        |
++-----------------------+------------------------------+-----------------------+
+| Transactions          | [] `<TransactionHistory>`_   | 交易内容              |
++-----------------------+------------------------------+-----------------------+
 
 **TransactionHistory**
 
@@ -1615,9 +1624,9 @@ model.TransactionGetInfoResponse
 +--------------+--------------------------------+--------------+
 | LedgerSeq    | int64                          | 区块序列号   |
 +--------------+--------------------------------+--------------+
-| Transactions | `Transaction`_                 | 交易内容列表 |
+| Transactions | `<Transaction>`_               | 交易内容列表 |
 +--------------+--------------------------------+--------------+
-| Signatures   | [] `Signature`_                | 签名列表     |
+| Signatures   | [] `<Signature>`_              | 签名列表     |
 +--------------+--------------------------------+--------------+
 | TxSize       | int64                          | 交易大小     |
 +--------------+--------------------------------+--------------+
@@ -1635,7 +1644,7 @@ model.TransactionGetInfoResponse
 +---------------+-------------------------------+----------------------+
 | Nonce         | int64                         | 交易序列号           |
 +---------------+-------------------------------+----------------------+
-| Operations    | []  `Operation`_              | 操作列表             |
+| Operations    | []  `<Operation>`_            | 操作列表             |
 +---------------+-------------------------------+----------------------+
 
 **ContractTrigger**
@@ -1643,7 +1652,7 @@ model.TransactionGetInfoResponse
 +-------------+-----------------------------------+----------+
 | 成员        | 类型                              | 描述     |
 +=============+===================================+==========+
-| Transaction | `TriggerTransaction`_             | 触发交易 |
+| Transaction | `<TriggerTransaction>`_           | 触发交易 |
 +-------------+-----------------------------------+----------+
 
 **Operation**
@@ -1657,19 +1666,19 @@ model.TransactionGetInfoResponse
 +---------------+------------------------------------+--------------------+
 | Metadata      | string                             | 备注               |
 +---------------+------------------------------------+--------------------+
-| CreateAccount | `CreateAccount`_                   | 创建账户操作       |
+| CreateAccount | `<CreateAccount>`_                 | 创建账户操作       |
 +---------------+------------------------------------+--------------------+
-| IssueAsset    | `IssueAsset`_                      | 发行资产操作       |
+| IssueAsset    | `<IssueAsset>`_                    | 发行资产操作       |
 +---------------+------------------------------------+--------------------+
-| PayAsset      | `PayAsset`_                        | 转移资产操作       |
+| PayAsset      | `<PayAsset>`_                      | 转移资产操作       |
 +---------------+------------------------------------+--------------------+
-| PayCoin       | `PayCoin`_                         | 发送BU操作         |
+| PayCoin       | `<PayCoin>`_                       | 发送BU操作         |
 +---------------+------------------------------------+--------------------+
-| SetMetadata   | `SetMetadata`_                     | 设置metadata操作   |
+| SetMetadata   | `<SetMetadata>`_                   | 设置metadata操作   |
 +---------------+------------------------------------+--------------------+
-| SetPrivilege  | `SetPrivilege`_                    | 设置账户权限操作   |
+| SetPrivilege  | `<SetPrivilege>`_                  | 设置账户权限操作   |
 +---------------+------------------------------------+--------------------+
-| Log           | `Log`_                             | 记录日志           |
+| Log           | `<Log>`_                           | 记录日志           |
 +---------------+------------------------------------+--------------------+
 
 **TriggerTransaction**
@@ -1687,11 +1696,11 @@ model.TransactionGetInfoResponse
 +=============+=============================+====================+
 | DestAddress | string                      | 目标账户地址       |
 +-------------+-----------------------------+--------------------+
-| Contract    | `Contract`_                 | 合约信息           |
+| Contract    | `<Contract>`_               | 合约信息           |
 +-------------+-----------------------------+--------------------+
-| Priv        | `Priv`_                     | 账户权限           |
+| Priv        | `<Priv>`_                   | 账户权限           |
 +-------------+-----------------------------+--------------------+
-| Metadata    | [] `Metadata`_             | 账户               |
+| Metadata    | [] `<Metadata>`_            | 账户               |
 +-------------+-----------------------------+--------------------+
 | InitBalance | int64                       | 账户资产           |
 +-------------+-----------------------------+--------------------+
@@ -1737,7 +1746,7 @@ model.TransactionGetInfoResponse
 +=============+============================+======================+
 | DestAddress | string                     | 待转移的目标账户地址 |
 +-------------+----------------------------+----------------------+
-| Asset       | `AssetInfo`_               | 账户资产             |
+| Asset       | `<AssetInfo>`_             | 账户资产             |
 +-------------+----------------------------+----------------------+
 | Input       | string                     | 合约main函数入参     |
 +-------------+----------------------------+----------------------+
@@ -1776,12 +1785,12 @@ model.TransactionGetInfoResponse
 | MasterWeight          | string                | 账户自身权重，大小[0, |
 |                       |                       | max(uint32)]          |
 +-----------------------+-----------------------+-----------------------+
-| Signers               | [] `Signer`_         | 签名者权重列表         |
+| Signers               | [] `<Signer>`_        | 签名者权重列表        |
 +-----------------------+-----------------------+-----------------------+
 | TxThreshold           | string                | 交易门限，大小[0,     |
 |                       |                       | max(int64)]           |
 +-----------------------+-----------------------+-----------------------+
-| TypeThreshold         | `TypeThreshold`_      | 指定类型交易门限      |
+| TypeThreshold         | `<TypeThreshold>`_    | 指定类型交易门限      |
 +-----------------------+-----------------------+-----------------------+
 
 **Log**
@@ -1912,14 +1921,13 @@ GetTransactions(model.BlockGetTransactionRequest)model.BlockGetTransactionRespon
 
 响应数据:
 
-+-----------------------+--------------------------+-----------------------+
-| 参数                  | 类型                     | 描述                  |
-+=======================+==========================+=======================+
-| TotalCount            | int64                    | 返回的总交易数        |
-+-----------------------+--------------------------+-----------------------+
-| Transactions          | [] `TransactionHistory`_ | 交易内容              |
-|                       |                          |                       |
-+-----------------------+--------------------------+-----------------------+
++-----------------------+------------------------------+-----------------------+
+| 参数                  | 类型                         | 描述                  |
++=======================+==============================+=======================+
+| TotalCount            | int64                        | 返回的总交易数        |
++-----------------------+------------------------------+-----------------------+
+| Transactions          | [] `<TransactionHistory>`_   | 交易内容              |
++-----------------------+------------------------------+-----------------------+
 
 错误码:
 
@@ -1984,11 +1992,11 @@ GetInfo(model.BlockGetInfoRequest) model.BlockGetInfoResponse
 +---------------------------+--------+------------------------------------+
 | 异常                      | 错误码 | 描述                               |
 +===========================+========+====================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be bigger than 0 |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be bigger than 0  |
 +---------------------------+--------+------------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network           |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network            |
 +---------------------------+--------+------------------------------------+
-| SYSTEM_ERROR              | 20000  | System error                      |
+| SYSTEM_ERROR              | 20000  | System error                       |
 +---------------------------+--------+------------------------------------+
 
 示例:
@@ -2073,7 +2081,7 @@ GetValidators(model.BlockGetValidatorsRequest)model.BlockGetValidatorsResponse
 +------------+---------------------------------------+--------------+
 | 参数       | 类型                                  | 描述         |
 +============+=======================================+==============+
-| validators | [] `ValidatorInfo`_                   | 验证节点列表 |
+| validators | [] `<ValidatorInfo>`_                 | 验证节点列表 |
 +------------+---------------------------------------+--------------+
 
 **ValidatorInfo**
@@ -2127,7 +2135,7 @@ GetLatestValidators() model.BlockGetLatestValidatorsResponse
 +------------+---------------------------------------+--------------+
 | 参数       | 类型                                  | 描述         |
 +============+=======================================+==============+
-| validators | [] `ValidatorInfo`_                   | 验证节点列表 |
+| validators | [] `<ValidatorInfo>`_                 | 验证节点列表 |
 +------------+---------------------------------------+--------------+
 
 错误码:
@@ -2175,13 +2183,13 @@ GetReward
 
 响应数据：
 
-+-----------------------+-----------------------+-----------------------+
-| 参数                  | 类型                  | 描述                  |
-+=======================+=======================+=======================+
-| BlockReward           | int64                 | 区块奖励数            |
-+-----------------------+-----------------------+-----------------------+
-| ValidatorsReward      | [] `ValidatorReward`_ | 验证节点奖励情况      |
-+-----------------------+-----------------------+-----------------------+
++-----------------------+-------------------------+-----------------------+
+| 参数                  | 类型                    | 描述                  |
++=======================+=========================+=======================+
+| BlockReward           | int64                   | 区块奖励数            |
++-----------------------+-------------------------+-----------------------+
+| ValidatorsReward      | [] `<ValidatorReward>`_ | 验证节点奖励情况      |
++-----------------------+-------------------------+-----------------------+
 
 **ValidatorReward**
 
@@ -2230,13 +2238,13 @@ GetLatestReward() model.BlockGetLatestRewardResponse
 
 响应数据:
 
-+-----------------------+-----------------------+-----------------------+
-| 参数                  | 类型                  | 描述                  |
-+=======================+=======================+=======================+
-| BlockReward           | int64                 | 区块奖励数            |
-+-----------------------+-----------------------+-----------------------+
-| ValidatorsReward      | []`ValidatorReward`_  | 验证节点奖励情况      |
-+-----------------------+-----------------------+-----------------------+
++-----------------------+-------------------------+-----------------------+
+| 参数                  | 类型                    | 描述                  |
++=======================+=========================+=======================+
+| BlockReward           | int64                   | 区块奖励数            |
++-----------------------+-------------------------+-----------------------+
+| ValidatorsReward      | [] `<ValidatorReward>`_ | 验证节点奖励情况      |
++-----------------------+-------------------------+-----------------------+
 
 错误码:
 
@@ -2281,7 +2289,7 @@ GetFees(model.BlockGetFeesRequest) model.BlockGetFeesResponse
 +------+------------------+------+
 | 参数 | 类型             | 描述 |
 +======+==================+======+
-| Fees | `Fees`_          | 费用 |
+| Fees | `<Fees>`_        | 费用 |
 +------+------------------+------+
 
 **Fees**
@@ -2335,7 +2343,7 @@ GetLatestFees() model.BlockGetLatestFeesResponse
 +------+------------------+------+
 | 参数 | 类型             | 描述 |
 +======+==================+======+
-| Fees | `Fees <#fees>`__ | 费用 |
+| Fees | `<fees>`_        | 费用 |
 +------+------------------+------+
 
 错误码:
@@ -2488,14 +2496,13 @@ Go错误码信息：
 +-------+----------------------------------------+
 | 参数  | 描述                                   |
 +=======+========================================+
-| 14000 | The function                           | 
-|       |‘GetEncPublicKey’failed.              |
+| 14000 | The function‘GetEncPublicKey’failed. |                       
 +-------+----------------------------------------+
 | 14001 | The function ‘Sign’ failed.          |
 +-------+----------------------------------------+
-| 14002 | The parameter’payload’ is invalid.   |
+| 14002 | The parameter‘payload’ is invalid.   |
 +-------+----------------------------------------+
 | 14003 | The query failed.                      |
 +-------+----------------------------------------+
 | 14004 | Query no results.                      |
-+-------+----------------------------------------+
++-------+----------------------------------------+   
