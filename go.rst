@@ -637,7 +637,7 @@ GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse
 +-----------+-----------------------------+------+
 | 参数      | 类型                        | 描述 |
 +===========+=============================+======+
-| Metadatas | [] :ref:`Metadata-1`         | 账户 |
+| Metadatas | [] :ref:`Metadata-1`        | 账户 |
 +-----------+-----------------------------+------+
 
 .. _Metadata-1:
