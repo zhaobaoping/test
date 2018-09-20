@@ -677,8 +677,6 @@ GetMetadata
 | Metadatas | [] :ref:`Metadata-1`  | 账户 |
 +-----------+-----------------------+------+
 
-.. _Metadata-1:
-
 
 错误码如下表：
 
@@ -709,6 +707,8 @@ GetMetadata
 
 接口对象类型参考
 ^^^^^^^^^^^^^^^
+
+.. _Metadata-1:
 
 Metadata
 +++++++++
@@ -1218,13 +1218,11 @@ BuildBlob
 BaseOperation
 ^^^^^^^^^^^^^
 
-在调用BuildBlob之前需要构建一些操作对象，目前的操作对象有16种:
- `AccountActivateOperation`_ 、 `AccountSetMetadataOperation`_ 、 `AccountSetPrivilegeOperation`_ 、 `AssetIssueOperation`_ 、 `AssetSendOperation`_ 、 
- `BUSendOperation`_ 、 `Ctp10TokenIssueOperation`_ 、 `Ctp10TokenTransferOperation`_ 、
- `Ctp10TokenTransferFromOperation`_ 、 `Ctp10TokenApproveOperation`_ 、
- `Ctp10TokenAssignOperation`_ 、  `Ctp10TokenChangeOwnerOperation`_ 、
- `ContractCreateOperation`_ 、 `ContractInvokeByAssetOperation`_ 、 `ContractInvokeByBUOperation`_ 
-和 `LogCreateOperation`_ 。
+在调用BuildBlob之前需要构建一些操作对象，目前的操作对象有16种: ``AccountActivateOperation``、``AccountSetMetadataOperation`` 、
+``AccountSetPrivilegeOperation``、``AssetIssueOperation`` 、``AssetSendOperation``、 ``BUSendOperation``、
+``Ctp10TokenIssueOperation``、``Ctp10TokenTransferOperation`` 、``Ctp10TokenTransferFromOperation``、``Ctp10TokenApproveOperation`` 、
+``Ctp10TokenAssignOperation`` 、``Ctp10TokenChangeOwnerOperation``、``ContractCreateOperation``、``ContractInvokeByAssetOperation`` 、
+``ContractInvokeByBUOperation`` 和 ``LogCreateOperation``。
 
 AccountActivateOperation
 
