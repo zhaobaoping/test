@@ -4,13 +4,11 @@ Bumo Go SDK
 概述
 ----
 
-本文档简要概述Bumo Go SDK常用接口文档，方便开发者更方便地写入和查询BU区块链。
+本文档对Bumo Go SDK常用的接口进行了详细说明,
+使开发者能够更方便地写入和查询BU区块链。
 
-配置
+包导入
 ----
-
-包引用
-~~~~~~
 
 所依赖的golang包在src文件夹中寻找，依赖的golang包如下：
 
@@ -19,51 +17,75 @@ Bumo Go SDK
  //获取包
  go get github.com/bumoproject/bumo-sdk-go
 
-名词解析
---------
+术语
+----
 
-操作BU区块链： 向BU区块链写入或修改数据。
+本章节对该文档中使用到的术语进行了详细说明。
 
-提交交易： 向BU区块链发送修改的内容。
+**操作BU区块链** 
 
-查询BU区块链： 查询BU区块链中的数据。
+操作BU区块链是指向BU区块链写入或修改数据。
 
-账户服务： 提供账户相关的有效性校验与查询接口。
+**提交交易**
 
-资产服务： 提供资产相关的查询接口。
+提交交易是指向BU区块链发送修改的内容。
 
-Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
+**查询BU区块链**
+查询BU区块链是指查询BU区块链中的数据。
 
-合约服务： 提供合约相关的有效性校验与查询接口。
+**账户服务**
 
-交易服务： 提供交易相关的提交与查询接口。
+账户服务是指提供账户相关的有效性校验与查询接口。
 
-区块服务： 提供区块的查询接口。
+**资产服务**
 
-账户nonce值：每个账户都维护一个序列号，用于用户提交交易时标识交易的执行顺序。
+资产服务是指提供资产相关的查询接口。
 
-参数与响应
-----------
+**Ctp10Token服务**
+
+Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口。
+
+**合约服务**
+
+合约服务是指提供合约相关的有效性校验与查询接口。
+
+**交易服务**
+
+交易服务是指提供交易相关的提交与查询接口。
+
+**区块服务**
+
+区块服务是指提供区块的查询接口。
+
+**账户nonce值**
+
+账户nonce值是指每个账户都维护的一个序列号，用于用户提交交易时标识交易的执行顺序。
+
+请求参数与响应数据格式
+--------------------
+
+本章节将详细介绍请求参数与响应数据的格式。
 
 请求参数
 ~~~~~~~~
 
-请求参数的格式，是[类名][方法名]Request，比如Account.GetInfo()的请求参数是AccountGetInfoRequest。请求参数的成员，是各个方法的入参的成员变量名。
+接口的请求参数的类名，由 **类名+方法名+Request** 构成，例如:
+账户服务下的 ``getInfo`` 接口的请求参数格式是 ``AccountGetInfoRequest``。
 
-例如：Account.GetInfo()的入参成员是address，那么AccountGetInfoRequest的结构如下：
+请求参数的成员，是各个接口的入参成员。例如：账户服务下的 ``getInfo`` 接口的入参成员是 ``address``，那么该接口的请求参数的完整结构如下：
 
 ::
 
- type AccountGetInfoRequest struct {
+   type AccountGetInfoRequest struct {
    address string
- }
+   }
 
-响应结果
-^^^^^^^^
+响应数据
+~~~~~~~~
 
-响应结果的格式，包含错误码，错误描述和result，格式是[类名][方法名]Response。
+响应数据包含错误码，错误描述和result，响应数据的类名由**类名+方法名+Response**构成。
 
-例如: Account.GetInfo()的结构体名是AccountGetInfoResponse：
+例如: ``Account.GetInfo()`` 的结构体名是``AccountGetInfoResponse``：
 
 ::
 
@@ -74,29 +96,25 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
  }
 
 .. note:: |
-
- 1. ErrorCode: 0表示无错误，大于0表示有错误。
-
- 2. ErrorDesc: 空表示无错误，有内容表示有错误。
-
- 3. Result:
-    返回结果的结构体，其中结构体的名称，格式是[类名][方法名]Result。
-    
-    例如：Account.GetNonce()的结构体名是AccountGetNonceResult：
+       -ErrorCode: 0表示无错误，大于0表示有错误。
+       -ErrorDesc: 空表示无错误，有内容表示有错误。
+       -Result: 返回结果的结构体，其中结构体由**类名+方法名+Result**构成。例如：``Account.GetNonce()``的结构体名是``AccountGetNonceResult``。
+        
+::
 
     type AccountGetNonceResult struct {
-    Nonce int64
+      Nonce int64
     }
 
 使用方法
 --------
 
-这里介绍SDK的使用流程，首先需要生成SDK实例,然后调用相应服务的接口，其中服务包括账户服务、资产服务、合约服务、交易服务、区块服务，接口按使用分类分为生成公私钥地址接口、有效性校验接口、查询接口、提交交易相关接口。
+这里介绍SDK的使用流程，首先需要生成SDK实例，然后调用相应服务的接口，其中服务包括账户服务、资产服务、合约服务、交易服务、区块服务，接口按使用分类分为生成公私钥地址接口、有效性校验接口、查询接口、提交交易相关接口。
 
 包导入
 ~~~~~~
 
-导入使用的包：
+生成SDK实例之前导入使用的包：
 
 ::
 
@@ -108,7 +126,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 生成SDK实例
 ~~~~~~~~~~~
 
-初始化SDK结构：
+初始化SDK结构方法：
 
 ::
 
@@ -126,7 +144,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 生成公私钥地址
 ~~~~~~~~~~~~~
 
-通过调用Account的Create生成账户，例如：
+通过调用Account的Create生成账户，方法如下：
 
 ::
 
@@ -135,7 +153,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 有效性校验
 ~~~~~~~~~~
 
-此接口用于校验信息的有效性，直接调用相应的接口即可，比如，校验账户地址有效性，调用如下：
+有效性校验接口用于校验信息的有效性，直接调用相应的接口即可，比如，校验账户地址有效性，调用如下：
 
 ::
 
@@ -149,7 +167,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 查询
 ~~~~
 
-调用相应的接口，例如：查询账户信息。
+使用查询接口时可直接调用，如查询账户信息方法如下：
 
 ::
 
@@ -163,12 +181,18 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 提交交易
 ~~~~~~~~
 
-提交交易的过程包括以下几步：获取账户nonce值，构建操作，构建交易Blob,签名交易和广播交易。
+提交交易的过程包括以下几步：
+
+1. `获取账户nonce值`_
+2. `构建操作`_
+3. `构建交易Blob`_
+4. `签名交易`_
+5. `广播交易`_
 
 获取账户nonce值
 ^^^^^^^^^^^^^^^
 
-开发者可自己维护各个账户nonce，在提交完一个交易后，自动递增1，这样可以在短时间内发送多笔交易，否则，必须等上一个交易执行完成后，账户的nonce值才会加1。接口调用如下：
+开发者可自己维护各个账户nonce，在提交完一个交易后，nonce值自动递增1，这样可以在短时间内发送多笔交易；否则，必须等上一个交易执行完成后，账户的nonce值才会加1。接口调用如下：
 
 ::
 
@@ -197,11 +221,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 构建交易Blob
 ^^^^^^^^^^^^
 
-该接口用于生成交易Blob串，接口调用如下：
-
-.. note:: |
- 
-  gasPrice和feeLimit的单位是MO，且 1 BU =10^8 MO。
+构建交易Blob接口用于生成交易Blob串，接口调用如下：
 
 ::
 
@@ -215,10 +235,13 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
  //调用BuildBlob接口
  resDataBlob := testSdk.Transaction.BuildBlob(reqDataBlob)
 
+.. note:: |
+  gasPrice和feeLimit的单位是MO，且 1 BU =10^8 MO。
+
 签名交易
 ^^^^^^^^
 
-该接口用于交易发起者使用私钥对交易进行签名。接口调用如下：
+签名交易接口用于交易发起者使用私钥对交易进行签名。接口调用如下：
 
 ::
 
@@ -233,7 +256,7 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 广播交易
 ^^^^^^^^
 
-该接口用于向BU区块链发送交易，触发交易的执行。接口调用如下：
+广播交易接口用于向BU区块链发送交易，触发交易的执行。接口调用如下：
 
 ::
 
@@ -247,21 +270,21 @@ Ctp10Token服务： 提供合约资产相关的有效性校验与查询接口。
 账户服务
 --------
 
-账户服务主要是账户相关的接口，包括7个接口：CheckValid, Create,GetInfo-Account,
-GetNonce, GetBalance-Account, GetAssets, GetMetadata。
+账户服务主要是账户相关的接口，包括7个接口：``CheckValid``、``Create``、``GetInfo-Account``、
+``GetNonce``、``GetBalance-Account``、``GetAssets``、``GetMetadata``。
 
 CheckValid
-~~~~~~~~~~~
+~~~~~~~~~~
 
-接口说明:
+``CheckValid``接口用于检测账户地址的有效性。
 
-该接口用于检测账户地址的有效性。
+调用方法如下：
 
-调用方法：
+::
 
-CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
+ CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
 
-请求参数：
+请求参数如下表：
 
 +---------+--------+------------------+
 | 参数    | 类型   | 描述             |
@@ -269,7 +292,7 @@ CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
 | address | string | 待检测的账户地址 |
 +---------+--------+------------------+
 
-响应数据：
+响应数据如下表：
 
 +---------+--------+------------------+
 | 参数    | 类型   | 描述             |
@@ -277,7 +300,7 @@ CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
 | IsValid | string | 账户地址是否有效 |
 +---------+--------+------------------+
 
-错误码：
+错误码如下表：
 
 +--------------+--------+--------------+
 | 异常         | 错误码 | 描述         |
@@ -285,30 +308,29 @@ CheckValid(model.AccountCheckValidRequest)model.AccountCheckValidResponse
 | SYSTEM_ERROR | 20000  | System error |
 +--------------+--------+--------------+
 
-示例：
+具体示例如下所示：
 
 ::
 
- var reqData model.AccountCheckValidRequest
- address := "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
- reqData.SetAddress(address)
- resData := testSdk.Account.CheckValid(reqData)
- if resData.ErrorCode == 0 {
-   fmt.Println(resData.Result.IsValid)
- }
+   var reqData model.AccountCheckValidRequest
+   address := "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+   reqData.SetAddress(address)
+   resData := testSdk.Account.CheckValid(reqData)
+   if resData.ErrorCode == 0 {
+     fmt.Println(resData.Result.IsValid)
+   }
 
 Create
 ~~~~~~
 
-接口说明：
+``Create``接口用于形成私钥对。
 
-形成私钥对。
+调用方法如下：
 
-调用方法：
+::
+ Create() model.AccountCreateResponse
 
-Create() model.AccountCreateResponse
-
-响应数据：
+响应数据如下表：
 
 +------------+--------+------+
 | 参数       | 类型   | 描述 |
@@ -334,15 +356,14 @@ Create() model.AccountCreateResponse
 GetInfo-Account
 ~~~~~~~~~~~~~~~
 
-接口说明：
+``GetInfo-Account``接口用于查询账户信息。
 
-查询账户信息。
+调用方法如下：
 
-调用方法：
+::
+ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 
-GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
-
-请求参数：
+请求参数如下表：
 
 +---------+--------+------------------+
 | 参数    | 类型   | 描述             |
@@ -350,7 +371,7 @@ GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 | address | string | 待检测的账户地址 |
 +---------+--------+------------------+
 
-响应数据：
+响应数据如下表：
 
 +---------+------------------+----------------+
 | 参数    | 类型             | 描述           |
@@ -418,7 +439,7 @@ TypeThreshold
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Fail to connect network |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -457,11 +478,11 @@ GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse
 
 响应数据：
 
-+---------+--------+------------------+
-| 参数    | 类型   | 描述             |
-+=========+========+==================+
-| address | int16 | 该账户的交易序列号|
-+---------+--------+------------------+
++---------+--------+--------------------+
+| 参数    | 类型   | 描述               |
++=========+========+====================+
+| address | int16  | 该账户的交易序列号 |
++---------+--------+--------------------+
 
 错误码：
 
@@ -470,7 +491,7 @@ GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Fail to connect network |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -593,7 +614,7 @@ Key
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Fail to connect network |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -725,7 +746,7 @@ GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse
 +==========================+=========================+==================+
 | INVALID_ADDRESS_ERROR    | 11006                   | Invalid address  |
 +--------------------------+-------------------------+------------------+
-| CONNECTNETWORK_ERROR     | 11007                   | Fail to Connect  |
+| CONNECTNETWORK_ERROR     | 11007                   | Fail to connect  |
 |                          |                         | network          |
 +--------------------------+-------------------------+------------------+
 | INVALID_ASSET_CODE_ERROR | 11023                   | The length of    |
@@ -796,11 +817,11 @@ GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse
 | INVALID_CONTRACTADDRESS | 11037                   | Invalid contract |
 | _ERROR                  |                         | address          |
 +-------------------------+-------------------------+------------------+
-| CONTRACTADDRESS_NOT_CON | 11038                   | contractAddress  |
+| CONTRACTADDRESS_NOT_CON | 11038                   | contractaddress  |
 | TRACTACCOUNT_ERROR      |                         | is not a         |
 |                         |                         | contract account |
 +-------------------------+-------------------------+------------------+
-| CONNECTNETWORK_ERROR    | 11007                   | Fail to Connect  |
+| CONNECTNETWORK_ERROR    | 11007                   | Fail to connect  |
 |                         |                         | network          |
 +-------------------------+-------------------------+------------------+
 | SYSTEM_ERROR            | 20000                   | System error     |
@@ -822,16 +843,16 @@ GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse
 交易服务
 --------
 
-交易服务主要是交易相关的接口，目前有5个接口：EvaluateFee,BuildBlob, 
-Sign, Submit, GetInfo-transaction。
+交易服务主要是交易相关的接口，目前有5个接口：EvaluateFee、BuildBlob、
+Sign、Submit 和 GetInfo-transaction。
 
-其中调用BuildBlob之前需要构建一些操作，目前操作有16种，分别包括AccountActivateOperation，AccountSetMetadataOperation,
-AccountSetPrivilegeOperation, AssetIssueOperation, AssetSendOperation,
-BUSendOperation, Ctp10TokenIssueOperation, Ctp10TokenTransferOperation,
-Ctp10TokenTransferFromOperation, Ctp10TokenApproveOperation,
-Ctp10TokenAssignOperation, Ctp10TokenChangeOwnerOperation,
-ContractInvokeByAssetOperation, ContractInvokeByBUOperation,
-LogCreateOperation,ContractCreateOperation
+其中调用BuildBlob之前需要构建一些操作，目前操作有16种，分别包括AccountActivateOperation、AccountSetMetadataOperation、
+AccountSetPrivilegeOperation、AssetIssueOperation、AssetSendOperation、
+BUSendOperation、Ctp10TokenIssueOperation、Ctp10TokenTransferOperation、
+Ctp10TokenTransferFromOperation、Ctp10TokenApproveOperation、
+Ctp10TokenAssignOperation、 Ctp10TokenChangeOwnerOperation、
+ContractCreateOperation、ContractInvokeByAssetOperation、ContractInvokeByBUOperation
+和 LogCreateOperation。
 
 操作说明:
 
@@ -1140,7 +1161,7 @@ EvaluateFee(model.TransactionEvaluateFeeRequest)model.TransactionEvaluateFeeResp
 +-------------------+---------------------+---------------------------------+
 | operations        | list.List           | 必填，待提交的操作列表，不能为空|
 +-------------------+---------------------+---------------------------------+
-| signtureNumber    | string              | 选填，待签名者的数量，默认是1， |
+| signatureNumber   | string              | 选填，待签名者的数量，默认是1， |
 |                   |                     | 大小[1,max(int32)]              |
 +-------------------+---------------------+---------------------------------+
 | metadata          | string              | 选填，备注                      |
@@ -1178,15 +1199,15 @@ EvaluateFee(model.TransactionEvaluateFeeRequest)model.TransactionEvaluateFeeResp
 | _ERROR                  |                         | cannot be        |
 |                         |                         | resolved         |
 +-------------------------+-------------------------+------------------+
-| OPERATIONS_ONE_ERROR    | 11053                   | One of           |
-|                         |                         | operations error |
+| OPERATIONS_ONE_ERROR    | 11053                   | One operation    |
+|                         |                         |  error           |
 +-------------------------+-------------------------+------------------+
 | INVALID_SIGNATURENUMBER | 11054                   | SignatureNumber  |
 | _ERROR                  |                         | must be between  |
 |                         |                         | 1 and max(int32) |
 +-------------------------+-------------------------+------------------+
 | SYSTEM_ERROR            | 20000                   | System error     |
-+-------------------------+-------------------------+------------------+
++-------------------------+-------------------------+------------------+  
 
 示例:
 
@@ -1287,8 +1308,8 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 | _DESTADDRESS_ERROR      |                         | cannot be equal  |
 |                         |                         | to destAddress   |
 +-------------------------+-------------------------+------------------+
-| INVALID_ISSUE_AMMOUNT   | 11008                   | AssetAmount this |
-| _ERROR                  |                         | will be issued   |
+| INVALID_ISSUE_AMMOUNT   | 11008                   | AssetAmount to   |
+| _ERROR                  |                         | be issued        |
 |                         |                         | must be between  |
 |                         |                         | 1 and max(int64) |
 +-------------------------+-------------------------+------------------+
@@ -1304,7 +1325,7 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 +-------------------------+-------------------------+------------------+
 | INVALID_DATAVERSION     | 11013                   | The version must |
 | _ERROR                  |                         | be equal or      |
-|                         |                         | bigger than 0    |
+|                         |                         | greater than 0   |
 +-------------------------+-------------------------+------------------+
 | INVALID_MASTERWEIGHT    | 11015                   | MasterWeight     |
 | _ERROR                  |                         | must be between  |
@@ -1427,7 +1448,7 @@ BuildBlob(model.TransactionBuildBlobRequest)model.TransactionBuildBlobResponse
 +-------------------------+-------------------------+------------------+
 | INVALID_CEILLEDGERSEQ   | 11052                   | CeilLedgerSeq    |
 | _ERROR                  |                         | must be equal or |
-|                         |                         | bigger than 0    |
+|                         |                         | greater than 0   |
 +-------------------------+-------------------------+------------------+
 | OPERATIONS_ONE_ERROR    | 11053                   | One of           |
 |                         |                         | operations       |
@@ -1595,8 +1616,7 @@ GetInfo-transaction
 
 调用方法：
 
-GetInfo(model.TransactionGetInfoRequest)
-model.TransactionGetInfoResponse
+GetInfo(model.TransactionGetInfoRequest)model.TransactionGetInfoResponse
 
 请求参数：
 
@@ -1725,13 +1745,13 @@ CreateAccount
 Contract
 ^^^^^^^^
 
-+---------+--------+----------------------+
-| 成员    | 类型   | 描述                 |
-+=========+========+======================+
-| Type    | int64  | 约的语种，默认不赋值 |
-+---------+--------+----------------------+
-| Payload | string | 对应语种的合约代码   |
-+---------+--------+----------------------+
++---------+--------+------------------------+
+| 成员    | 类型   | 描述                   |
++=========+========+========================+
+| Type    | int64  | 合约的语种，默认不赋值 |
++---------+--------+------------------------+
+| Payload | string | 对应语种的合约代码     |
++---------+--------+------------------------+
 
 .. _Metadata-2:
 
@@ -1844,9 +1864,9 @@ Log
 区块服务
 --------
 
-区块服务主要是区块相关的接口，目前有11个接口：GetNumber, CheckStatus,
-GetTransactions , GetInfo-block, GetLatest, GetValidators,
-GetLatestValidators, GetReward, GetLatestReward, GetFees,
+区块服务主要是区块相关的接口，目前有11个接口：GetNumber、CheckStatus、
+GetTransactions、GetInfo-block、GetLatest、GetValidators、
+GetLatestValidators、GetReward、 GetLatestReward、GetFees 和
 GetLatestFees。
 
 GetNumber
@@ -1873,7 +1893,7 @@ GetNumber() model.BlockGetNumberResponse
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
 +----------------------+--------+-------------------------+
@@ -1959,12 +1979,13 @@ GetTransactions(model.BlockGetTransactionRequest)model.BlockGetTransactionRespon
 +---------------------------+--------+--------------------------------+
 | 异常                      | 错误码 | 描述                           |
 +===========================+========+================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be            |
+|                           |        | greater than 0                 |
 +---------------------------+--------+--------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network        |
 +---------------------------+--------+--------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                   |
-+---------------------------+--------+--------------------------------+
++---------------------------+--------+--------------------------------+ 
 
 示例：
 
@@ -2017,7 +2038,7 @@ GetInfo(model.BlockGetInfoRequest) model.BlockGetInfoResponse
 +---------------------------+--------+------------------------------------+
 | 异常                      | 错误码 | 描述                               |
 +===========================+========+====================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be bigger than 0  |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be greater than 0 |
 +---------------------------+--------+------------------------------------+
 | CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network            |
 +---------------------------+--------+------------------------------------+
@@ -2067,7 +2088,7 @@ GetLatest() model.BlockGetLatestResponse
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
 +----------------------+--------+-------------------------+
@@ -2125,7 +2146,8 @@ ValidatorInfo
 +---------------------------+--------+--------------------------------+
 | 异常                      | 错误码 | 描述                           |
 +===========================+========+================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be            |
+|                           |        | greater than 0                 |
 +---------------------------+--------+--------------------------------+
 | CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
 +---------------------------+--------+--------------------------------+
@@ -2169,9 +2191,10 @@ GetLatestValidators() model.BlockGetLatestValidatorsResponse
 +---------------------------+--------+--------------------------------+
 | 异常                      | 错误码 | 描述                           |
 +===========================+========+================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must               |
+|                           |        | be bigger than 0               |
 +---------------------------+--------+--------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network        |
 +---------------------------+--------+--------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                   |
 +---------------------------+--------+--------------------------------+
@@ -2233,7 +2256,7 @@ ValidatorReward
 +---------------------------+--------+------------------------------------+
 | 异常                      | 错误码 | 描述                               |
 +===========================+========+====================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be bigger than 0  |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be greater than 0 |
 +---------------------------+--------+------------------------------------+
 | CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network            |
 +---------------------------+--------+------------------------------------+
@@ -2278,7 +2301,7 @@ GetLatestReward() model.BlockGetLatestRewardResponse
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
 +----------------------+--------+-------------------------+
@@ -2335,7 +2358,8 @@ Fees
 +---------------------------+--------+--------------------------------+
 | 异常                      | 错误码 | 描述                           |
 +===========================+========+================================+
-| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must bigger than 0 |
+| INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must               |
+|                           |        | be greater than 0              |
 +---------------------------+--------+--------------------------------+
 | CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
 +---------------------------+--------+--------------------------------+
@@ -2379,7 +2403,7 @@ GetLatestFees() model.BlockGetLatestFeesResponse
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
 +----------------------+--------+-------------------------+
