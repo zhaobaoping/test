@@ -10,7 +10,7 @@ Bumo Go SDK
 包导入
 ----
 
-所依赖的golang包在src文件夹中寻找，依赖的golang包如下：
+项目所依赖的包在src文件夹中，获取包的方法如下：
 
 ::
 
@@ -31,6 +31,7 @@ Bumo Go SDK
 提交交易是指向BU区块链发送修改的内容。
 
 **查询BU区块链**
+
 查询BU区块链是指查询BU区块链中的数据。
 
 **账户服务**
@@ -96,8 +97,10 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
  }
 
 .. note:: |
-       -ErrorCode: 0表示无错误，大于0表示有错误。  
-       -ErrorDesc: 空表示无错误，有内容表示有错误。 
+       -ErrorCode: 0表示无错误，大于0表示有错误。
+
+       -ErrorDesc: 空表示无错误，有内容表示有错误。
+
        -Result: 返回结果的结构体，其中结构体由 **类名+方法名+Result** 构成。例如：``Account.GetNonce()`` 的结构体名是 ``AccountGetNonceResult`` 。 
         
 ::
@@ -183,14 +186,14 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
 
 提交交易的过程包括以下几步：
 
-1. `获取账户nonce值`_
-2. `构建操作`_
-3. `构建交易Blob`_
-4. `签名交易`_
-5. `广播交易`_
+`1. 获取账户nonce值`_
+`2. 构建操作`_
+`3. 构建交易Blob`_
+`4. 签名交易`_
+`5. 广播交易`_
 
 1. 获取账户nonce值
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 开发者可自己维护各个账户nonce，在提交完一个交易后，nonce值自动递增1，这样可以在短时间内发送多笔交易；否则，必须等上一个交易执行完成后，账户的nonce值才会加1。接口调用如下：
 
@@ -204,7 +207,7 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
  resData := testSdk.Account.GetNonce(reqData)
 
 2. 构建操作
-^^^^^^^^
+^^^^^^^^^^^
 
 这里的操作是指在交易中做的一些动作。例如：构建发送BU操作BUSendOperation，调用如下:
 
@@ -218,7 +221,7 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
  buSendOperation.SetDestAddress(address)
 
 3. 构建交易Blob
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 构建交易Blob接口用于生成交易Blob串，接口调用如下：
 
@@ -238,7 +241,7 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
   gasPrice和feeLimit的单位是MO，且 1 BU =10^8 MO。
 
 4. 签名交易
-^^^^^^^^
+^^^^^^^^^^^
 
 签名交易接口用于交易发起者使用私钥对交易进行签名。接口调用如下：
 
@@ -253,7 +256,7 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
  resDataSign := testSdk.Transaction.Sign(reqData)
 
 5. 广播交易
-^^^^^^^^
+^^^^^^^^^^^
 
 广播交易接口用于向BU区块链发送交易，触发交易的执行。接口调用如下：
 
@@ -269,8 +272,8 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
 账户服务
 --------
 
-账户服务主要是账户相关的接口，包括7个接口： ``CheckValid`` 、 ``Create`` 、 ``GetInfo-Account`` 、
- ``GetNonce`` 、 ``GetBalance-Account`` 、 ``GetAssets`` 、 ``GetMetadata`` 。
+账户服务主要是账户相关的接口，包括7个接口： ``CheckValid``、``Create``、``GetInfo-Account``、
+ ``GetNonce``、``GetBalance-Account``、``GetAssets``、``GetMetadata``。
 
 CheckValid
 ~~~~~~~~~~
@@ -327,6 +330,7 @@ Create
 调用方法如下：
 
 ::
+
  Create() model.AccountCreateResponse
 
 响应数据如下表：
@@ -360,6 +364,7 @@ GetInfo-Account
 调用方法如下：
 
 ::
+
  GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse
 
 请求参数如下表：
@@ -416,15 +421,15 @@ GetInfo-Account
 Priv
 ++++
 
-+--------------+----------------------------+--------------+
-| 参数         | 类型                       | 描述         |
-+==============+============================+==============+
-| MasterWeight | int64                      | 账户自身权重 |
-+--------------+----------------------------+--------------+
-| Signers      | [] `Signer`_               | 签名者权重   |
-+--------------+----------------------------+--------------+
-| Thresholds   | `Threshold`_               | 门限         |
-+--------------+----------------------------+--------------+
++--------------+----------------+--------------+
+| 参数         | 类型           | 描述         |
++==============+================+==============+
+| MasterWeight | int64          | 账户自身权重 |
++--------------+----------------+--------------+
+| Signers      | [] `Signer`_   | 签名者权重   |
++--------------+----------------+--------------+
+| Thresholds   | `Threshold`_   | 门限         |
++--------------+----------------+--------------+
 
 
 Signer
@@ -468,6 +473,7 @@ GetNonce
 调用方法如下：
 
 ::
+
  GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse
 
 请求参数如下表：
@@ -517,6 +523,7 @@ GetBalance-Account
 调用方法如下：
 
 ::
+
  GetBalance(model.AccountGetBalanceRequest)model.AccountGetBalanceResponse
 
 请求参数如下表：
@@ -567,6 +574,7 @@ GetAssets
 调用方法如下：
 
 ::
+
  GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse
 
 请求参数如下表：
@@ -643,6 +651,7 @@ GetMetadata
 调用方法如下：
 
 ::
+
  GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse
 
 请求参数如下表：
