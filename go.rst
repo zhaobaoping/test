@@ -402,7 +402,8 @@ GetInfo-Account
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Failed to connect to    |
+|                       |        | the blockchain          |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -504,7 +505,8 @@ GetNonce
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Failed to connect to    |
+|                       |        | the network             |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -554,7 +556,8 @@ GetBalance-Account
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Failed to connect to    |
+|                       |        | the network             |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -605,7 +608,8 @@ GetAssets
 +=======================+========+=========================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address         |
 +-----------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR  | 11007  | Failed to connect to    |
+|                       |        | the network             |
 +-----------------------+--------+-------------------------+
 | SYSTEM_ERROR          | 20000  | System error            |
 +-----------------------+--------+-------------------------+
@@ -685,7 +689,7 @@ GetMetadata
 +=======================+========+==============================================+
 | INVALID_ADDRESS_ERROR | 11006  | Invalid address                              |
 +-----------------------+--------+----------------------------------------------+
-| CONNECTNETWORK_ERROR  | 11007  | Fail to Connect network                      |
+| CONNECTNETWORK_ERROR  | 11007  | Failed to connect to the network             |
 +-----------------------+--------+----------------------------------------------+
 | INVALID_DATAKEY_ERROR | 11011  | The length of key must be between 1 and 1024 |
 +-----------------------+--------+----------------------------------------------+
@@ -766,8 +770,8 @@ GetInfo-Asset
 +==========================+===========+==================+
 | INVALID_ADDRESS_ERROR    | 11006     | Invalid address  |
 +--------------------------+-----------+------------------+
-| CONNECTNETWORK_ERROR     | 11007     | Fail to connect  |
-|                          |           | network          |
+| CONNECTNETWORK_ERROR     | 11007     | Failed to connect|
+|                          |           | to the network   |
 +--------------------------+-----------+------------------+
 | INVALID_ASSET_CODE_ERROR | 11023     | The length of    |
 |                          |           | code must        |
@@ -841,8 +845,8 @@ GetInfo-contract
 | TRACTACCOUNT_ERROR      |            | is not a         |
 |                         |            | contract account |
 +-------------------------+------------+------------------+
-| CONNECTNETWORK_ERROR    | 11007      | Fail to connect  |
-|                         |            | network          |
+| CONNECTNETWORK_ERROR    | 11007      | Failed to connect|
+|                         |            | to the network   |
 +-------------------------+------------+------------------+
 | SYSTEM_ERROR            | 20000      | System error     |
 +-------------------------+------------+------------------+
@@ -1159,8 +1163,8 @@ BuildBlob
 |                         |            | 1024             |
 +-------------------------+------------+------------------+
 | INVALID_CONTRACT_TYPE   | 11047      | Type must be     |
-| _ERROR                  |            | equal or bigger  |
-|                         |            | than 0           |
+| _ERROR                  |            | greater than or  |
+|                         |            | equal to 0       |
 +-------------------------+------------+------------------+
 | INVALID_NONCE_ERROR     | 11048      | Nonce must be    |
 |                         |            | between 1 and    |
@@ -1884,7 +1888,7 @@ Log
 
 区块服务主要是区块相关的接口，目前有11个接口：``GetNumber``、``CheckStatus``、``GetTransactions``、
 ``GetInfo-block``、``GetLatest``、``GetValidators``、``GetLatestValidators``、
-``GetReward``、 ``GetLatestReward``、``GetFees`` 和``GetLatestFees``。
+``GetReward``、 ``GetLatestReward``、``GetFees`` 和 ``GetLatestFees``。
 
 GetNumber
 ~~~~~~~~~~~
@@ -1910,7 +1914,8 @@ GetNumber
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR | 11007  | Failed to connect to    |
+|                      |        | the network             |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
 +----------------------+--------+-------------------------+
@@ -1948,7 +1953,8 @@ CheckStatus
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to Connect network |
+| CONNECTNETWORK_ERROR | 11007  | Failed to connect to    |
+|                      |        | the network             |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
 +----------------------+--------+-------------------------+
@@ -1999,7 +2005,8 @@ GetTransactions
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be     |
 |                           |        | greater than 0          |
 +---------------------------+--------+-------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR      | 11007  | Failed to connect       |
+|                           |        | to the network          |
 +---------------------------+--------+-------------------------+
 | SYSTEM_ERROR              | 20000  | System error            |
 +---------------------------+--------+-------------------------+ 
@@ -2057,10 +2064,11 @@ GetInfo-block
 +===========================+========+====================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be greater than 0 |
 +---------------------------+--------+------------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network            |
+| CONNECTNETWORK_ERROR      | 11007  | Failed to connect to               |
+|                           |        | the network                        |
 +---------------------------+--------+------------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                       |
-+---------------------------+--------+------------------------------------+
++---------------------------+--------+------------------------------------+      
 
 具体示例如下所示:
 
@@ -2105,10 +2113,11 @@ GetLatest
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR | 11007  | Failed to connect to    |
+|                      |        | the network             |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
-+----------------------+--------+-------------------------+
++----------------------+--------+-------------------------+   
 
 具体示例如下所示：
 
@@ -2155,10 +2164,11 @@ GetValidators
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be      |
 |                           |        | greater than 0           |
 +---------------------------+--------+--------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network  |
+| CONNECTNETWORK_ERROR      | 11007  | Failed to connect to     |
+|                           |        | the network              |
 +---------------------------+--------+--------------------------+
 | SYSTEM_ERROR              | 20000  | System error             |
-+---------------------------+--------+--------------------------+
++---------------------------+--------+--------------------------+  
 
 具体示例如下所示:
 
@@ -2216,10 +2226,11 @@ GetLatestValidators
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must           |
 |                           |        | be greater than 0          |
 +---------------------------+--------+----------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network    |
+| CONNECTNETWORK_ERROR      | 11007  | Failed to connect to       |
+|                           |        | the network                |
 +---------------------------+--------+----------------------------+
 | SYSTEM_ERROR              | 20000  | System error               |
-+---------------------------+--------+----------------------------+
++---------------------------+--------+----------------------------+   
 
 具体示例如下所示:
 
@@ -2268,10 +2279,11 @@ GetReward
 +===========================+========+====================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be greater than 0 |
 +---------------------------+--------+------------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network            |
+| CONNECTNETWORK_ERROR      | 11007  | Failed to connect to               |
+|                           |        | the network                        |
 +---------------------------+--------+------------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                       |
-+---------------------------+--------+------------------------------------+
++---------------------------+--------+------------------------------------+  
 
 具体示例如下所示:
 
@@ -2325,10 +2337,11 @@ GetLatestReward
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR | 11007  | Failed to connect to    |
+|                      |        | the network             |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
-+----------------------+--------+-------------------------+
++----------------------+--------+-------------------------+ 
 
 具体示例如下所示:
 
@@ -2374,10 +2387,11 @@ GetFees
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must               |
 |                           |        | be greater than 0              |
 +---------------------------+--------+--------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network        |
+| CONNECTNETWORK_ERROR      | 11007  | Failed to connect to           |
+|                           |        | the network                    |
 +---------------------------+--------+--------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                   |
-+---------------------------+--------+--------------------------------+
++---------------------------+--------+--------------------------------+    
 
 具体示例如下所示:
 
@@ -2431,10 +2445,11 @@ GetLatestFees
 +----------------------+--------+-------------------------+
 | 异常                 | 错误码 | 描述                    |
 +======================+========+=========================+
-| CONNECTNETWORK_ERROR | 11007  | Fail to connect network |
+| CONNECTNETWORK_ERROR | 11007  | Failed to connect to    |
+|                      |        | the network             |
 +----------------------+--------+-------------------------+
 | SYSTEM_ERROR         | 20000  | System error            |
-+----------------------+--------+-------------------------+
++----------------------+--------+-------------------------+  
 
 具体示例如下所示:
 
@@ -2466,7 +2481,7 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11006 | Invalid address.                                              |
 +-------+---------------------------------------------------------------+
-| 11007 | Fail to connect network.                                      |
+| 11007 | Failed to connect to the network.                             |
 +-------+---------------------------------------------------------------+
 | 11008 | AssetAmount to be issued must be between 1 and max(int64).    |
 +-------+---------------------------------------------------------------+
@@ -2512,7 +2527,7 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11035 | Invalid token owner.                                          |
 +-------+---------------------------------------------------------------+
-| 11036 | Fail to get allowance.                                        |
+| 11036 | Failed to get allowance.                                        |
 +-------+---------------------------------------------------------------+
 | 11037 | Invalid contract address.                                     |
 +-------+---------------------------------------------------------------+
@@ -2562,11 +2577,11 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11064 | OptType must be between 0 and 2.                              |
 +-------+---------------------------------------------------------------+
-| 11065 | Get allowance failed.                                         |
+| 11065 | Failed to get allowance.                                        |
 +-------+---------------------------------------------------------------+
 | 11067 | The signatures cannot be empty.                               |
 +-------+---------------------------------------------------------------+
-| 11066 | Fail to get token info.                                       |
+| 11066 | Failed to get token info.                                       |
 +-------+---------------------------------------------------------------+
 | 20000 | System error.                                                 |
 +-------+---------------------------------------------------------------+
