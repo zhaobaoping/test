@@ -868,7 +868,7 @@ GetInfo-contract
 --------
 
 交易服务主要是交易相关的接口，目前有5个接口：``EvaluateFee``、``BuildBlob``、
-``Sign``、``Submit`` 、``GetInfo-transaction``。
+``Sign``、``Submit``、``GetInfo-transaction``。
 
 EvaluateFee
 ~~~~~~~~~~~
@@ -1225,10 +1225,11 @@ BuildBlob
 BaseOperation
 ^^^^^^^^^^^^^
 
-在调用BuildBlob之前需要构建一些操作对象，目前的操作对象有16种: ``AccountActivateOperation``、``AccountSetMetadataOperation``、``AccountSetPrivilegeOperation``、``AssetIssueOperation``、
-``AssetSendOperation``、 ``BUSendOperation``、``Ctp10TokenIssueOperation``、``Ctp10TokenTransferOperation``、
-``Ctp10TokenTransferFromOperation``、``Ctp10TokenApproveOperation``、``Ctp10TokenAssignOperation``、``Ctp10TokenChangeOwnerOperation``、
-``ContractCreateOperation``、``ContractInvokeByAssetOperation``、``ContractInvokeByBUOperation``、``LogCreateOperation``。
+在调用BuildBlob之前需要构建一些操作对象，目前的操作对象有16种: ``AccountActivateOperation``、``AccountSetMetadataOperation``、``AccountSetPrivilegeOperation``、
+``AssetIssueOperation``、``AssetSendOperation``、 ``BUSendOperation``、``Ctp10TokenIssueOperation``、
+``Ctp10TokenTransferOperation``、``Ctp10TokenTransferFromOperation``、``Ctp10TokenApproveOperation``、
+``Ctp10TokenAssignOperation``、``Ctp10TokenChangeOwnerOperation``、``ContractCreateOperation``、
+``ContractInvokeByAssetOperation``、``ContractInvokeByBUOperation``、``LogCreateOperation``。
 
 AccountActivateOperation
 
@@ -1887,8 +1888,8 @@ Log
 --------
 
 区块服务主要是区块相关的接口，目前有11个接口：``GetNumber``、``CheckStatus``、``GetTransactions``、
-``GetInfo-block``、``GetLatest``、``GetValidators``、``GetLatestValidators``、
-``GetReward``、 ``GetLatestReward``、``GetFees``、``GetLatestFees``。
+``GetInfo-block``、``GetLatest``、``GetValidators``、``GetLatestValidators``、``GetReward``、``GetLatestReward``、
+``GetFees``、``GetLatestFees``。
 
 GetNumber
 ~~~~~~~~~~~
