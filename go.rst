@@ -868,7 +868,7 @@ GetInfo-contract
 --------
 
 交易服务主要是交易相关的接口，目前有5个接口：``EvaluateFee``、``BuildBlob``、
-``Sign``、``Submit`` 和 ``GetInfo-transaction``。
+``Sign``、``Submit`` 、``GetInfo-transaction``。
 
 EvaluateFee
 ~~~~~~~~~~~
@@ -1225,10 +1225,10 @@ BuildBlob
 BaseOperation
 ^^^^^^^^^^^^^
 
-在调用BuildBlob之前需要构建一些操作对象，目前的操作对象有16种: ``AccountActivateOperation``、``AccountSetMetadataOperation`` 、``AccountSetPrivilegeOperation``、``AssetIssueOperation`` 、
-``AssetSendOperation``、 ``BUSendOperation``、``Ctp10TokenIssueOperation``、``Ctp10TokenTransferOperation`` 、
-``Ctp10TokenTransferFromOperation``、``Ctp10TokenApproveOperation`` 、``Ctp10TokenAssignOperation`` 、``Ctp10TokenChangeOwnerOperation``、
-``ContractCreateOperation``、``ContractInvokeByAssetOperation`` 、``ContractInvokeByBUOperation`` 和 ``LogCreateOperation``。
+在调用BuildBlob之前需要构建一些操作对象，目前的操作对象有16种: ``AccountActivateOperation``、``AccountSetMetadataOperation``、``AccountSetPrivilegeOperation``、``AssetIssueOperation``、
+``AssetSendOperation``、 ``BUSendOperation``、``Ctp10TokenIssueOperation``、``Ctp10TokenTransferOperation``、
+``Ctp10TokenTransferFromOperation``、``Ctp10TokenApproveOperation``、``Ctp10TokenAssignOperation``、``Ctp10TokenChangeOwnerOperation``、
+``ContractCreateOperation``、``ContractInvokeByAssetOperation``、``ContractInvokeByBUOperation``、``LogCreateOperation``。
 
 AccountActivateOperation
 
@@ -1888,7 +1888,7 @@ Log
 
 区块服务主要是区块相关的接口，目前有11个接口：``GetNumber``、``CheckStatus``、``GetTransactions``、
 ``GetInfo-block``、``GetLatest``、``GetValidators``、``GetLatestValidators``、
-``GetReward``、 ``GetLatestReward``、``GetFees`` 和 ``GetLatestFees``。
+``GetReward``、 ``GetLatestReward``、``GetFees``、``GetLatestFees``。
 
 GetNumber
 ~~~~~~~~~~~
@@ -2527,7 +2527,7 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11035 | Invalid token owner.                                          |
 +-------+---------------------------------------------------------------+
-| 11036 | Failed to get allowance.                                        |
+| 11036 | Failed to get allowance.                                      |
 +-------+---------------------------------------------------------------+
 | 11037 | Invalid contract address.                                     |
 +-------+---------------------------------------------------------------+
@@ -2577,11 +2577,11 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11064 | OptType must be between 0 and 2.                              |
 +-------+---------------------------------------------------------------+
-| 11065 | Failed to get allowance.                                        |
+| 11065 | Failed to get allowance.                                      |
 +-------+---------------------------------------------------------------+
 | 11067 | The signatures cannot be empty.                               |
 +-------+---------------------------------------------------------------+
-| 11066 | Failed to get token info.                                       |
+| 11066 | Failed to get token info.                                     |
 +-------+---------------------------------------------------------------+
 | 20000 | System error.                                                 |
 +-------+---------------------------------------------------------------+
@@ -2599,5 +2599,5 @@ Go错误码信息如下表：
 +--------+----------------------------------------+
 | 14003  | The query failed.                      |
 +--------+----------------------------------------+
-| 14004  | Query no results.                      |
+| 14004  | No results.                            |
 +--------+----------------------------------------+
