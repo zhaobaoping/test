@@ -97,11 +97,11 @@ Ctp10Token服务是指提供合约资产相关的有效性校验与查询接口�
  }
 
 .. note:: |
-       -ErrorCode: 0表示无错误，大于0表示有错误。
+       - ErrorCode: 0表示无错误，大于0表示有错误。
 
-       -ErrorDesc: 空表示无错误，有内容表示有错误。
+       - ErrorDesc: 空表示无错误，有内容表示有错误。
 
-       -Result: 返回结果的结构体，其中结构体由 **类名+方法名+Result** 构成。例如：``Account.GetNonce()`` 的结构体名是 ``AccountGetNonceResult`` 。 
+       - Result: 返回结果的结构体，其中结构体由 **类名+方法名+Result** 构成。例如：``Account.GetNonce()`` 的结构体名是 ``AccountGetNonceResult`` 。 
         
 ::
 
@@ -770,7 +770,7 @@ GetInfo-Asset
 |                          |           | network          |
 +--------------------------+-----------+------------------+
 | INVALID_ASSET_CODE_ERROR | 11023     | The length of    |
-|                          |           | asset code must  |
+|                          |           | code must        |
 |                          |           | be between 1 and |
 |                          |           | 1024             |
 +--------------------------+-----------+------------------+
@@ -837,7 +837,7 @@ GetInfo-contract
 | INVALID_CONTRACTADDRESS | 11037      | Invalid contract |
 | _ERROR                  |            | address          |
 +-------------------------+------------+------------------+
-| CONTRACTADDRESS_NOT_CON | 11038      | contractaddress  |
+| CONTRACTADDRESS_NOT_CON | 11038      | contractAddress  |
 | TRACTACCOUNT_ERROR      |            | is not a         |
 |                         |            | contract account |
 +-------------------------+------------+------------------+
@@ -927,8 +927,9 @@ EvaluateFee
 | _ERROR                  |          | cannot be        |
 |                         |          | resolved         |
 +-------------------------+----------+------------------+
-| OPERATIONS_ONE_ERROR    | 11053    | One operation    |
-|                         |          |  error           |
+| OPERATIONS_ONE_ERROR    | 11053    | One of the       |
+|                         |          | operations cannot|
+|                         |          | be resolved      |
 +-------------------------+----------+------------------+
 | INVALID_SIGNATURENUMBER | 11054    | SignatureNumber  |
 | _ERROR                  |          | must be between  |
@@ -1049,11 +1050,11 @@ BuildBlob
 | INVALID_DATAVALUE_ERROR | 11012      | The length of    |
 |                         |            | value must be    |
 |                         |            | between 0 and    |
-|                         |            | 256000           |
+|                         |            | 256k             |
 +-------------------------+------------+------------------+
 | INVALID_DATAVERSION     | 11013      | The version must |
-| _ERROR                  |            | be equal or      |
-|                         |            | greater than 0   |
+| _ERROR                  |            | be greater than  |
+|                         |            | or equal to 0    |
 +-------------------------+------------+------------------+
 | INVALID_MASTERWEIGHT    | 11015      | MasterWeight     |
 | _ERROR                  |            | must be between  |
@@ -1081,7 +1082,7 @@ BuildBlob
 |                         |            | 0 and max(int64) |
 +-------------------------+------------+------------------+
 | INVALID_ASSET_CODE      | 11023      | The length of    |
-| _ERROR                  |            | key must be      |
+| _ERROR                  |            | code must be     |
 |                         |            | between 1 and 64 |
 +-------------------------+------------+------------------+
 | INVALID_ASSET_AMOUNT    | 11024      | AssetAmount must |
@@ -1095,7 +1096,9 @@ BuildBlob
 | INVALID_ISSUER_ADDRESS  | 11027      | Invalid issuer   |
 | _ERROR                  |            | address          |
 +-------------------------+------------+------------------+
-| NO_SUCH_TOKEN_ERROR     | 11030      | No such token    |
+| NO_SUCH_TOKEN_ERROR     | 11030      | The length of    |
+|                         |            | ctp must be      |
+|                         |            | between 1 and 64 |
 +-------------------------+------------+------------------+
 | INVALID_TOKEN_NAME      | 11031      | The length of    |
 | _ERROR                  |            | token name must  |
@@ -1124,7 +1127,7 @@ BuildBlob
 | _CONTRACTACCOUNT_ERRO   |            | is not a         |
 |                         |            | contract account |
 +-------------------------+------------+------------------+
-| INVALID_TOKEN_AMOUNT    | 11039      | Token amount     |
+| INVALID_TOKEN_AMOUNT    | 11039      | Amount           |
 | _ERROR                  |            | must be between  |
 |                         |            | 1 and max(int64) |
 +-------------------------+------------+------------------+
@@ -1146,12 +1149,12 @@ BuildBlob
 |                         |            | be empty         |
 +-------------------------+------------+------------------+
 | INVALID_LOG_TOPIC       | 11045      | The length of    |
-| _ERROR                  |            | key must be      |
-|                         |            | between 1 and    |
-|                         |            | 128              |
+| _ERROR                  |            | log topic must   |
+|                         |            | be between 1     |
+|                         |            | and 128          |
 +-------------------------+------------+------------------+
 | INVALID_LOG_DATA        | 11046      | The length of    |
-| _ERROR                  |            | value must be    |
+| _ERROR                  |            | log data must be |
 |                         |            | between 1 and    |
 |                         |            | 1024             |
 +-------------------------+------------+------------------+
@@ -1178,7 +1181,7 @@ BuildBlob
 | _ERROR                  |            | must be equal or |
 |                         |            | greater than 0   |
 +-------------------------+------------+------------------+
-| OPERATIONS_ONE_ERROR    | 11053      | One of           |
+| OPERATIONS_ONE_ERROR    | 11053      | One of the       |
 |                         |            | operations       |
 |                         |            | cannot be        |
 |                         |            | resolved         |
@@ -2054,7 +2057,7 @@ GetInfo-block
 +===========================+========+====================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be greater than 0 |
 +---------------------------+--------+------------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network            |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network            |
 +---------------------------+--------+------------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                       |
 +---------------------------+--------+------------------------------------+
@@ -2152,7 +2155,7 @@ GetValidators
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be      |
 |                           |        | greater than 0           |
 +---------------------------+--------+--------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network  |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network  |
 +---------------------------+--------+--------------------------+
 | SYSTEM_ERROR              | 20000  | System error             |
 +---------------------------+--------+--------------------------+
@@ -2211,7 +2214,7 @@ GetLatestValidators
 | 异常                      | 错误码 | 描述                       |
 +===========================+========+============================+
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must           |
-|                           |        | be bigger than 0           |
+|                           |        | be greater than 0          |
 +---------------------------+--------+----------------------------+
 | CONNECTNETWORK_ERROR      | 11007  | Fail to connect network    |
 +---------------------------+--------+----------------------------+
@@ -2265,7 +2268,7 @@ GetReward
 +===========================+========+====================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must be greater than 0 |
 +---------------------------+--------+------------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network            |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network            |
 +---------------------------+--------+------------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                       |
 +---------------------------+--------+------------------------------------+
@@ -2371,7 +2374,7 @@ GetFees
 | INVALID_BLOCKNUMBER_ERROR | 11060  | BlockNumber must               |
 |                           |        | be greater than 0              |
 +---------------------------+--------+--------------------------------+
-| CONNECTNETWORK_ERROR      | 11007  | Fail to Connect network        |
+| CONNECTNETWORK_ERROR      | 11007  | Fail to connect network        |
 +---------------------------+--------+--------------------------------+
 | SYSTEM_ERROR              | 20000  | System error                   |
 +---------------------------+--------+--------------------------------+
@@ -2465,9 +2468,9 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11007 | Fail to connect network.                                      |
 +-------+---------------------------------------------------------------+
-| 11008 | AssetAmount this will be issued mustbetween 1 and max(int64). |
+| 11008 | AssetAmount to be issued must be between 1 and max(int64).    |
 +-------+---------------------------------------------------------------+
-| 11009 | The account does not have this asset                          |
+| 11009 | The account does not have this asset.                         |
 +-------+---------------------------------------------------------------+
 | 11010 | The account does not have this metadata.                      |
 +-------+---------------------------------------------------------------+
@@ -2475,7 +2478,7 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11012 | The length of value must be between 0 and 256k.               |
 +-------+---------------------------------------------------------------+
-| 11013 | The version must be bigger than and equal to 0.               |
+| 11013 | The version must be greater than or equal to 0.               |
 +-------+---------------------------------------------------------------+
 | 11015 | MasterWeight must be between 0 and max(uint32).               |
 +-------+---------------------------------------------------------------+
@@ -2525,9 +2528,9 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11043 | Invalid spender.                                              |
 +-------+---------------------------------------------------------------+
-| 11045 | The length of key must be between 1 and 128.                  |
+| 11045 | The length of log topic must be between 1 and 128.            |
 +-------+---------------------------------------------------------------+
-| 11046 | The length of value must be between 1 and 1024.               |
+| 11046 | The length of log data must be between 1 and 1024.            |
 +-------+---------------------------------------------------------------+
 | 11048 | Nonce must be between 1 and max(int64).                       |
 +-------+---------------------------------------------------------------+
@@ -2537,9 +2540,9 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11051 | Operations cannot be empty.                                   |
 +-------+---------------------------------------------------------------+
-| 11052 | CeilLedgerSeq must be equal or bigger than 0.                 |
+| 11052 | CeilLedgerSeq must be greater than or equal to 0.             |
 +-------+---------------------------------------------------------------+
-| 11053 | One of operations cannot be resolved.                         |
+| 11053 | One of the operations cannot be resolved.                     |
 +-------+---------------------------------------------------------------+
 | 11054 | SignatureNumber must be between 1 and max(int32).             |
 +-------+---------------------------------------------------------------+
@@ -2549,9 +2552,9 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11057 | PrivateKeys cannot be empty.                                  |
 +-------+---------------------------------------------------------------+
-| 11058 | One of privateKeys is invalid.                                |
+| 11058 | One of the privateKeys is invalid.                            |
 +-------+---------------------------------------------------------------+
-| 11060 | BlockNumber must be bigger than 0.                            |
+| 11060 | BlockNumber must be greater than 0.                            |
 +-------+---------------------------------------------------------------+
 | 11062 | Url cannot be empty.                                          |
 +-------+---------------------------------------------------------------+
@@ -2559,7 +2562,7 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11064 | OptType must be between 0 and 2.                              |
 +-------+---------------------------------------------------------------+
-| 11065 | Fail to get allowance.                                        |
+| 11065 | Get allowance failed.                                         |
 +-------+---------------------------------------------------------------+
 | 11067 | The signatures cannot be empty.                               |
 +-------+---------------------------------------------------------------+
@@ -2573,11 +2576,11 @@ Go错误码信息如下表：
 +--------+----------------------------------------+
 | 参数   | 描述                                   |
 +========+========================================+
-| 14000  | The function "GetEncPublicKey" failed. |                       
+| 14000  | The function `GetEncPublicKey` failed. |                       
 +--------+----------------------------------------+
-| 14001  | The function "Sign" failed.            |
+| 14001  | The function `Sign` failed.            |
 +--------+----------------------------------------+
-| 14002  | The parameter "payload" is invalid.    |
+| 14002  | The parameter `payload` is invalid.    |
 +--------+----------------------------------------+
 | 14003  | The query failed.                      |
 +--------+----------------------------------------+
