@@ -798,7 +798,7 @@ GetInfo-Asset
 合约服务
 --------
 
-合约服务主要是合约相关的接口,目前有1个接口: ``GetInfo`` 。
+合约服务主要是合约相关的接口，目前有1个接口: ``GetInfo`` 。
 
 GetInfo-contract
 ~~~~~~~~~~~~~~~~
@@ -1933,7 +1933,9 @@ CheckStatus
 
 调用方法如下：
 
-CheckStatus() model.BlockCheckStatusResponse
+::
+
+ CheckStatus() model.BlockCheckStatusResponse
 
 响应数据如下表：
 
@@ -2554,7 +2556,7 @@ GetLatestFees
 +-------+---------------------------------------------------------------+
 | 11058 | One of the privateKeys is invalid.                            |
 +-------+---------------------------------------------------------------+
-| 11060 | BlockNumber must be greater than 0.                            |
+| 11060 | BlockNumber must be greater than 0.                           |
 +-------+---------------------------------------------------------------+
 | 11062 | Url cannot be empty.                                          |
 +-------+---------------------------------------------------------------+
