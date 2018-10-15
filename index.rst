@@ -12,7 +12,7 @@ Contents:
    :maxdepth: 4
    
    
-   go
-   BUMO JAVA SDK guide
+   
+   BUMO GO SDK guide
 
  
