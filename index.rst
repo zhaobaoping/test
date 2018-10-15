@@ -13,6 +13,6 @@ Contents:
    
    
    go
-   BUMO JAVA SDK 指南
+   BUMO JAVA SDK guide
 
  
