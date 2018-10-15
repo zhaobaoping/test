@@ -7,7 +7,7 @@ Overview
 This document details the common interfaces of the Bumo Go SDK, making
 it easier for developers to operate and query the BU blockchain.
 
-import of packages
+Import of Packages
 -------------------
 
 The packages on which the projects depend are in the src folder, you can get the packages as follows:
@@ -44,7 +44,7 @@ Account Services provide account validity check and query interfaces.
 
 Asset Services provide asset-related query interfaces.
 
-**Ctp10Token服务**
+**Ctp10Token Services**
 
 Ctp10Token Services provide validity check and query interfaces
 related to contract assets.
@@ -115,7 +115,7 @@ response data of the ``Account.GetInfo()`` is ``AccountGetInfoResponse`` :
 
        - ErrorDesc: error description. null means no error, otherwise there is an error
 
-       - Result: returns the result. The class name of the result structur is **Service Name+Method Name+Result** . For example, the result class name of the ``Account.GetNonce()`` interface in Account Services is AccountGetNonceResult.  
+       - Result: returns the result. The class name of the result structure is **Service Name+Method Name+Result** . For example, the result class name of the ``Account.GetNonce()`` interface in Account Services is AccountGetNonceResult.  
         
 ::
 
@@ -134,7 +134,7 @@ and block services. Interfaces are classified into public-private key
 address interfaces, validity check interfaces, query interfaces, and
 transaction-related interfaces.
 
-import of the packages
+Import of The Packages
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 import the packages before generating the SDK instance.
@@ -187,7 +187,7 @@ the validity of the account address, the specific call is as follows:
  var reqData model.AccountCheckValidRequest
  var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
  reqData.SetAddress(address)
- //Call the ``checkValid`` interface
+ //Call the validity check interface
  resData := testSdk.Account.CheckValid(reqData)
 
 Querying
@@ -291,7 +291,7 @@ interface call is as follows:
  var reqData model.TransactionSignRequest
  reqData.SetBlob(resDataBlob.Result.Blob)
  reqData.SetPrivateKeys(PrivateKey)
- //Call the sign interface
+ //Call the Sign interface
  resDataSign := testSdk.Transaction.Sign(reqData)
 
 5. Broadcasting Transactions
@@ -306,7 +306,7 @@ The specific interface call is as follows:
  var reqData model.TransactionSubmitRequest
  reqData.SetBlob(resDataBlob.Result.Blob)
  reqData.SetSignatures(resDataSign.Result.Signatures)
- //Call the submit interface
+ //Call the Submit interface
  resDataSubmit := testSdk.Transaction.Submit(reqData)
 
 Account Services
@@ -319,7 +319,7 @@ interfaces: ``CheckValid``、``Create``、``GetInfo-Account``、``GetNonce``、
 CheckValid
 ~~~~~~~~~~
 
-The ``checkValid`` interface is used to check the validity of the account address.
+The ``CheckValid`` interface is used to check the validity of the account address.
 
 The method to call this interface is as follows:
 
@@ -907,13 +907,13 @@ Transaction Services
 ---------------------
 
 Transaction Services provide transaction-related interfaces and
-currently have five interfaces:``EvaluateFee``、``BuildBlob``、
-``Sign``、``Submit``、``GetInfo-transaction``。
+currently have five interfaces:``EvaluateFee``、``BuildBlob``、``Sign``、``Submit``、
+``GetInfo-transaction``。
 
 EvaluateFee
 ~~~~~~~~~~~
 
-The evaluateFee ``interface`` implements the cost estimate for the
+The ``evaluateFee`` interface implements the cost estimate for the
 transaction.
 
 The method to call this interface is as follows:
@@ -1032,7 +1032,7 @@ BuildBlob
 ~~~~~~~~~
 
 
-The ``buildBlob`` interface is used to serialize transactions and generate
+The ``BuildBlob`` interface is used to serialize transactions and generate
 transaction blob strings for network transmission.
 
 Before you can call buildBlob, you need to build some
@@ -1097,7 +1097,7 @@ The response data is shown in the following table:
 +-----------------+--------+-----------------------------------+
 | Parameter       | Type   | Description                       |
 +=================+========+===================================+
-| transactionBlob | string | Serialized transaction hex string |
+| TransactionBlob | string | Serialized transaction hex string |
 +-----------------+--------+-----------------------------------+
 
 The error code is shown in the following table:
@@ -1308,8 +1308,8 @@ BaseOperation
 ^^^^^^^^^^^^^
 
 Before calling the BuildBlob interface, some operation objects shall be built, and now we have 16 operation objects:
- ``AccountActivateOperation``、``AccountSetMetadataOperation``、``AccountSetPrivilegeOperation``、
-``AssetIssueOperation``、``AssetSendOperation``、 ``BUSendOperation``、``Ctp10TokenIssueOperation``、
+``AccountActivateOperation``、``AccountSetMetadataOperation``、``AccountSetPrivilegeOperation``、
+``AssetIssueOperation``、``AssetSendOperation``、``BUSendOperation``、``Ctp10TokenIssueOperation``、
 ``Ctp10TokenTransferOperation``、``Ctp10TokenTransferFromOperation``、``Ctp10TokenApproveOperation``、
 ``Ctp10TokenAssignOperation``、``Ctp10TokenChangeOwnerOperation``、``ContractCreateOperation``、
 ``ContractInvokeByAssetOperation``、``ContractInvokeByBUOperation``、``LogCreateOperation``。
@@ -1699,9 +1699,9 @@ The error code is shown in the following table:
 +------------------------+------------+-----------------------------------------+
 | PRIVATEKEY_ONE_ERROR   | 11058      | One of privateKeys error                |
 +------------------------+------------+-----------------------------------------+
-| GET_ENCPUBLICKEY_ERROR | 14000      | The function ‘GetEncPublicKey’ failed |
+| GET_ENCPUBLICKEY_ERROR | 14000      | The function `GetEncPublicKey` failed   |
 +------------------------+------------+-----------------------------------------+
-| SIGN_ERROR             | 14001      | The function ‘Sign’ failed            |
+| SIGN_ERROR             | 14001      | The function `Sign` failed              |
 +------------------------+------------+-----------------------------------------+
 | SYSTEM_ERROR           | 20000      | System error                            |
 +------------------------+------------+-----------------------------------------+
@@ -1808,7 +1808,7 @@ The response data is shown in the following table:
 
 +---------------+---------------------------+-----------------------+
 | Parameter     | Type                      | Description           |            
-+===============+========================== +=======================+
++===============+===========================+=======================+
 | TotalCount    | int64                     | Total number of       |       
 |               |                           | transactions returned |
 +---------------+---------------------------+-----------------------+
@@ -1863,20 +1863,20 @@ Transaction
 +-----------------------+-----------------------+-----------------------+
 | Member                | Type                  | Description           |
 +=======================+=======================+=======================+
-| sourceAddress         | string                | The source account    |
+| SourceAddress         | string                | The source account    |
 |                       |                       | address initiating    |
 |                       |                       | the transaction       |
 +-----------------------+-----------------------+-----------------------+
-| feeLimit              | int64                 | Minimum fees required |
+| FeeLimit              | int64                 | Minimum fees required |
 |                       |                       | for the transaction   |
 +-----------------------+-----------------------+-----------------------+
-| gasPrice              | int64                 | Transaction fuel      |
+| GasPrice              | int64                 | Transaction fuel      |
 |                       |                       | price                 |
 +-----------------------+-----------------------+-----------------------+
-| nonce                 | int64                 | Transaction serial    |
+| Nonce                 | int64                 | Transaction serial    |
 |                       |                       | number                |
 +-----------------------+-----------------------+-----------------------+
-| operations            | []  `Operation`_      | Operation list        |
+| Operations            | []  `Operation`_      | Operation list        |
 +-----------------------+-----------------------+-----------------------+
 
 Operation
@@ -1943,9 +1943,9 @@ Contract
 +---------+---------+--------------------------------------------------------+
 | Member  | Type    | Description                                            |
 +=========+=========+========================================================+
-| type    | integer | The contract language is not assigned value by default |
+| Type    | integer | The contract language is not assigned value by default |
 +---------+---------+--------------------------------------------------------+
-| payload | string  | The contract code for the corresponding language       |
+| Payload | string  | The contract code for the corresponding language       |
 +---------+---------+--------------------------------------------------------+
 
 .. _Metadata-2:
@@ -1960,7 +1960,7 @@ Metadata
 +---------+--------+------------------+
 | Value   | string | metadata content |
 +---------+--------+------------------+
-| Version | song   | metadata version |
+| Version | int    | metadata version |
 +---------+--------+------------------+
 
 IssueAsset
@@ -1969,10 +1969,10 @@ IssueAsset
 +-------------+--------+-------------------+
 | Member      | Type   | Description       |
 +=============+========+===================+
-| code        | String | Assets encoding   |
+| Code        | String | Assets encoding   |
 |             |        | size limit [1 64] |
 +-------------+--------+-------------------+
-| assetAmount | Long   | Assets amount     |
+| AssetAmount | Long   | Assets amount     |
 +-------------+--------+-------------------+
 
 PayAsset
@@ -2058,9 +2058,8 @@ Log
 Block Services
 ---------------
 
-Block services provide block-related interfaces. There are currently 11 interfaces:``GetNumber``、``CheckStatus``、``GetTransactions``、
-``GetInfo-block``、``GetLatest``、``GetValidators``、``GetLatestValidators``、``GetReward``、``GetLatestReward``、
-``GetFees``、``GetLatestFees``。
+Block services provide block-related interfaces. There are currently 11 interfaces:``GetNumber``、``CheckStatus``、``GetTransactions``、``GetInfo-block``、``GetLatest``、
+``GetValidators``、``GetLatestValidators``、``GetReward``、``GetLatestReward``、``GetFees``、``GetLatestFees``。
 
 GetNumber
 ~~~~~~~~~~~
@@ -2107,7 +2106,7 @@ The specific example is as follows:
 CheckStatus
 ~~~~~~~~~~~~
 
-The ``checkStatus`` interface is used to check if the local node block is synchronized.
+The ``CheckStatus`` interface is used to check if the local node block is synchronized.
 
 The method to call this interface is as follows:
 
@@ -2146,7 +2145,7 @@ The specific example is as follows:
 GetTransactions
 ~~~~~~~~~~~~~~~~
 
-The ``getTransactions`` interface is used to query all transactions at the
+The ``GetTransactions`` interface is used to query all transactions at the
 specified block height.
 
 The method to call this interface is as follows:
@@ -2376,7 +2375,7 @@ ValidatorInfo
 +==================+========+========================+
 | Address          | String | Consensus node address |
 +------------------+--------+------------------------+
-| PledgeCoinAmount | int64  | Validators’ deposit   |
+| PledgeCoinAmount | int64  | Deposit of validators  |
 +------------------+--------+------------------------+
 
 
@@ -2384,7 +2383,7 @@ ValidatorInfo
 GetLatestValidators
 ~~~~~~~~~~~~~~~~~~~~
 
-The ``getLatestValidators`` interface is used to get the number of all
+The ``GetLatestValidators`` interface is used to get the number of all
 validators in the latest block.
 
 The method to call this interface is as follows:
@@ -2428,7 +2427,7 @@ The specific example is as follows:
 GetReward
 ~~~~~~~~~~
 
-The ``getReward`` interface is used to retrieve the block reward and
+The ``GetReward`` interface is used to retrieve the block reward and
 valicator node rewards in the specified block.
 
 The method to call this interface is as follows:
@@ -2499,7 +2498,7 @@ ValidatorReward
 GetLatestReward
 ~~~~~~~~~~~~~~~~~
 
-The ``getLatestReward`` interface gets the block rewards and validator
+The ``GetLatestReward`` interface gets the block rewards and validator
 rewards in the latest block.
 
 The method to call this interface is as follows:
@@ -2541,7 +2540,7 @@ The specific example is as follows:
 GetFees
 ~~~~~~~
 
-The ``getFees`` interface gets the minimum asset limit and fuel price of the
+The ``GetFees`` interface gets the minimum asset limit and fuel price of the
 account in the specified block.
 
 The method to call this interface is as follows:
@@ -2614,7 +2613,7 @@ Fees
 GetLatestFees
 ~~~~~~~~~~~~~
 
-The ``getLatestFees`` interface is used to obtain the minimum asset limit
+The ``GetLatestFees`` interface is used to obtain the minimum asset limit
 and fuel price of the account in the latest block.
 
 The method to call this interface is as follows:
@@ -2779,16 +2778,16 @@ The public error code is shown in the following table:
 
 The following table describes the GO error messages:
 
-+--------+----------------------------------------+
-| 参数   | 描述                                    |
-+========+========================================+
-| 14000  | The function `GetEncPublicKey` failed. |                       
-+--------+----------------------------------------+
-| 14001  | The function `Sign` failed.            |
-+--------+----------------------------------------+
-| 14002  | The parameter `payload` is invalid.    |
-+--------+----------------------------------------+
-| 14003  | The query failed.                      |
-+--------+----------------------------------------+
-| 14004  | No results.                            |
-+--------+----------------------------------------+
++-------------+----------------------------------------+
+| Parameter   | Description                            |
++=============+========================================+
+| 14000       | The function `GetEncPublicKey` failed. |                       
++-------------+----------------------------------------+
+| 14001       | The function `Sign` failed.            |
++-------------+----------------------------------------+
+| 14002       | The parameter `payload` is invalid.    |
++-------------+----------------------------------------+
+| 14003       | The query failed.                      |
++-------------+----------------------------------------+
+| 14004       | No results.                            |
++-------------+----------------------------------------+
