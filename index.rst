@@ -13,6 +13,6 @@ Contents:
    
    
    
-   BUMO GO SDK guide
+  JAVA_Developer_Guide_for_Token_Issuing
 
  
