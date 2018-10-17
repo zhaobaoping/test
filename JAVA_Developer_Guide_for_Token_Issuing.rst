@@ -1,5 +1,5 @@
-JAVA Developer Guide for Token Issuing
-=======================================
+JAVA Developer Guide for Token Issuing 2.0
+===========================================
 
 Scenario Description
 --------------------
