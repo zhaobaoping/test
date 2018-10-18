@@ -13,5 +13,4 @@ Contents:
    
    
    
-  JAVA_Developer_Guide_for_Token_Issuing
-  go
+ Syntax in the Smart Contract
