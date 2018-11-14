@@ -13,7 +13,5 @@ Contents:
    
    
    
-  JAVA_Developer_Guide_for_Token_Issuing
-  go
-  docs/index
- 
+ BUMO CTP标准
+ BUMO ATP标准
