@@ -4,8 +4,8 @@ BUMO CTP标准
 概述
 ----
 
-CTP1.0 (Contract Token Protocol) 指基于 BUMO 合约发行 token 的协议标准。该协议提供了转移 token 的基本功能，并允许 token 授权给第三方使用。
-BUMO 智能合约由 javascript 实现，包含初始化函数 ``init`` 和两个入口函数 ``main``、``query``。``init`` 函数主要负责合约创建时初始化，``main`` 函数主要负责数据写入，``query`` 函数主要负责数据查询。
+CTP1.0 (Contract Token Protocol) 指基于 BUMO 合约发行 token 的协议标准。本协议提供了转移 token 的接口，第三方软件可以通过接口使用 token。
+BUMO 智能合约是用 javascript 实现，包含初始化函数 ``init`` 和两个入口函数 ``main``、``query``。``init`` 函数主要负责合约创建时的初始化，``main`` 函数主要负责数据写入，``query`` 函数主要负责数据查询。
 
 目标
 --------
@@ -243,7 +243,7 @@ address: 账户地址。
 transfer
 ^^^^^^^^
 
-``transfer`` 函数用于转移 value 数量的 token 到目的地址 to，并且必须触发 log 事件。 如果资金转出账户余额没有足够的 token 来支出，该函数应该被 throw，其入口函数为 ``main``。
+``transfer`` 函数用于转移数量为 value 的 token 到目的地址 to，并且必须触发 log 事件。 如果资金转出账户没有足够的 token 来支出，该函数应该被 throw，其入口函数为 ``main``。
 
 **参数json结构** 
 
@@ -276,7 +276,7 @@ transferFrom
 ^^^^^^^^^^^^^
 
 ``transferFrom`` 函数用于从地址 from 发送数量为 value 的 token 到地址 to，必须触发 log 事件。 在 transferFrom 之前，from 必须已经调用过 approve 向 to 授权了额度。
-如果 from 账户余额没有足够的 token 来支出或者 from 授权给 to 的额度不足，该函数应该被 throw，其入口函数 ``main``。
+如果 from 账户没有足够的 token 来支出或者 from 授权给 to 的额度不足，该函数应该被 throw，其入口函数为 ``main``。
 
 **参数json结构** 
 
@@ -378,7 +378,7 @@ true或者抛异常。
 changeOwner
 ^^^^^^^^^^^^
 
-``changeOwner`` 函数用于将合约 token 拥有权（默认拥有者为合约资产的创建账户）转移给 address，只有合约 token 拥有者才能执行此权限，其入口函数为 ``main``。
+``changeOwner`` 函数用于将合约 token 的拥有权（默认拥有者为合约资产的创建账户）转移给 address，只有合约 token 拥有者才能执行此权限，其入口函数为 ``main``。
 
 **参数json结构** 
 

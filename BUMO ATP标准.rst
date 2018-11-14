@@ -14,7 +14,7 @@ ATP1.0 (Account-based Tokenization Protocol) 指基于 BuChain 的账号结构�
 Token属性参数
 -------------
 
-发行的 token 需要通过设置 token 源账户的 metadata 来记录 token 的相关属性，方便应用程序管理和查询 token 数据信息。
+通过设置 token 源账户的 metadata 可以设置已发行 token 的相关属性，方便应用程序管理和查询 token 数据信息。
 
 +--------------+----------------------------+
 | 变量         | 描述                       |
@@ -49,7 +49,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 登记token
 ^^^^^^^^^^
 
-登记 token 即设置 token 的 metadata 参数。发送 ``Setting Metadata`` 的交易，设置 token metadata 参数 key、value 和 version。如下例子:
+登记 token 即设置 token 的 metadata 参数。可通过发送 ``Setting Metadata`` 交易设置 token 的 metadata 参数 key、value 和 version。如下例子:
 
 **json格式**
 
@@ -68,7 +68,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 .. note::
 
  key 值必须是 asset_property_ 前缀和 token code 的组合 (参考发行 token 的 code 参数)。
- 设置成功后通过查询指定 metadata 可以看到 metadata 设置的数据。
+ 设置成功后通过查询指定 metadata 可以看到相关数据。
 
 发行token
 ^^^^^^^^^^
@@ -136,7 +136,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 ^^^^^^^^^
 
 增发 token 即账户继续在原 token 代码上发行一定数量的 token，通过设置和之前发行 token 相同的交易类型代码，继续发送发行 token 的交易。
-应用程序根据具体业务去控制增发 token 数量是否超过 totalSupply，增发成功后可以看到 token 数量会有所增加。
+应用程序根据具体业务去控制增发 token 数量是否超过 totalSupply，增发成功后会看到 token 数量增加。
 
 查询token
 ^^^^^^^^^^
