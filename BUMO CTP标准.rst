@@ -4,38 +4,38 @@ BUMO CTP标准
 概述
 ----
 
-CTP1.0(Contract Token Protocol)指基于BUMO合约发行token的协议标准。该协议提供了转移token的基本功能，并允许token授权给第三方使用。
-BUMO智能合约由javascript实现,包含初始化函数init和两个入口函数main、query。init函数主要负责合约创建时初始化，main函数主要负责数据写入，query函数主要负责数据查询。
+CTP1.0 (Contract Token Protocol) 指基于 BUMO 合约发行 token 的协议标准。该协议提供了转移 token 的基本功能，并允许 token 授权给第三方使用。
+BUMO 智能合约由 javascript 实现,包含初始化函数 ``init`` 和两个入口函数 ``main``、``query``。``init`` 函数主要负责合约创建时初始化，``main`` 函数主要负责数据写入，``query`` 函数主要负责数据查询。
 
 目标
 --------
 
-BUMO CTP标准中所设计的接口可以让BUMO上的任何token被其他应用程序使用，比如钱包和交易所。
+BUMO CTP标准中所设计的接口可以让 BUMO 上的任何 token 被其他应用程序使用，比如钱包和交易所。
 
 Token属性参数
 -------------
 
-Token属性可以通过合约的tokenInfo功能函数查询到，存储在智能合约的账号里。Token属性包含以下内容：
+Token 属性可以通过合约的 ``tokenInfo`` 功能函数查询到，存储在智能合约的账号里。Token 属性包含以下内容：
 
 +--------------+----------------------------+
 | 变量         | 描述                       |
 +==============+============================+
-| name         | Token 名称                 |
+| name         | token 名称                 |
 +--------------+----------------------------+
-| symbol       | Token 符号                 |
+| symbol       | token 符号                 |
 +--------------+----------------------------+
-| decimals     | Token 小数位数             |
+| decimals     | token 小数位数             |
 +--------------+----------------------------+
-|totalSupply   | Token 总量                 |
+|totalSupply   | token 总量                 |
 +--------------+----------------------------+
-|contractOwner | Token 所有者               |	
+|contractOwner | token 所有者               |	
 +--------------+----------------------------+	
 
 
 .. note:: 
 
- - name：推荐使用单词全拼，每个首字母大写。如 Demo Token。
- - symbol：推荐使用大写首字母缩写。如 DT。
+ - name：推荐使用单词全拼，每个首字母大写，如 Demo Token。
+ - symbol：推荐使用大写首字母缩写，如 DT。
  - decimals：小数位在 0~8 的范围，0 表示无小数位。
  - totalSupply：范围是 1~2^63-1。
 
@@ -48,7 +48,7 @@ BUMO CTP标准中的函数如下：
 contractInfo
 ^^^^^^^^^^^^^
 
-contractInfo函数用于返回token的基本信息，其入口函数为query。
+``contractInfo`` 函数用于返回 token 的基本信息，其入口函数为 ``query``。
 
 **参数json结构** 
 
@@ -88,7 +88,7 @@ contractInfo函数用于返回token的基本信息，其入口函数为query。
 name
 ^^^^^
 
-name函数用于返回token的名称，其入口函数是query。
+``name`` 函数用于返回 token 的名称，其入口函数是 ``query``。
 
 **参数json结构** 
 
@@ -117,7 +117,7 @@ name函数用于返回token的名称，其入口函数是query。
 symbol
 ^^^^^^^
 
-symbol函数用于返回token的符号，其入口函数是query。
+``symbol`` 函数用于返回 token 的符号，其入口函数是 ``query``。
 
 **参数json结构** 
 
@@ -146,7 +146,7 @@ symbol函数用于返回token的符号，其入口函数是query。
 decimals
 ^^^^^^^^^
 
-decimals函数用于返回token使用的小数点后几位， 比如 5,表示分配token数量为100000，其入口函数为query。
+``decimals`` 函数用于返回 token 使用的小数点后几位，比如 5 表示分配 token 数量为 100000，其入口函数为 ``query``。
 
 **参数json结构** 
 
@@ -176,7 +176,7 @@ decimals函数用于返回token使用的小数点后几位， 比如 5,表示分
 totalSupply
 ^^^^^^^^^^^^^
 
-totalSupply函数用于返回token的总供应量，其入口函数为query。
+``totalSupply`` 函数用于返回 token 的总供应量，其入口函数为 ``query``。
 
 **参数json结构** 
 
@@ -205,7 +205,7 @@ totalSupply函数用于返回token的总供应量，其入口函数为query。
 balanceOf
 ^^^^^^^^^^
 
-balanceOf函数用于返回owner账户的账户余额，其入口函数为query。
+``balanceOf`` 函数用于返回 owner 账户的账户余额，其入口函数为 ``query``。
 
 **参数json结构** 
 
@@ -241,7 +241,7 @@ address: 账户地址。
 transfer
 ^^^^^^^^
 
-transfer函数用于转移value数量的token到目的地址to，并且必须触发log事件。 如果资金转出账户余额没有足够的token来支出，该函数应该被throw，其入口函数为main。
+``transfer`` 函数用于转移 value 数量的 token 到目的地址 to，并且必须触发 log 事件。 如果资金转出账户余额没有足够的 token 来支出，该函数应该被 throw，其入口函数为 ``main``。
 
 **参数json结构** 
 
@@ -257,6 +257,7 @@ transfer函数用于转移value数量的token到目的地址to，并且必须触
 **参数说明**
 
 to: 目标账户地址。
+
 value: 转移数量（字符串类型）。
 
 **函数**
@@ -272,8 +273,8 @@ true或者抛异常。
 transferFrom
 ^^^^^^^^^^^^^
 
-transferFrom函数用于从地址from发送数量为value的token到地址to，必须触发log事件。 在transferFrom之前，from必须已经调用过approve向to授权了额度。
-如果from账户余额没有足够的token来支出或者from授权给to的额度不足，该函数应该被throw,其入口函数 main。
+``transferFrom`` 函数用于从地址 from 发送数量为 value 的 token 到地址 to，必须触发 log 事件。 在 transferFrom 之前，from 必须已经调用过 approve 向 to 授权了额度。
+如果 from 账户余额没有足够的 token 来支出或者 from 授权给 to 的额度不足，该函数应该被 throw,其入口函数 ``main``。
 
 **参数json结构** 
 
@@ -291,7 +292,9 @@ transferFrom函数用于从地址from发送数量为value的token到地址to，�
 **参数说明**
 
 from: 源账户地址。
+
 to: 目标账户地址。
+
 value: 转移数量（字符串类型）。
 
 **函数**
@@ -307,7 +310,7 @@ true或者抛异常。
 approve
 ^^^^^^^^
 
-approve函数用于授权账户spender从交易发送者账户转出数量为value的token，其入口函数为main。
+``approve`` 函数用于授权账户 spender 从交易发送者账户转出数量为 value 的 token，其入口函数为 ``main``。
 
 **参数json结构** 
 
@@ -324,6 +327,7 @@ approve函数用于授权账户spender从交易发送者账户转出数量为val
 **参数说明**
 
 spender: 账户地址。
+
 value: 被授权可转移数量（字符串类型）。
 
 **函数**
@@ -339,7 +343,7 @@ true或者抛异常。
 assign
 ^^^^^^^
 
-assign函数用于实现合约token拥有者向to分配数量为value的token，其入口函数为main。
+``assign`` 函数用于实现合约 token 拥有者向 to 分配数量为 value 的 token，其入口函数为 ``main``。
 
 **参数json结构** 
 
@@ -356,6 +360,7 @@ assign函数用于实现合约token拥有者向to分配数量为value的token，
 **参数说明**
 
 to: 收账账户地址。
+
 value: 分配数量（字符串类型）。
 
 **函数**
@@ -371,7 +376,7 @@ true或者抛异常。
 changeOwner
 ^^^^^^^^^^^^
 
-changeOwner函数用于将合约token拥有权（默认拥有者为合约资产的创建账户）转移给address，只有合约token拥有者才能执行此权限，其入口函数为main。
+``changeOwner`` 函数用于将合约 token 拥有权（默认拥有者为合约资产的创建账户）转移给 address，只有合约 token 拥有者才能执行此权限，其入口函数为 ``main``。
 
 **参数json结构** 
 
@@ -401,7 +406,7 @@ true或者抛异常。
 allowance
 ^^^^^^^^^^
 
-allowance函数用于返回spender仍然被允许从owner提取的金额，其入口函数为query。
+``allowance`` 函数用于返回 spender 仍然被允许从 owner 提取的金额，其入口函数为 ``query``。
 
 **参数json结构** 
 
@@ -418,11 +423,13 @@ allowance函数用于返回spender仍然被允许从owner提取的金额，其�
 **参数说明**
 
 owner: 拥有者的账户地址。
+
 spender: 花费者的账户地址。
 
 **函数**
 
 ::
+ 
  function allowance(owner, spender)
 
 **返回值**
@@ -438,8 +445,8 @@ spender: 花费者的账户地址。
 入口函数
 ---------
 
-入口函数init
-^^^^^^^^^^^^^
+入口函数``init``
+^^^^^^^^^^^^^^^^^
 
 **函数**
 
@@ -464,16 +471,19 @@ spender: 花费者的账户地址。
 **参数说明**
 
 name: 资产名称。
+
 symbol: 资产符号。
+
 decimals：小数位数。
+
 supply：发型总量(整数部分)。
 
 **返回值**
 
 true或者抛异常。
 
-入口函数main
-^^^^^^^^^^^^^
+入口函数``main``
+^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -500,8 +510,8 @@ true或者抛异常。
     }
  }
 
-入口函数query
-^^^^^^^^^^^^^
+入口函数``query``
+^^^^^^^^^^^^^^^^^^
 
 ::
 

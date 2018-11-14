@@ -4,17 +4,17 @@ BUMO ATP标准
 概述
 ----
 
-ATP1.0(Account based Tokenization Protocol)指基于BuChain的账号结构对资产进行发行、转移和增发token的标准协议，token在此文代表账号资产。
+ATP1.0 (Account based Tokenization Protocol) 指基于 BuChain 的账号结构对资产进行发行、转移和增发 token 的标准协议，token 在此文代表账号资产。
 
 目标
 --------
 
-标准协议可以让其他应用程序方便地调用接口在BUMO上进行token的发行、转移和增发操作。
+标准协议可以让其他应用程序方便地调用接口在 BUMO 上进行 token 的发行、转移和增发操作。
 
 Token属性参数
 -------------
 
-发行的token需要通过设置token源账户的metadata来记录token的相关属性。方便应用程序管理和查询token数据信息。
+发行的 token 需要通过设置 token 源账户的 metadata 来记录 token 的相关属性，方便应用程序管理和查询 token 数据信息。
 
 +--------------+----------------------------+
 | 变量         | 描述                       |
@@ -37,9 +37,9 @@ Token属性参数
 .. note:: 
 
  - code：推荐使用大写简拼。
- - decimals：小数位在0~8的范围，0表示无小数位。
- - totalSupply：范围是0~2^63-1。0表示不固定token的上限。
- - icon：base64位编码，图标文件大小是32k以内,推荐200*200像素。
+ - decimals：小数位在 0~8 的范围，0 表示无小数位。
+ - totalSupply：范围是 0~2^63-1。0 表示不固定 token 的上限。
+ - icon：base64 位编码，图标文件大小是 32k 以内,推荐 200*200 像素。
 
 操作
 --------
@@ -49,7 +49,7 @@ BUMO CTP标准中的操作如下：
 登记token
 ^^^^^^^^^^
 
-登记token即设置token的metadata参数。发送Setting Metadata的交易，设置token metadata参数key、value和version。如下例子:
+登记 token 即设置 token 的 metadata 参数。发送 ``Setting Metadata`` 的交易，设置 token metadata 参数 key、value 和 version。如下例子:
 
 **json格式**
 
@@ -67,14 +67,14 @@ BUMO CTP标准中的操作如下：
 
 .. note::
 
- key值必须是asset_property_前缀和token code的组合(参考发行token的code参数)。
- 设置成功后通过查询指定metadata可以看到metadata设置的数据。
+ key 值必须是 asset_property_ 前缀和 token code 的组合 (参考发行 token 的 code 参数)。
+ 设置成功后通过查询指定 metadata 可以看到 metadata 设置的数据。
 
 发行token
 ^^^^^^^^^^
 
-发行token即账户发行一笔数字token，执行成功后账户的token余额中会出现这一笔token。客户端通过发起一笔操作类型是Issuing Assets的交易,设置参数amount(发行的数量)、code(token代码)。
-例如：发行一笔数量是10000,精度为8的的DT token。
+发行 token 即账户发行一笔数字 token，执行成功后账户的 token 余额中会出现这一笔 token。客户端通过发起一笔操作类型是 ``Issuing Assets`` 的交易,设置参数 amount(发行的数量)、code(token代码)。
+例如：发行一笔数量是 10000，精度为 8 的的 DT token。
 
 **json格式**
 
@@ -91,14 +91,14 @@ BUMO CTP标准中的操作如下：
 转移token
 ^^^^^^^^^
 
-转移token即账户将一笔token转给目标账户。设置参数，发送Transferring Assets的交易。以下是相应参数。
+转移 token 即账户将一笔 token 转给目标账户。设置参数，发送 ``Transferring Assets`` 的交易。以下是相应参数。
 
 +----------------------------------+------------------------------------+
 | 参数                             | 描述                               |
 +==================================+====================================+
 | pay_asset.dest_address           | 目标账户地址                       |
 +----------------------------------+------------------------------------+
-| pay_asset.asset.key.issuer       | token发行方地址                    |
+| pay_asset.asset.key.issuer       | token 发行方地址                   |
 +----------------------------------+------------------------------------+
 | pay_asset.asset.key.code         | token 代码                         |
 +----------------------------------+------------------------------------+
@@ -108,7 +108,7 @@ BUMO CTP标准中的操作如下：
 +----------------------------------+------------------------------------+
 
 
-下面是给已激活的目标账户buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK转移数量500000000000的DT的例子：
+下面是给已激活的目标账户 buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK 转移数量为 500000000000 的 DT 的例子：
 
 **json格式**
 
@@ -128,27 +128,27 @@ BUMO CTP标准中的操作如下：
       }
     }
 
-转移成功后通过查询token可以看到目标账户拥有amount数量的DT。
+转移成功后通过查询 token 可以看到目标账户拥有 amount 数量的 DT。
 
-.. note:: 给未激活的目标账户转移token，交易的执行结果是失败的。
+.. note:: 给未激活的目标账户转移 token，交易的执行结果是失败的。
 
 增发token
 ^^^^^^^^^
 
-增发token即账户继续在原token代码上发行一定数量的token，通过设置和之前发行token相同的交易类型代码，继续发送发行token的交易。
-应用程序根据具体业务去控制增发token数量是否超过totalSupply，增发成功后可以看到token数量会有所增加。
+增发 token 即账户继续在原 token 代码上发行一定数量的 token，通过设置和之前发行 token 相同的交易类型代码，继续发送发行 token 的交易。
+应用程序根据具体业务去控制增发 token 数量是否超过 totalSupply，增发成功后可以看到 token 数量会有所增加。
 
 查询token
 ^^^^^^^^^^
 
-查询token即查询源账户的token信息。
+查询 token 即查询源账户的 token 信息。
 
 
 ::
 
  HTTP GET /getAccountAssets?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD
 
-返回指定账号的token信息:
+返回指定账号的 token 信息:
 
 +----------------------------------+---------------------------------------------------+
 | 参数                             | 描述                                              |
@@ -188,7 +188,7 @@ BUMO CTP标准中的操作如下：
     ]
  }
 
-如果该账号不存在token,则返回内容:
+如果该账号不存在 token，则返回内容:
 
 ::
 
@@ -204,7 +204,8 @@ BUMO CTP标准中的操作如下：
 
  HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
 
-返回指定账号的MetaData信息:
+返回指定账号的 MetaData 信息:
+
 +----------------------------------+---------------------------------------------------+
 | 参数                             | 描述                                              |
 +==================================+===================================================+
@@ -228,7 +229,7 @@ BUMO CTP标准中的操作如下：
     }
  }
 
-如果该账号指定的key不存在metadata,则返回内容:
+如果该账号指定的 key 不存在 metadata，则返回内容:
 
 ::
 
