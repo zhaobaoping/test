@@ -10,7 +10,7 @@ BUMO 智能合约由 javascript 实现，包含初始化函数 ``init`` 和两�
 目标
 --------
 
-BUMO CTP标准中所设计的接口可以让 BUMO 上的任何 token 被其他应用程序使用，比如钱包和交易所。
+通过CTP协议让其他应用程序方便地调用接口，在 BUMO 上使用任何token。其他应用程序包括钱包和交易所等。
 
 Token属性参数
 -------------
@@ -42,10 +42,10 @@ Token 属性可以通过合约的 ``tokenInfo`` 功能函数查询到，存储�
  - totalSupply：范围是 1~2^63-1。
 
 
-操作
+函数
 -----
 
-BUMO CTP标准中的函数如下：
+BUMO CTP标准中的函数包括 `contractInfo`_、`name`_、`symbol`_、`decimals`_、`totalSupply`_、`balanceOf`_、`transfer`_、`transferFrom`_、`approve`_、`assign`_、`changeOwner`_、`allowance`_ 。
 
 contractInfo
 ^^^^^^^^^^^^^

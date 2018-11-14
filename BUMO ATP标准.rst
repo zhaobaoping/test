@@ -4,12 +4,12 @@ BUMO ATP标准
 概述
 ----
 
-ATP1.0 (Account based Tokenization Protocol) 指基于 BuChain 的账号结构对资产进行发行、转移和增发 token 的标准协议，token 在此文代表账号资产。
+ATP1.0 (Account-based Tokenization Protocol) 指基于 BuChain 的账号结构发行、转移以及增发 token 的标准协议。在本文档中 token 表示账号资产。
 
 目标
 --------
 
-标准协议可以让其他应用程序方便地调用接口在 BUMO 上进行 token 的发行、转移和增发操作。
+通过ATP协议让其他应用程序方便地调用接口，在 BUMO 上发行、转移以及增发 token 等操作。
 
 Token属性参数
 -------------
@@ -44,7 +44,7 @@ Token属性参数
 操作
 --------
 
-BUMO CTP标准中的操作如下：
+BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`_、`增发token`_、`查询token`_、`查询指定metadata`_。
 
 登记token
 ^^^^^^^^^^
