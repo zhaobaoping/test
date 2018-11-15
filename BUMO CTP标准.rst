@@ -4,13 +4,13 @@ BUMO CTP标准
 概述
 ----
 
-CTP1.0 (Contract Token Protocol) 指基于 BUMO 合约发行 token 的协议标准。本协议提供了转移 token 的接口，第三方软件可以通过接口使用 token。
+CTP1.0（Contract Token Protocol）指基于 BUMO 合约发行 token 的协议标准。本协议提供了转移 token 的接口，第三方软件可以通过接口使用 token。
 BUMO 智能合约是用 javascript 实现的，包含初始化函数 ``init`` 和两个入口函数 ``main``、``query``。``init`` 函数主要负责合约创建时的初始化，``main`` 函数主要负责数据写入，``query`` 函数主要负责数据查询。
 
 目标
 --------
 
-通过CTP协议让其他应用程序方便地调用接口，在 BUMO 上使用任何token。其他应用程序包括钱包和交易所等。
+通过CTP协议让其他应用程序方便地调用接口，在 BUMO 上使用任何 token。其他应用程序包括钱包和交易所等。
 
 Token属性参数
 -------------
@@ -45,7 +45,7 @@ Token 属性可以通过合约的 ``tokenInfo`` 功能函数查询到，存储�
 函数
 -----
 
-BUMO CTP标准中的函数包括 `contractInfo`_、`name`_、`symbol`_、`decimals`_、`totalSupply`_、`balanceOf`_、`transfer`_、`transferFrom`_、`approve`_、`assign`_、`changeOwner`_、`allowance`_ 。
+BUMO CTP标准中的函数包括 `contractInfo`_、`name`_、`symbol`_、`decimals`_、`totalSupply`_、`balanceOf`_、`transfer`_、`transferFrom`_、`approve`_、`assign`_、`changeOwner`_、`allowance`_。
 
 contractInfo
 ^^^^^^^^^^^^^
@@ -447,8 +447,12 @@ spender: 花费者的账户地址。
 入口函数
 ---------
 
-入口函数 ``init``
-^^^^^^^^^^^^^^^^^
+BUMO 智能合约提供了`初始化函数 init`_、 `入口函数 main`_ 和 `入口函数 query`_。
+
+初始化函数 init
+^^^^^^^^^^^^^^^^^^^
+
+``init`` 函数主要负责合约创建时的初始化，下面是该函数的函数说明、参数结构、参数说明和返回值。
 
 **函数**
 
@@ -478,14 +482,16 @@ symbol: 资产符号。
 
 decimals：小数位数。
 
-supply：发行总量(整数部分)。
+supply：发行总量（整数部分）。
 
 **返回值**
 
 true或者抛异常。
 
-入口函数 ``main``
+入口函数 main
 ^^^^^^^^^^^^^^^^^
+
+``main`` 函数主要负责数据写入，其中包含了 ``transfer``、``transferFrom``、``approve``、``assign``、``changeOwner`` 等接口，下面是 ``main`` 的函数体。
 
 ::
 
@@ -512,8 +518,10 @@ true或者抛异常。
     }
  }
 
-入口函数 ``query``
+入口函数 query
 ^^^^^^^^^^^^^^^^^^
+
+``query`` 函数主要负责数据查询，其中包含了 ``name``、``symbol``、``decimals``、``totalSupply``、``contractInfo``、``balanceOf``、``allowance`` 等接口，下面是 ``query`` 的函数体。
 
 ::
 

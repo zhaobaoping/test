@@ -4,7 +4,7 @@ BUMO ATP标准
 概述
 ----
 
-ATP1.0 (Account-based Tokenization Protocol) 指基于 BuChain 的账号结构发行、转移以及增发 token 的标准协议。在本文档中 token 表示账号资产。
+ATP1.0（Account-based Tokenization Protocol）指基于 BuChain 的账号结构发行、转移以及增发 token 的标准协议。在本文档中 token 表示账号资产。
 
 目标
 --------
@@ -49,7 +49,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 登记token
 ^^^^^^^^^^
 
-登记 token 即设置 token 的 metadata 参数。可通过发送 ``Setting Metadata`` 交易设置 token 的 metadata 参数 key、value 和 version。如下例子:
+登记 token 即设置 token 的 metadata 参数。可通过发送 ``Setting Metadata`` 交易设置 token 的 metadata 参数 key、value 和 version。下面是登记 token 的示例:
 
 **json格式**
 
@@ -67,14 +67,14 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 
 .. note::
 
- key 值必须是 asset_property_ 前缀和 token code 的组合 (参考发行 token 的 code 参数)。
+ key 值必须是 asset_property_ 前缀和 token code 的组合（参考发行 token 的 code 参数）。
  设置成功后通过查询指定 metadata 可以看到相关数据。
 
 发行token
 ^^^^^^^^^^
 
-发行 token 即账户发行一笔数字 token，执行成功后账户的 token 余额中会出现这一笔 token。客户端通过发起一笔操作类型是 ``Issuing Assets`` 的交易，设置参数 amount(发行的数量)、code(token 代码)。
-例如：发行一笔数量是 10000，精度为 8 的 DT token。
+发行 token 即账户发行一笔数字 token，执行成功后账户的 token 余额中会出现这一笔 token。客户端通过发起一笔操作类型是 ``Issuing Assets`` 的交易，设置参数 amount（发行的数量）、code（token 代码）。
+下面是发行一笔数量是 10000，精度为 8 的 DT token 的示例：
 
 **json格式**
 
@@ -130,7 +130,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 
 转移成功后通过查询 token 可以看到目标账户拥有 amount 数量的 DT。
 
-.. note:: 给未激活的目标账户转移 token，交易的执行结果是失败的。
+.. note:: 给未激活的目标账户转移 token，交易执行失败。
 
 增发token
 ^^^^^^^^^
@@ -141,14 +141,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 查询token
 ^^^^^^^^^^
 
-查询 token 即查询源账户的 token 信息。
-
-
-::
-
- HTTP GET /getAccountAssets?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD
-
-查询 token 需要指定相应的 token 信息:
+查询 token 即查询源账户的 token 信息，以下是查询 token 需要指定的 token 信息:
 
 +----------------------------------+---------------------------------------------------+
 | 参数                             | 描述                                              |
@@ -162,6 +155,15 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 +----------------------------------+---------------------------------------------------+
 | type                             | 目前 type 只能是 0，可以不用填写。                |
 +----------------------------------+---------------------------------------------------+
+
+以下是查询 token 的代码示例：
+
+
+::
+
+ HTTP GET /getAccountAssets?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD
+
+
 
 
 返回内容:
@@ -201,11 +203,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 查询指定metadata
 ^^^^^^^^^^^^^^^^^
 
-::
-
- HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
-
-查询 metadata 需指定的 metadata 信息:
+查询指定 metadata 即查询 metadata 的相关信息，包括 key、value、version。查询 metadata 需指定的 metadata 信息:
 
 +----------------------------------+---------------------------------------------------+
 | 参数                             | 描述                                              |
@@ -214,6 +212,13 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 +----------------------------------+---------------------------------------------------+
 | key                              | 指定 metadata 中的 key 值。                       |
 +----------------------------------+---------------------------------------------------+
+
+以下是查询指定 metadata 的代码示例：
+
+::
+
+ HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
+
 
 返回内容：
 
@@ -237,4 +242,4 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
  {
    "error_code" : 0,
    "result" : null
-}
+ }
