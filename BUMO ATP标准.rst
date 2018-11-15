@@ -166,7 +166,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
 
 
 
-返回内容:
+如果该账号存在 token，则返回内容:
 
 ::
 
@@ -220,7 +220,7 @@ BUMO ATP标准中的操作包括 `登记token`_、`发行token`_、`转移token`
  HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
 
 
-返回内容：
+如果该账号指定的 key 存在 metadata，则返回内容:
 
 ::
 

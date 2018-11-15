@@ -447,7 +447,7 @@ spender: 花费者的账户地址。
 入口函数
 ---------
 
-BUMO 智能合约提供了`初始化函数 init`_、 `入口函数 main`_ 和 `入口函数 query`_。
+BUMO 智能合约提供了 `初始化函数 init`_、 `入口函数 main`_ 和 `入口函数 query`_。
 
 初始化函数 init
 ^^^^^^^^^^^^^^^^^^^
@@ -491,7 +491,8 @@ true或者抛异常。
 入口函数 main
 ^^^^^^^^^^^^^^^^^
 
-``main`` 函数主要负责数据写入，其中包含了 ``transfer``、``transferFrom``、``approve``、``assign``、``changeOwner`` 等接口，下面是 ``main`` 的函数体。
+``main`` 函数主要负责数据写入，其中包含了 ``transfer``、``transferFrom``、``approve``、``assign``、
+``changeOwner`` 等接口，下面是 ``main`` 的函数体。
 
 ::
 
@@ -521,7 +522,8 @@ true或者抛异常。
 入口函数 query
 ^^^^^^^^^^^^^^^^^^
 
-``query`` 函数主要负责数据查询，其中包含了 ``name``、``symbol``、``decimals``、``totalSupply``、``contractInfo``、``balanceOf``、``allowance`` 等接口，下面是 ``query`` 的函数体。
+``query`` 函数主要负责数据查询，其中包含了 ``name``、``symbol``、``decimals``、``totalSupply``、
+``contractInfo``、``balanceOf``、``allowance`` 等接口，下面是 ``query`` 的函数体。
 
 ::
 
