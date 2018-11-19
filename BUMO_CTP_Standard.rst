@@ -7,20 +7,20 @@ Overview
 CTP1.0(Contract Token Protocol)provides protocol standards for issuing tokens based on BUMO contracts. 
 CTP also provides interfaces for third parties to transfer and use tokens.
 BUMO smart contracts which are implemented in javascript include an initialization function ``init`` and two entry functions ``main`` and ``query``.
-The ``init`` function is mainly for initializing parameters,and ``main`` function for data writing,``query`` function for data query.
+The ``init`` function is mainly for initializing parameters, and ``main`` function for data writing, ``query`` function for data query.
 
 
 
 Purpose
 --------
 
-CTP protocol is aimed to provide interfaces for applications,like Wallets or exchanges,to use any tokens on BUMO conveniently.
+CTP protocol is aimed to provide interfaces for applications, like Wallets or exchanges, to use any tokens on BUMO conveniently.
 
 
 Attributes of Tokens
 ---------------------
 
-The attributes of tokens are stored in the smart contract account,and you can check them by using the ``tokenInfo`` function. The attributes of tokens are as follows:
+The attributes of tokens are stored in the smart contract account, and you can check them by using the ``tokenInfo`` function. The attributes of tokens are as follows:
 
 
 +--------------+---------------------------------------+
@@ -42,21 +42,21 @@ The attributes of tokens are stored in the smart contract account,and you can ch
 
 .. note:: 
 
- - name: full spelled words with initial letters capitalized is recommanded,such as **Demo Token**.
- - symbol: capitalized acronyms is recommanded,such as **DT**.
- - decimals: the number of decimal places which is in the range of 0~8,0 means no decimal places.
+ - name: full spelled words with initial letters capitalized is recommanded, such as **Demo Token**.
+ - symbol: capitalized acronyms is recommanded, such as **DT**.
+ - decimals: the number of decimal places which is in the range of 0~8, 0 means no decimal places.
  - totalSupply: the value is in the range of 1~2^63-1.
 
 
 Functions
 -----------
 
-The functions provided in BUMO CTP standards include `contractInfo`_,`name`_,`symbol`_,`decimals`_,`totalSupply`_,`balanceOf`_,`transfer`_,`transferFrom`_,`approve`_,`assign`_,`changeOwner`_ and `allowance`_.
+The functions provided in BUMO CTP standards include `contractInfo`_, `name`_, `symbol`_, `decimals`_, `totalSupply`_, `balanceOf`_, `transfer`_, `transferFrom`_, `approve`_, `assign`_, `changeOwner`_ and `allowance`_.
 
 contractInfo
 ^^^^^^^^^^^^^
 
-``contractInfo`` function is used to check basic information of tokens,and its entry function is ``query``.
+``contractInfo`` function is used to check basic information of tokens, and its entry function is ``query``.
 
 **parameter form in json** 
 
@@ -96,7 +96,7 @@ contractInfo
 name
 ^^^^^
 
-``name`` function is used to check the token name,and its entry function is ``query``.
+``name`` function is used to check the token name, and its entry function is ``query``.
 
 **parameter form in json** 
 
@@ -125,7 +125,7 @@ name
 symbol
 ^^^^^^^
 
-``symbol`` function is used to check the token symbol,and its entry function is ``query``.
+``symbol`` function is used to check the token symbol, and its entry function is ``query``.
 
 **parameter form in json** 
 
@@ -154,7 +154,7 @@ symbol
 decimals
 ^^^^^^^^^
 
-``decimals`` function is used to check the decimal places of tokens,for example,5 means the amount of tokens is 100000,and its entry function is ``query``.
+``decimals`` function is used to check the decimal places of tokens, for example, 5 means the amount of tokens is 100000, and its entry function is ``query``.
 
 **parameter form in json** 
 
@@ -184,7 +184,7 @@ decimals
 totalSupply
 ^^^^^^^^^^^^^
 
-``totalSupply`` function is used to check the total supply of tokens,and its entry function is ``query``.
+``totalSupply`` function is used to check the total supply of tokens, and its entry function is ``query``.
 
 **parameter form in json** 
 
@@ -213,7 +213,7 @@ totalSupply
 balanceOf
 ^^^^^^^^^^
 
-``balanceOf`` function is used to check the balance of the owner account,and its entry function is ``query``.
+``balanceOf`` function is used to check the balance of the owner account, and its entry function is ``query``.
 
 **parameter form in json** 
 
@@ -249,7 +249,7 @@ address: account address.
 transfer
 ^^^^^^^^
 
-``transfer`` function is used to transfer tokens with amount of **value** to the destination address **to**,and the **log** event must be triggerd.
+``transfer`` function is used to transfer tokens with amount of **value** to the destination address **to**, and the **log** event must be triggerd.
 An exception will be thrown if the source account does not have enough tokens. Its entry function is ``main``.
 
 **parameter form in json** 
@@ -282,9 +282,9 @@ Returns **true** or throws an exception.
 transferFrom
 ^^^^^^^^^^^^^
 
-``transferFrom`` function is used to transfer tokens with amount of **value** from source address **from** to destination address **to**,
-and the **log** event must be triggerd. Before ``transferFrom`` function is called,**from** must have authorized **to** for transferring a certain amount of tokens by calling the ``approve`` function.
-If the tokens in **from** account is insufficient or if **from** has not authorized  **to** for transferring enough amount of tokens,then the ``transferFrom`` function will throw an exception. Its entry function is ``main``.
+``transferFrom`` function is used to transfer tokens with amount of **value** from source address **from** to destination address **to**, 
+and the **log** event must be triggerd. Before ``transferFrom`` function is called, **from** must have authorized **to** by calling the ``approve`` function for transferring a certain amount of tokens.
+If the amount of tokens in **from** account is insufficient or if **from** has not authorized  **to** for transferring enough amount of tokens, then the ``transferFrom`` function will throw an exception. Its entry function is ``main``.
 
 
 **parameter form in json** 
@@ -306,13 +306,13 @@ from: source address.
 
 to: destination address.
 
-value: the amount of tokens allowed to be transfered(string).
+value: the amount of tokens allowed to be transferred(string).
 
 **function form**
 
 ::
  
- function transferFrom(from,to,value)
+ function transferFrom(from, to, value)
 
 **returned value**
 
@@ -389,7 +389,7 @@ Returns **true** or throws an exception.
 changeOwner
 ^^^^^^^^^^^^
 
-``changeOwner`` function is used to transfer the ownership of the contract tokens,whose default owner is the creation account,
+``changeOwner`` function is used to transfer the ownership of the contract tokens, whose default owner is the creation account, 
 and only the token owner has this priviledge. Its entry function is ``main``.
 
 
@@ -461,12 +461,12 @@ spender: account address of the spender.
 Entry Functions
 ----------------
 
-BUMO smart contract provides an `initialization function init`_,an `entry function main`_ and an `entry function query`_.
+BUMO smart contract provides an `init<initialization function init>`_, an `main<entry function main>`_ and an `query<entry function query>`_.
 
 Initialization Function init
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``init`` function is mainly for initializing parameters,the following are its function form,parameter form in json,parameter description and returned value.
+The ``init`` function is mainly for initializing parameters, the following are its function form, parameter form in json, parameter description and returned value.
 
 **function form**
 
@@ -505,7 +505,7 @@ Returns **true** or throws an exception.
 Entry Function main
 ^^^^^^^^^^^^^^^^^^^^
 
-``main`` function is mainly for data writing,which includes ``transfer``,``transferFrom``,``approve``,``assign`` and 
+``main`` function is mainly for data writing, which includes ``transfer``, ``transferFrom``, ``approve``, ``assign`` and 
 ``changeOwner``. The following is the function body of  ``main``.
 ::
 
@@ -535,8 +535,8 @@ Entry Function main
 Entry Function query
 ^^^^^^^^^^^^^^^^^^^^^^
 
-``query`` function is mainly for data query,which includes ``name``,``symbol``,``decimals``,``totalSupply``,
-``contractInfo``,``balanceOf`` and ``allowance``. The following is the function body of ``query``.
+``query`` function is mainly for data query, which includes ``name``, ``symbol``, ``decimals``, ``totalSupply``, 
+``contractInfo``, ``balanceOf`` and ``allowance``. The following is the function body of ``query``.
 
 ::
 
