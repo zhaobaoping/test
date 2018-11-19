@@ -13,5 +13,5 @@ Contents:
    
    
    
- BUMO CTP标准
- BUMO ATP标准
+ BUMO_ATP_Standard
+ BUMO_CTP_Standard
