@@ -461,10 +461,10 @@ spender: account address of the spender.
 Entry Functions
 ----------------
 
-BUMO smart contract provides an `init <#Initialization Function init>`__, an `main <#Entry Function main>`_ and an `query <#Entry Function query>`_.
+BUMO smart contract provides an `init`_, an `main`_ and an `query`_.
 
-Initialization Function init
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+init
+^^^^^^
 
 The ``init`` function is mainly for initializing parameters, the following are its function form, parameter form in json, parameter description and returned value.
 
@@ -502,8 +502,8 @@ supply: total supply of tokens (integer part).
 
 Returns **true** or throws an exception.
 
-Entry Function main
-^^^^^^^^^^^^^^^^^^^^
+main
+^^^^^
 
 ``main`` function is mainly for data writing, which includes ``transfer``, ``transferFrom``, ``approve``, ``assign`` and 
 ``changeOwner``. The following is the function body of  ``main``.
@@ -532,8 +532,8 @@ Entry Function main
     }
  }
 
-Entry Function query
-^^^^^^^^^^^^^^^^^^^^^^
+query
+^^^^^^
 
 ``query`` function is mainly for data query, which includes ``name``, ``symbol``, ``decimals``, ``totalSupply``, 
 ``contractInfo``, ``balanceOf`` and ``allowance``. The following is the function body of ``query``.
