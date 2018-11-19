@@ -4,7 +4,7 @@ BUMO CTP Standards
 Overview
 ---------
 
-CTP1.0(Contract Token Protocol)provides protocol standards for issuing tokens based on BUMO contracts. 
+CTP (Contract Token Protocol) provides protocol standards for issuing tokens based on BUMO contracts. 
 CTP also provides interfaces for third parties to transfer and use tokens.
 BUMO smart contracts which are implemented in javascript include an initialization function ``init`` and two entry functions ``main`` and ``query``.
 The ``init`` function is mainly for initializing parameters, and ``main`` function for data writing, ``query`` function for data query.
@@ -70,7 +70,7 @@ contractInfo
 
 ::
  
- function contractInfo()
+ function contractInfo ()
 
 **returned value**
 
@@ -110,7 +110,7 @@ name
 
 ::
  
- function name()
+ function name ()
 
 **returned value**
 
@@ -139,7 +139,7 @@ symbol
 
 ::
  
- function symbol()
+ function symbol ()
 
 **returned value**
 
@@ -168,7 +168,7 @@ decimals
 
 ::
  
- function decimals()
+ function decimals ()
 
 **returned value**
 
@@ -198,7 +198,7 @@ totalSupply
 
 ::
 
- function totalSupply()
+ function totalSupply ()
 
 **returned value**
 
@@ -234,7 +234,7 @@ address: account address.
 
 ::
  
- function balanceOf()
+ function balanceOf ()
 
 **returned value**
 
@@ -267,13 +267,13 @@ An exception will be thrown if the source account does not have enough tokens. I
 
 to: address of the destination account.
 
-value: the amount of tokens allowed to be transferred(string).
+value: the amount of tokens allowed to be transferred (string).
 
 **function form**
 
 ::
  
- function transfer(to, value)
+ function transfer (to, value)
 
 **returned value**
 
@@ -306,13 +306,13 @@ from: source address.
 
 to: destination address.
 
-value: the amount of tokens allowed to be transferred(string).
+value: the amount of tokens allowed to be transferred (string).
 
 **function form**
 
 ::
  
- function transferFrom(from, to, value)
+ function transferFrom (from, to, value)
 
 **returned value**
 
@@ -340,13 +340,13 @@ Its entry function is ``main``.
 
 spender: account address of the spender.
 
-value: the amount of tokens an account is authorized to transfer(string).
+value: the amount of tokens an account is authorized to transfer (string).
 
 **function form**
 
 ::
  
- function approve(spender, value)
+ function approve (spender, value)
 
 **returned value**
 
@@ -380,7 +380,7 @@ value: the amount of tokens allocated.
 
 ::
  
- function assign(to, value)
+ function assign (to, value)
 
 **returned value**
 
@@ -412,7 +412,7 @@ address: account address.
 
 ::
  
- function changeOwner(address)
+ function changeOwner (address)
 
 **returned value**
 
@@ -446,7 +446,7 @@ spender: account address of the spender.
 
 ::
  
- function allowance(owner, spender)
+ function allowance (owner, spender)
 
 **returned value**
 
@@ -461,7 +461,7 @@ spender: account address of the spender.
 Entry Functions
 ----------------
 
-BUMO smart contract provides an `init<initialization function init>`_, an `main<entry function main>`_ and an `query<entry function query>`_.
+BUMO smart contract provides an `init <Initialization Function init>`_, an `main <Entry Function main>`_ and an `query <Entry Function query>`_.
 
 Initialization Function init
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -472,7 +472,7 @@ The ``init`` function is mainly for initializing parameters, the following are i
 
 ::
 
- function init(input_str){
+ function init (input_str){
  }
 
 **parameter form in json**
@@ -496,7 +496,7 @@ symbol: token symbol.
 
 decimals: decimal places.
 
-supply: total supply of tokens(integer part).
+supply: total supply of tokens (integer part).
 
 **returned value**
 

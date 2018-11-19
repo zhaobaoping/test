@@ -4,7 +4,7 @@ BUMO ATP Standard
 Overview
 ---------
 
-ATP1.0(Account-based Tokenization Protocol) provides protocol standards for issuing, tranferring and additionally issuing tokens based on BUMO account. 
+ATP (Account-based Tokenization Protocol) provides protocol standards for issuing, tranferring and additionally issuing tokens based on BUMO account. 
 
 Purpose
 --------
@@ -79,7 +79,7 @@ Issuing Tokens
 ^^^^^^^^^^^^^^
 
 Issuing tokens is to issue an amount of digital tokens, and the balance of the account will go up by the same amount of tokens.
-When issuing tokens, the user set the parameters **amount(amount of tokens to be issued)** and **code(token code)** by initiating an transaction of ``Issuing Assets`` type.
+When issuing tokens, the user set the parameters **amount (amount of tokens to be issued)** and **code (token code)** by initiating an transaction of ``Issuing Assets`` type.
 The following is an example of issuing 10000 DT tokens with decimals of 8.
 
 
