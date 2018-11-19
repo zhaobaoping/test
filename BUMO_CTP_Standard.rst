@@ -461,7 +461,7 @@ spender: account address of the spender.
 Entry Functions
 ----------------
 
-BUMO smart contract provides an `init <Initialization Function init>`_, an `main <Entry Function main>`_ and an `query <Entry Function query>`_.
+BUMO smart contract provides an `init<Initialization Function init>`_, an `main<Entry Function main>`_ and an `query<Entry Function query>`_.
 
 Initialization Function init
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
