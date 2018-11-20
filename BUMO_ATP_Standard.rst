@@ -122,7 +122,7 @@ The following table shows the parameters to be set.
 The following is an example of transferring 500000000000 DT tokens to the destination account buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK.
 
 
-**Format in json**
+**Format in json:**
 
 ::
 
