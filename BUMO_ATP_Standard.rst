@@ -4,12 +4,12 @@ BUMO ATP Standard
 Overview
 ---------
 
-ATP (Account-based Tokenization Protocol) provides protocol standards for issuing, tranferring and additionally issuing tokens based on BUMO account. 
+ATP (Account-based Tokenization Protocol) provides protocol standards for issuing, tranferring and issuing additional tokens based on BUMO account. 
 
 Purpose
 --------
 
-ATP protocol is aimed to provide interfaces for applications to issue, transfer and additionally issue tokens on BUMO.
+ATP is aimed to provide interfaces for applications to issue, transfer and issuing additional tokens on BUMO.
 
 Attributes of Tokens
 ---------------------
@@ -21,38 +21,38 @@ so the applications can manage and check token information conveniently.
 +--------------+----------------------------+
 | Variables    | Description                |
 +==============+============================+
-| name         | token name.                |
+| name         | Token name                 |
 +--------------+----------------------------+
-| code         | token code.                |
+| code         | Token code                 |
 +--------------+----------------------------+
-| description  | description of tokens.     |
+| description  | Description of tokens      |
 +--------------+----------------------------+
-| decimals     | decimal places of tokens.  |
+| decimals     | Decimal places of tokens   |
 +--------------+----------------------------+
-| totalSupply  | total amount of tokens.    |
+| totalSupply  | Total amount of tokens     |
 +--------------+----------------------------+
-| icon         | token icon (optional).     |	
+| icon         | Token icon (optional)      |	
 +--------------+----------------------------+	
 | version      | ATP version                |
 +--------------+----------------------------+
 
 .. note:: 
 
- - code: capitalized spell is recommended.
- - decimals: the number of decimal places which is in the range of 0~8, 0 means no decimal places.
+ - code: capitalization and acronyms are recommended.
+ - decimals: the number of decimal places which is in the range of 0~8, and 0 means no decimal place.
  - totalSupply: the value is in the range of 0~2^63-1. 0 means no upper limit.
- - icon: base64-bit encoding, the file size is less than 32 k, 200*200 pixels is recommended.
+ - icon: base64-bit encoding, the file size is less than 32 k, and 200*200 pixels is recommended.
 
 Operations
 -----------
 
-The operations provided in BUMO ATP standards include `registrating tokens`_, `issuing tokens`_, `transferring tokens`_, `additionally issuing tokens`_, `querying tokens`_, and `querying specified metadata`_.
+The operations provided in BUMO ATP standards include `registrating tokens`_, `issuing tokens`_, `transferring tokens`_, `issuing additional tokens`_, `querying tokens`_, and `querying specified metadata`_.
 
 
 Registrating Tokens
 ^^^^^^^^^^^^^^^^^^^^
 
-Registrating tokens is to set the metadata of the tokens. You can set **key**, **value** and  **version** of the metadata by sending a  transaction of ``Setting Metadata`` type.
+Registrating tokens is to set the metadata of the tokens. You can set **key**, **value** and  **version** of the metadata by sending the ``Setting Metadata`` transaction.
 The following is an example of registrating tokens.
 
 
@@ -72,15 +72,15 @@ The following is an example of registrating tokens.
 
 .. note::
 
- The value of **key** must be composed of the prefix **asset_property_** and token code, you can refer to the code parameters when issuing tokens. 
+ The value of **key** must be composed of the prefix **asset_property_** and token code, and you can refer to the code parameters when issuing tokens. 
  You can check the result  by querying the specified metadata after you have set the values.
 
 Issuing Tokens
 ^^^^^^^^^^^^^^
 
-Issuing tokens is to issue a certain amount of digital tokens, and the balance of the account will go up by the same amount of tokens.
-When issuing tokens, the user set the parameters **amount (amount of tokens to be issued)** and **code (token code)** by initiating an transaction of ``Issuing Assets`` type.
-The following is an example of issuing 10000 DT tokens with decimals of 8.
+Issuing tokens is to issue a certain amount of digital tokens, and these tokens can be viewed in the account balance after being issued.
+When issuing tokens, the user set the parameters **amount (amount of tokens to be issued)** and **code (token code)** by initiating the ``Issuing Assets`` transaction.
+The following is an example of issuing 10000 DT tokens with 8 decimal places.
 
 
 **Format in json:**
@@ -99,27 +99,27 @@ Transferring Tokens
 ^^^^^^^^^^^^^^^^^^^^
 
 Transferring tokens is to transfer a certain amount of tokens to a destination account.
-When transferring tokens, you can set the parameters by initiating an transaction of ``Transferring Assets`` type.
+When transferring tokens, you can set the parameters by initiating the ``Transferring Assets`` transaction.
 The following table shows the parameters to be set.
 
 
 +----------------------------------+-----------------------------------------+
 | Parameters                       | Description                             |
 +==================================+=========================================+
-| pay_asset.dest_address           | address of the destination account.     |
+| pay_asset.dest_address           | Address of the destination account      |
 +----------------------------------+-----------------------------------------+
-| pay_asset.asset.key.issuer       | address of the token issuer.            |
+| pay_asset.asset.key.issuer       | Address of the token issuer             |
 +----------------------------------+-----------------------------------------+
-| pay_asset.asset.key.code         | token code.                             |
+| pay_asset.asset.key.code         | Token code                              |
 +----------------------------------+-----------------------------------------+
-| pay_asset.asset.amount           | amount of tokens to                     |
-|                                  | be transferred * accuracy.              |
+| pay_asset.asset.amount           | Amount of tokens to                     |
+|                                  | be transferred * accuracy               |
 +----------------------------------+-----------------------------------------+
-| pay_asset.input                  | input parameters for triggering         |
-|                                  | the contract, empty string is defaulted.|                          
+| pay_asset.input                  | Input parameters for triggering         |
+|                                  | the contract, empty string is defaulted |                          
 +----------------------------------+-----------------------------------------+
 
-The following is an example of transferring 500000000000 DT tokens to the destination account buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK.
+The following is an example of transferring 500000000000 DT tokens to the destination account ``buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK``.
 
 
 **Format in json:**
@@ -140,17 +140,17 @@ The following is an example of transferring 500000000000 DT tokens to the destin
       }
     }
 
-After the transfer, the destination account has DT tokens of **amount**. 
+After the transfer, the destination account has (**amount**) DT tokens. 
 
 
 .. note:: If the destination account is not activated, the transaction of tranferring tokens will fail.
 
-Additionally Issuing Tokens 
+Issuing Additional Tokens 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Additionally issuing tokens is that the account continues to issue a certain amount of tokens on the original token code by setting the same transaction code with the previously issued tokens.  
-Applications controls the amount of additionally issued tokens and makes sure it does not exceed **totalSupply**.
-There will be an increase in the amount of tokens after additionally issuing tokens.
+Issuing additional tokens is that the account continues to issue a certain amount of tokens based on the original token code by setting the same transaction code with the previously issued tokens.  
+Applications controls the amount of additional tokens to be issued and makes sure it does not exceed **totalSupply**.
+There will be an increase in the amount of tokens after issuing additional tokens.
 
 
 Querying Tokens
@@ -161,14 +161,14 @@ Querying tokens is to check the token information of the source account, the fol
 +----------------------------------+----------------------------------------------------------------+
 | Parameters                       | Description                                                    |
 +==================================+================================================================+
-| address                          | account address, required                                      |
+| address                          | Account address, required                                      |
 +----------------------------------+----------------------------------------------------------------+
 | code &                           | **issuer** is the account address which issues the tokens and  |
 | issuer                           | **code** is the token code. The specified token can be         |
 |                                  | displayed correctly only when the code&issuer are both correct;|
-|                                  | otherwise all the tokens will be displayed by default.         |
+|                                  | otherwise all the tokens will be displayed by default          |
 +----------------------------------+----------------------------------------------------------------+
-| type                             | currently **type** can only be 0, you can leave it blank.      |
+| type                             | Currently **type** can only be 0, you can leave it blank       |
 +----------------------------------+----------------------------------------------------------------+
 
 The following is the code of querying tokens:
@@ -224,9 +224,9 @@ Querying specified metadata is to check the information about **metadata**, incl
 +----------------------------------+---------------------------------------------------+
 | Parameters                       | Description                                       |
 +==================================+===================================================+
-| address                          | account address, required.                        |
+| address                          | Account address, required                         |
 +----------------------------------+---------------------------------------------------+
-| key                              | key value of the specified metadata.              |
+| key                              | Key value of the specified metadata               |
 +----------------------------------+---------------------------------------------------+ 
 
 The following is the code of querying specified metadata:
