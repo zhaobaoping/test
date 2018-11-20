@@ -9,7 +9,7 @@ ATP (Account-based Tokenization Protocol) provides protocol standards for issuin
 Purpose
 --------
 
-ATP is aimed to provide interfaces for applications to issue, transfer and issuing additional tokens on BUMO.
+ATP is aimed to provide interfaces for applications to issue, transfer and issue additional tokens on BUMO.
 
 Attributes of Tokens
 ---------------------
@@ -79,7 +79,7 @@ Issuing Tokens
 ^^^^^^^^^^^^^^
 
 Issuing tokens is to issue a certain amount of digital tokens, and these tokens can be viewed in the account balance after being issued.
-When issuing tokens, the user set the parameters **amount (amount of tokens to be issued)** and **code (token code)** by initiating the ``Issuing Assets`` transaction.
+When issuing tokens, you can set the parameters **amount (amount of tokens to be issued)** and **code (token code)** by initiating the ``Issuing Assets`` transaction.
 The following is an example of issuing 10000 DT tokens with 8 decimal places.
 
 
@@ -150,7 +150,7 @@ Issuing Additional Tokens
 
 Issuing additional tokens is that the account continues to issue a certain amount of tokens based on the original token code by setting the same transaction code with the previously issued tokens.  
 Applications controls the amount of additional tokens to be issued and makes sure it does not exceed **totalSupply**.
-There will be an increase in the amount of tokens after issuing additional tokens.
+These tokens can be viewed in the account balance after being issued.
 
 
 Querying Tokens

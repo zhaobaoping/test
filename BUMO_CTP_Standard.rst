@@ -249,7 +249,7 @@ address: account address.
 transfer
 ^^^^^^^^
 
-``transfer`` function is used to transfer (**value**) tokens to the destination address **to**, and the **log** event must be triggerd.
+``transfer`` function is used to transfer (**value**) tokens to the destination address **to**, and the **log** event must be triggered.
 An exception will be thrown if the source account does not have enough tokens. Its entry function is ``main``.
 
 **Parameter form in json:** 
@@ -265,7 +265,7 @@ An exception will be thrown if the source account does not have enough tokens. I
 
 **Parameter description:**
 
-to: address of the destination account.
+to: the address of the destination account.
 
 value: the amount of tokens allowed to be transferred (string).
 
@@ -283,7 +283,7 @@ transferFrom
 ^^^^^^^^^^^^^
 
 ``transferFrom`` function is used to transfer (**value**) tokens from the source address **from** to the destination address **to**, 
-and the **log** event must be triggerd. Before ``transferFrom`` function is called, **from** must have authorized **to** by calling the ``approve`` function for transferring a certain amount of tokens.
+and the **log** event must be triggered. Before ``transferFrom`` function is called, **from** must have authorized **to** by calling the ``approve`` function for transferring a certain amount of tokens.
 If the amount of tokens in **from** account is insufficient or if **from** has not authorized  **to** for transferring enough amount of tokens, then the ``transferFrom`` function will throw an exception. Its entry function is ``main``.
 
 
