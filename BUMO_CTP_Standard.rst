@@ -58,7 +58,7 @@ contractInfo
 
 ``contractInfo`` function is used to check basic information of tokens, and its entry function is ``query``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -66,13 +66,13 @@ contractInfo
     "method":"contractInfo"
  }
 
-**function form**
+**Function form:**
 
 ::
  
  function contractInfo ()
 
-**returned value**
+**Returned value:**
 
 ::
 
@@ -98,7 +98,7 @@ name
 
 ``name`` function is used to check the token name, and its entry function is ``query``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -106,13 +106,13 @@ name
     "method":"name"
  }
 
-**function form**
+**Function form:**
 
 ::
  
  function name ()
 
-**returned value**
+**Returned value:**
 
 ::
 
@@ -127,7 +127,7 @@ symbol
 
 ``symbol`` function is used to check the token symbol, and its entry function is ``query``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -135,13 +135,13 @@ symbol
     "method":"symbol"
  }
 
-**function form**
+**Function form:**
 
 ::
  
  function symbol ()
 
-**returned value**
+**Returned value:**
 
 ::
 
@@ -154,9 +154,9 @@ symbol
 decimals
 ^^^^^^^^^
 
-``decimals`` function is used to check the decimal places of tokens, for example, 5 means the amount of tokens is 100000, and its entry function is ``query``.
+``decimals`` function is used to check the decimal places of tokens, for example, 5 means the amount of tokens is 100000. Its entry function is ``query``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -164,13 +164,13 @@ decimals
     "method":"decimals"
  }
 
-**function form**
+**Function form:**
 
 ::
  
  function decimals ()
 
-**returned value**
+**Returned value:**
 
 ::
 
@@ -186,7 +186,7 @@ totalSupply
 
 ``totalSupply`` function is used to check the total supply of tokens, and its entry function is ``query``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -194,13 +194,13 @@ totalSupply
     "method":"totalSupply"
  }
 
-**function form**
+**Function form:**
 
 ::
 
  function totalSupply ()
 
-**returned value**
+**Returned value:**
 
 ::
 
@@ -215,7 +215,7 @@ balanceOf
 
 ``balanceOf`` function is used to check the balance of the owner account, and its entry function is ``query``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -226,17 +226,17 @@ balanceOf
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 address: account address.
 
-**function form**
+**Function form:**
 
 ::
  
  function balanceOf ()
 
-**returned value**
+**Returned value:**
 
 ::
 
@@ -252,7 +252,7 @@ transfer
 ``transfer`` function is used to transfer tokens with amount of **value** to the destination address **to**, and the **log** event must be triggerd.
 An exception will be thrown if the source account does not have enough tokens. Its entry function is ``main``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -263,19 +263,19 @@ An exception will be thrown if the source account does not have enough tokens. I
         "value":"1000000"
  }
 
-**parameter description**
+**Parameter description:**
 
 to: address of the destination account.
 
 value: the amount of tokens allowed to be transferred (string).
 
-**function form**
+**Function form:**
 
 ::
  
  function transfer (to, value)
 
-**returned value**
+**Returned value:**
 
 Returns **true** or throws an exception.
 
@@ -287,7 +287,7 @@ and the **log** event must be triggerd. Before ``transferFrom`` function is call
 If the amount of tokens in **from** account is insufficient or if **from** has not authorized  **to** for transferring enough amount of tokens, then the ``transferFrom`` function will throw an exception. Its entry function is ``main``.
 
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -300,7 +300,7 @@ If the amount of tokens in **from** account is insufficient or if **from** has n
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 from: source address.
 
@@ -308,23 +308,23 @@ to: destination address.
 
 value: the amount of tokens allowed to be transferred (string).
 
-**function form**
+**Function form:**
 
 ::
  
  function transferFrom (from, to, value)
 
-**returned value**
+**Returned value:**
 
 Returns **true** or throws an exception.
 
 approve
 ^^^^^^^^
 
-``approve`` function is used to authorize **spender** for transferring tokens with amount of **value** from the account of transaction sender.
+``approve`` function is used to authorize **spender** for transferring tokens with amount of **value** from the account of the transaction sender.
 Its entry function is ``main``.
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -336,19 +336,19 @@ Its entry function is ``main``.
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 spender: account address of the spender.
 
 value: the amount of tokens an account is authorized to transfer (string).
 
-**function form**
+**Function form:**
 
 ::
  
  function approve (spender, value)
 
-**returned value**
+**Returned value:**
 
 Returns **true** or throws an exception.
 
@@ -358,7 +358,7 @@ assign
 ``assign`` function can be used by token owners to allocate tokens with amount of **value** to **to**. Its entry function is ``main``.
 
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -370,19 +370,19 @@ assign
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 to: address of the receipient account.
 
 value: the amount of tokens allocated.
 
-**function form**
+**Function form:**
 
 ::
  
  function assign (to, value)
 
-**returned value**
+**Returned value:**
 
 Returns **true** or throws an exception.
 
@@ -393,7 +393,7 @@ changeOwner
 and only the token owner has this priviledge. Its entry function is ``main``.
 
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -404,17 +404,17 @@ and only the token owner has this priviledge. Its entry function is ``main``.
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 address: account address.
 
-**function form**
+**Function form:**
 
 ::
  
  function changeOwner (address)
 
-**returned value**
+**Returned value:**
 
 Returns **true** or throws an exception.
 
@@ -424,7 +424,7 @@ allowance
 ``allowance`` function is used to check the amount of tokens still allowed to be transferred out from the token owner.
 
 
-**parameter form in json** 
+**Parameter form in json:** 
 
 ::
  
@@ -436,19 +436,19 @@ allowance
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 owner: account address of the token owner.
 
 spender: account address of the spender.
 
-**function form**
+**Function form:**
 
 ::
  
  function allowance (owner, spender)
 
-**returned value**
+**Returned value:**
 
 ::
  
@@ -461,21 +461,21 @@ spender: account address of the spender.
 Entry Functions
 ----------------
 
-BUMO smart contract provides an `init`_, an `main`_ and an `query`_.
+BUMO smart contract provides entry functions including `init`_, `main`_ and `query`_.
 
 init
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``init`` function is mainly for initializing parameters, the following are its function form, parameter form in json, parameter description and returned value.
 
-**function form**
+**Function form:**
 
 ::
 
  function init (input_str){
  }
 
-**parameter form in json**
+**Parameter form in json:**
 
 ::
 
@@ -488,7 +488,7 @@ The ``init`` function is mainly for initializing parameters, the following are i
     }
  }
 
-**parameter description**
+**Parameter description:**
 
 name: token name.
 
@@ -498,7 +498,7 @@ decimals: decimal places.
 
 supply: total supply of tokens (integer part).
 
-**returned value**
+**Returned value:**
 
 Returns **true** or throws an exception.
 

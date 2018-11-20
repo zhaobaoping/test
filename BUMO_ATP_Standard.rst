@@ -14,7 +14,7 @@ ATP protocol is aimed to provide interfaces for applications to issue, transfer 
 Attributes of Tokens
 ---------------------
 
-You can set the attributes of the issued tokens by setting the metadata of the source account of tokens, 
+You can set the attributes of the tokens to be issued by setting the metadata of the source account of tokens, 
 so the applications can manage and check token information conveniently.
 
 
@@ -31,7 +31,7 @@ so the applications can manage and check token information conveniently.
 +--------------+----------------------------+
 | totalSupply  | total amount of tokens.    |
 +--------------+----------------------------+
-| icon         | token icon(optional).      |	
+| icon         | token icon (optional).     |	
 +--------------+----------------------------+	
 | version      | ATP version                |
 +--------------+----------------------------+
@@ -41,7 +41,7 @@ so the applications can manage and check token information conveniently.
  - code: capitalized spell is recommended.
  - decimals: the number of decimal places which is in the range of 0~8, 0 means no decimal places.
  - totalSupply: the value is in the range of 0~2^63-1. 0 means no upper limit.
- - icon: base64-bit encoding, the file size is less than 32k, 200*200 pixels is recommended.
+ - icon: base64-bit encoding, the file size is less than 32 k, 200*200 pixels is recommended.
 
 Operations
 -----------
@@ -52,11 +52,11 @@ The operations provided in BUMO ATP standards include `registrating tokens`_, `i
 Registrating Tokens
 ^^^^^^^^^^^^^^^^^^^^
 
-Registrating tokens is to set the metadata of the tokens. You can set the **key**, **value** and  **version** of metadata by sending a  transaction of ``Setting Metadata`` type.
+Registrating tokens is to set the metadata of the tokens. You can set **key**, **value** and  **version** of the metadata by sending a  transaction of ``Setting Metadata`` type.
 The following is an example of registrating tokens.
 
 
-**format in json**
+**Format in json:**
 
 ::
 
@@ -78,12 +78,12 @@ The following is an example of registrating tokens.
 Issuing Tokens
 ^^^^^^^^^^^^^^
 
-Issuing tokens is to issue an amount of digital tokens, and the balance of the account will go up by the same amount of tokens.
+Issuing tokens is to issue a certain amount of digital tokens, and the balance of the account will go up by the same amount of tokens.
 When issuing tokens, the user set the parameters **amount (amount of tokens to be issued)** and **code (token code)** by initiating an transaction of ``Issuing Assets`` type.
 The following is an example of issuing 10000 DT tokens with decimals of 8.
 
 
-**format in json**
+**Format in json:**
 
 ::
 
@@ -98,8 +98,8 @@ The following is an example of issuing 10000 DT tokens with decimals of 8.
 Transferring Tokens
 ^^^^^^^^^^^^^^^^^^^^
 
-Transferring tokens is to transfer an amount of tokens to a destination account.
-When transferring tokens, the user set the parameters by initiating an transaction of ``Transferring Assets`` type.
+Transferring tokens is to transfer a certain amount of tokens to a destination account.
+When transferring tokens, you can set the parameters by initiating an transaction of ``Transferring Assets`` type.
 The following table shows the parameters to be set.
 
 
@@ -122,7 +122,7 @@ The following table shows the parameters to be set.
 The following is an example of transferring 500000000000 DT tokens to the destination account buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK.
 
 
-**json format**
+**Format in json**
 
 ::
 
