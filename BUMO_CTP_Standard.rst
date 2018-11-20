@@ -464,7 +464,7 @@ Entry Functions
 BUMO smart contract provides an `init`_, an `main`_ and an `query`_.
 
 init
-^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``init`` function is mainly for initializing parameters, the following are its function form, parameter form in json, parameter description and returned value.
 
@@ -503,7 +503,7 @@ supply: total supply of tokens (integer part).
 Returns **true** or throws an exception.
 
 main
-^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 ``main`` function is mainly for data writing, which includes ``transfer``, ``transferFrom``, ``approve``, ``assign`` and 
 ``changeOwner``. The following is the function body of  ``main``.
@@ -531,9 +531,8 @@ main
         throw '<undidentified operation type>';
     }
  }
-
 query
-^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 ``query`` function is mainly for data query, which includes ``name``, ``symbol``, ``decimals``, ``totalSupply``, 
 ``contractInfo``, ``balanceOf`` and ``allowance``. The following is the function body of ``query``.
