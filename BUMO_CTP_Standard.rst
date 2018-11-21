@@ -42,7 +42,7 @@ The attributes of tokens are stored in the smart contract account, and you can c
 
 .. note:: 
 
- - name: full spelled words with initial letters capitalized is recommanded, such as **Demo Token**.
+ - name: full spelled words with initial letters capitalized are recommanded, such as **Demo Token**.
  - symbol: capitalization and acronyms are recommended, such as **DT**.
  - decimals: the number of decimal places which is in the range of 0~8, and 0 means no decimal place.
  - totalSupply: the value is in the range of 1~2^63-1.
@@ -56,9 +56,9 @@ The functions provided in BUMO CTP include `contractInfo`_, `name`_, `symbol`_, 
 contractInfo
 ^^^^^^^^^^^^^
 
-``contractInfo`` function is used to check basic information of tokens, and its entry function is ``query``.
+The ``contractInfo`` function is used to check basic information of tokens, and its entry function is ``query``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -66,13 +66,13 @@ contractInfo
     "method":"contractInfo"
  }
 
-**Function form:**
+**Function call:**
 
 ::
  
  function contractInfo ()
 
-**Returned value:**
+**Return value:**
 
 ::
 
@@ -96,9 +96,9 @@ contractInfo
 name
 ^^^^^
 
-``name`` function is used to check the token name, and its entry function is ``query``.
+The ``name`` function is used to check the token name, and its entry function is ``query``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -106,13 +106,13 @@ name
     "method":"name"
  }
 
-**Function form:**
+**Function call:**
 
 ::
  
  function name ()
 
-**Returned value:**
+**Return value:**
 
 ::
 
@@ -125,9 +125,9 @@ name
 symbol
 ^^^^^^^
 
-``symbol`` function is used to check the token symbol, and its entry function is ``query``.
+The ``symbol`` function is used to check the token symbol, and its entry function is ``query``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -135,13 +135,13 @@ symbol
     "method":"symbol"
  }
 
-**Function form:**
+**Function call:**
 
 ::
  
  function symbol ()
 
-**Returned value:**
+**Return value:**
 
 ::
 
@@ -154,9 +154,10 @@ symbol
 decimals
 ^^^^^^^^^
 
-``decimals`` function is used to check the decimal places of tokens, for example, 5 means the amount of tokens is 100000. Its entry function is ``query``.
+The ``decimals`` function is used to check the number of decimal places used when we transform the amount of the tokens between the user side and the machine side. 
+For example, 5 means the amount of tokens is 123456 on the machine side if you input 1.23456. Its entry function is ``query``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -164,7 +165,7 @@ decimals
     "method":"decimals"
  }
 
-**Function form:**
+**Function call:**
 
 ::
  
@@ -184,9 +185,9 @@ decimals
 totalSupply
 ^^^^^^^^^^^^^
 
-``totalSupply`` function is used to check the total supply of tokens, and its entry function is ``query``.
+The ``totalSupply`` function is used to check the total supply of tokens, and its entry function is ``query``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -194,13 +195,13 @@ totalSupply
     "method":"totalSupply"
  }
 
-**Function form:**
+**Function call:**
 
 ::
 
  function totalSupply ()
 
-**Returned value:**
+**Return value:**
 
 ::
 
@@ -213,9 +214,9 @@ totalSupply
 balanceOf
 ^^^^^^^^^^
 
-``balanceOf`` function is used to check the balance of the owner account, and its entry function is ``query``.
+The ``balanceOf`` function is used to check the balance of the owner account, and its entry function is ``query``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -230,13 +231,13 @@ balanceOf
 
 address: account address.
 
-**Function form:**
+**Function call:**
 
 ::
  
  function balanceOf ()
 
-**Returned value:**
+**Return value:**
 
 ::
 
@@ -249,10 +250,10 @@ address: account address.
 transfer
 ^^^^^^^^
 
-``transfer`` function is used to transfer (**value**) tokens to the destination address **to**, and the **log** event must be triggered.
+The ``transfer`` function is used to transfer (**value**) tokens to the destination address (**to**), and the **log** event must be triggered.
 An exception will be thrown if the source account does not have enough tokens. Its entry function is ``main``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -269,25 +270,25 @@ to: the address of the destination account.
 
 value: the amount of tokens allowed to be transferred (string).
 
-**Function form:**
+**Function call:**
 
 ::
  
  function transfer (to, value)
 
-**Returned value:**
+**Return value:**
 
 Returns **true** or throws an exception.
 
 transferFrom
 ^^^^^^^^^^^^^
 
-``transferFrom`` function is used to transfer (**value**) tokens from the source address **from** to the destination address **to**, 
-and the **log** event must be triggered. Before ``transferFrom`` function is called, **from** must have authorized **to** by calling the ``approve`` function for transferring a certain amount of tokens.
-If the amount of tokens in **from** account is insufficient or if **from** has not authorized  **to** for transferring enough amount of tokens, then the ``transferFrom`` function will throw an exception. Its entry function is ``main``.
+The ``transferFrom`` function is used to transfer (**value**) tokens from the source address (**from**) to the destination address (**to**), 
+and the **log** event must be triggered. Before the ``transferFrom`` function is called, the source address (**from**) must have authorized the destination address (**to**) by calling the ``approve`` function for transferring a certain amount of tokens.
+If the amount of tokens in the source address (**from**) is insufficient or if the source address (**from**) has not authorized the destination address (**to**) for transferring enough amount of tokens, then the ``transferFrom`` function will throw an exception. Its entry function is ``main``.
 
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -308,23 +309,23 @@ to: the destination address.
 
 value: the amount of tokens allowed to be transferred (string).
 
-**Function form:**
+**Function call:**
 
 ::
  
  function transferFrom (from, to, value)
 
-**Returned value:**
+**Return value:**
 
 Returns **true** or throws an exception.
 
 approve
 ^^^^^^^^
 
-``approve`` function is used to authorize **spender** for transferring (**value**) tokens from the account of the transaction sender.
+The ``approve`` function is used to authorize **spender** for transferring (**value**) tokens from the account of the transaction sender.
 Its entry function is ``main``.
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -342,23 +343,23 @@ spender: the account address of the spender.
 
 value: the amount of tokens an account is authorized to transfer (string).
 
-**Function form:**
+**Function call:**
 
 ::
  
  function approve (spender, value)
 
-**Returned value:**
+**Return value:**
 
 Returns **true** or throws an exception.
 
 assign
 ^^^^^^^
 
-``assign`` function can be used by token owners to allocate (**value**) tokens to **to**. Its entry function is ``main``.
+The ``assign`` function can be used by token owners to allocate (**value**) tokens to the destination address (**to**). Its entry function is ``main``.
 
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -372,28 +373,28 @@ assign
 
 **Parameter description:**
 
-to: the address of the receipient account.
+to: the address of the recipient account.
 
 value: the amount of tokens allocated.
 
-**Function form:**
+**Function call:**
 
 ::
  
  function assign (to, value)
 
-**Returned value:**
+**Return value:**
 
 Returns **true** or throws an exception.
 
 changeOwner
 ^^^^^^^^^^^^
 
-``changeOwner`` function is used to transfer the ownership of the contract tokens, whose default owner is the creation account of the tokens, 
+The ``changeOwner`` function is used to transfer the ownership of the contract tokens, whose default owner is the creation account of the tokens, 
 and only the token owner has this priviledge. Its entry function is ``main``.
 
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -408,23 +409,23 @@ and only the token owner has this priviledge. Its entry function is ``main``.
 
 address: the account address.
 
-**Function form:**
+**Function call:**
 
 ::
  
  function changeOwner (address)
 
-**Returned value:**
+**Return value:**
 
 Returns **true** or throws an exception.
 
 allowance
 ^^^^^^^^^^
 
-``allowance`` function is used to check the amount of tokens still allowed to be transferred from the token owner.
+The ``allowance`` function is used to check the amount of tokens still allowed to be transferred from the token owner.
 
 
-**Parameter form in json:** 
+**Parameters in json format:** 
 
 ::
  
@@ -442,13 +443,13 @@ owner: the account address of the token owner.
 
 spender: the account address of the spender.
 
-**Function form:**
+**Function call:**
 
 ::
  
  function allowance (owner, spender)
 
-**Returned value:**
+**Return value:**
 
 ::
  
@@ -468,14 +469,14 @@ init
 
 The ``init`` function is used for initializing parameters, the following are its function form, parameter form in json, parameter description and returned value.
 
-**Function form:**
+**Function call:**
 
 ::
 
  function init (input_str){
  }
 
-**Parameter form in json:**
+**Parameters in json format:**
 
 ::
 
@@ -498,15 +499,15 @@ decimals: decimal places.
 
 supply: total supply of tokens (integer part).
 
-**Returned value:**
+**Return value:**
 
 Returns **true** or throws an exception.
 
 main
 ^^^^^
 
-``main`` function is used for data writing, which includes ``transfer``, ``transferFrom``, ``approve``, ``assign`` and 
-``changeOwner``. The following is the function body of  ``main``.
+The ``main`` function is used for data writing, which includes the ``transfer``, ``transferFrom``, ``approve``, ``assign`` and 
+``changeOwner`` interfaces. The following is the function body of  ``main``.
 ::
 
  function main(input_str){
@@ -534,8 +535,8 @@ main
 query
 ^^^^^
 
-``query`` function is used for data query, which includes ``name``, ``symbol``, ``decimals``, ``totalSupply``, 
-``contractInfo``, ``balanceOf`` and ``allowance``. The following is the function body of ``query``.
+The ``query`` function is used for data query, which includes the ``name``, ``symbol``, ``decimals``, ``totalSupply``, 
+``contractInfo``, ``balanceOf`` and ``allowance`` interfaces. The following is the function body of ``query``.
 
 ::
 
