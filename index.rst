@@ -13,5 +13,4 @@ Contents:
    
    
    
- BUMO_ATP_Standard
- BUMO_CTP_Standard
+只能合约开发指南
