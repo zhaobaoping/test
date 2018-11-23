@@ -152,7 +152,8 @@ address：账号地址。
 
  let balance = getBalance('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY'); 
  
- /* 权限：只读 返回：字符串格式数字 '9999111100000' */
+ /* 权限：只读 
+    返回：字符串格式数字 '9999111100000' */
 
 storageStore
 ~~~~~~~~~~~~
@@ -867,7 +868,7 @@ JavaScript 异常
 -----
 
 本章节介绍了三个基于Java语言的智能合约开发实例场景，其中场景1和场景2是相关联的。实例场景都是基于以下遵循 CTP 1.0 协议的智能合约代码，
-该代码来自 `contractBasedToken <https://github.com/bumoproject/bumo/blob/master/src/ledger/contractBasedToken.js>`_ 。
+该代码来自 `contractBasedToken.js <https://github.com/bumoproject/bumo/blob/master/src/ledger/contractBasedToken.js>`_ 。
 
 .. code:: javascript
  
@@ -1188,7 +1189,7 @@ JavaScript 异常
 
 
 
-本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、`创建SDK实例`_、`创建资方账户`_、`激活资方账户`_、`获取资方账户的序列号`_、`组装创建合约账户并发行CGO代币操作`_、
+本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、:ref:`创建SDK实例-1`、`创建资方账户`_、`激活资方账户`_、`获取资方账户的序列号`_、`组装创建合约账户并发行CGO代币操作`_、
 `序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_。
 
 
@@ -1214,6 +1215,9 @@ JavaScript 异常
 打开在线文本压缩页面: https://jsmin.51240.com/ ，将验证无误的智能合约代码拷贝到页面中的编辑框中，然后点击 **压缩** 按钮，将压缩后的字符串拷贝下来，如下图：
 
 |compressedString|
+
+
+.. _创建SDK实例-1:
 
 创建SDK实例
 ~~~~~~~~~~~~
@@ -2317,7 +2321,7 @@ JavaScript 异常
 -----------
 
 在 BuChain 上通过智能合约账户 ``buQcEk2dpUv6uoXjAqisVRyP1bBSeWUHCtF2`` 查询账户 ``buQXPeTjT173kagZ7j8NWAPJAgJCpJHFdyc7`` 的 CGO 的余额。
-本节主要讲解 `创建SDK实例`_和 `查询余额`_ 。
+本节主要讲解 `创建SDK实例`_ 和 `查询余额`_ 。
 
 
 创建SDK实例
@@ -2392,9 +2396,9 @@ JavaScript 异常
 
 .. |warnings| image:: /image/try/warnings.png
 .. |nowarnings| image:: /image/try/nowarnings.png
-.. |compressedString| image:: /image/try/compressedString.png
+.. |compressedString| /image:: image/try/compressedString.png
 .. |BUBrowser| image:: /image/try/BUBrowser.png
-.. |execution_result_of_transaction| image:: /image/try/execution_result_of_transaction.png
+.. |execution_result_of_transaction| /image:: image/try/execution_result_of_transaction.png
 
 
 
