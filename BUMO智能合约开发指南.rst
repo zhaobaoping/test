@@ -1186,8 +1186,15 @@ JavaScript 异常
 
 线上demo请看: `CreateContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/CreateContractDemo.java>`_ 。
 
-本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、`创建SDK实例`_、`创建资方账户`_、`激活资方账户`_、`获取资方账户的序列号`_、   
-`组装创建合约账户并发行CGO代币操作`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_ 。
+
+
+本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、`创建SDK实例`_、`创建资方账户`_、`激活资方账户`_、`获取资方账户的序列号`_、`组装创建合约账户并发行CGO代币操作`_、
+`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_。
+
+
+
+
+
 
 验证代码是否有效
 ~~~~~~~~~~~~~~~~
@@ -1951,7 +1958,15 @@ JavaScript 异常
 
 线上demo请看: `TriggerContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/TriggerContractDemo.java>`_。
 
-本场景的具体执行过程包括  `创建SDK实例`_、`获取资方账户的序列号`_、`组装分配CGO和转移CGO`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_。
+
+本场景的具体执行过程包括 `创建SDK实例`_、`获取资方账户的序列号`_、`组装分配CGO和转移CGO`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_。
+
+
+
+
+
+
+
 
 创建SDK实例
 ~~~~~~~~~~~
@@ -2302,7 +2317,7 @@ JavaScript 异常
 -----------
 
 在 BuChain 上通过智能合约账户 ``buQcEk2dpUv6uoXjAqisVRyP1bBSeWUHCtF2`` 查询账户 ``buQXPeTjT173kagZ7j8NWAPJAgJCpJHFdyc7`` 的 CGO 的余额。
-本节主要讲解 `创建SDK实例`_和 `查询余额`_。
+本节主要讲解 `创建SDK实例`_ 和 `查询余额`_ 。
 
 
 创建SDK实例
@@ -2375,11 +2390,11 @@ JavaScript 异常
 
 
 
-.. |warnings| image::  image/warnings.png
-.. |nowarnings| image::  image/nowarnings.png
-.. |compressedString| image::  image/compressedString.png
-.. |BUBrowser| image::  image/BUBrowser.png
-.. |execution_result_of_transaction| image::  image/execution_result_of_transaction.png
+.. |warnings| image:: /image/try/warnings.png
+.. |nowarnings| image:: /image/try/nowarnings.png
+.. |compressedString| /image:: image/try/compressedString.png
+.. |BUBrowser| image:: /image/try/BUBrowser.png
+.. |execution_result_of_transaction| /image:: image/try/execution_result_of_transaction.png
 
 
 
