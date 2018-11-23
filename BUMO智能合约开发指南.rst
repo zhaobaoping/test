@@ -1185,7 +1185,7 @@ JavaScript 异常
 线上demo请看: `CreateContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/CreateContractDemo.java>`_ 。
 
 本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、`创建SDK实例`_、`创建资方账户`_、`激活资方账户`_、`获取资方账户的序列号`_、   
-`组装创建合约账户并发行CGO代币操作`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_ 。
+`组装创建合约账户并发行CGO代币操作`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_。
 
 验证代码是否有效
 ~~~~~~~~~~~~~~~~
