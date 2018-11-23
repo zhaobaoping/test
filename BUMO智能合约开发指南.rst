@@ -9,7 +9,7 @@ BUMO 智能合约开发指南
 合约是一段 ``JavaScript`` 代码。
 合约的初始化函数是 ``init``，执行的入口函数是 ``main`` 和 ``query``，其中 ``init`` 和 ``main`` 的定义是必需的。
 以上函数的入口参数 **input** 是字符串型的，是调用合约的时候需要指定的。
- 
+
 
 .. code:: javascript
  
@@ -36,7 +36,8 @@ BUMO 智能合约开发指南
 
 
 Bumo 智能合约使用 ``JaveScript`` 语言进行编写，为了方便开发者更规范、更安全地开发合约，在进行合约语法检测时候使用了 JSLint 进行限制。
-详情请参考： `ContractRules.md <https://github.com/bumoproject/bumo/blob/master/src/web/jslint/ContractRules.md>`_ 。
+详情请参考：
+ `ContractRules.md <https://github.com/bumoproject/bumo/blob/master/src/web/jslint/ContractRules.md>`_ 。
 
 语法规范
 ^^^^^^^^^
@@ -78,7 +79,7 @@ Bumo 智能合约使用 ``JaveScript`` 语言进行编写，为了方便开发�
 
 检测工具分为本地检测工具和线上检测工具。
 
-使用本地检测工具可下载 `jslint <https://github.com/bumoproject/bumo/tree/master/src/web/jslint>`_，双击目标下的index.html。
+使用本地检测工具可下载 `jslint <https://github.com/bumoproject/bumo/tree/master/src/web/jslint>`_，双击目标下的 index.html。
 
 使用线上检测工具可打开 `jslint.html <http://bumo.chinacloudapp.cn:36002/jslint.html>`_。
 
@@ -708,7 +709,9 @@ payCoin
 **参数说明：**
 
 address：发送 BU 的目标地址。
+
 amount：发送 BU 的数量。
+
 input：可选，合约参数，默认为空字符串。
 
 
@@ -850,7 +853,9 @@ JavaScript 异常
 ^^^^^^^^^^^^^^^
 
 当合约运行中出现未捕获的 JavaScript 异常时，做以下处理：
+
 - 本次合约执行失败，合约中做的所有交易都不会生效。
+
 - 触发本次合约的这笔交易为失败。错误代码为 151。
 
 执行交易失败
@@ -935,8 +940,7 @@ JavaScript 异常
  
  let key = makeAllowanceKey(owner, spender);
  let value = storageLoad(key);
- assert(value !== false, 'Get allowance ' + owner + ' to ' + spender + ' from 
- metadata failed.');
+ assert(value !== false, 'Get allowance ' + owner + ' to ' + spender + ' from metadata failed.');
 
   return value;
  }
@@ -952,11 +956,9 @@ JavaScript 异常
 
  let senderKey = makeBalanceKey(sender);
  let senderValue = storageLoad(senderKey);
- assert(senderValue !== false, 'Get balance of ' + sender + ' from metadata 
- failed.');
+ assert(senderValue !== false, 'Get balance of ' + sender + ' from metadata failed.');
 
- assert(int64Compare(senderValue, value) >= 0, 'Balance:' + senderValue + ' of 
- sender:' + sender + ' < transfer value:' + value + '.');
+ assert(int64Compare(senderValue, value) >= 0, 'Balance:' + senderValue + ' of sender:' + sender + ' < transfer value:' + value + '.');
 
  let toKey = makeBalanceKey(to);
  let toValue = storageLoad(toKey);
@@ -1184,8 +1186,8 @@ JavaScript 异常
 
 线上demo请看: `CreateContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/CreateContractDemo.java>`_ 。
 
-本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、`创建SDK实例`_、 `创建资方账户`_、 `激活资方账户`_、 `获取资方账户的序列号`_、   
-`组装创建合约账户并发行CGO代币操作`_、 `序列化交易`_、 `签名交易`_、 `发送交易`_、 `查询交易是否执行成功`_。
+本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、`创建SDK实例`_、`创建资方账户`_、`激活资方账户`_、`获取资方账户的序列号`_、   
+`组装创建合约账户并发行CGO代币操作`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_ 。
 
 验证代码是否有效
 ~~~~~~~~~~~~~~~~
@@ -2373,11 +2375,11 @@ JavaScript 异常
 
 
 
-.. |warnings| image:: /image/warnings.png
-.. |nowarnings| image:: /image/nowarnings.png
-.. |compressedString| image:: /image/compressedString.png
-.. |BUBrowser| image:: /image/BUBrowser.png
-.. |execution_result_of_transaction| image:: /image/execution_result_of_transaction.png
+.. |warnings| image:: image/warnings.png
+.. |nowarnings| image:: image/nowarnings.png
+.. |compressedString| image:: image/compressedString.png
+.. |BUBrowser| image:: image/BUBrowser.png
+.. |execution_result_of_transaction| image:: image/execution_result_of_transaction.png
 
 
 
