@@ -36,8 +36,7 @@ BUMO 智能合约开发指南
 
 
 Bumo 智能合约使用 ``JaveScript`` 语言进行编写，为了方便开发者更规范、更安全地开发合约，在进行合约语法检测时候使用了 JSLint 进行限制。
-详情请参考：
- `ContractRules.md<https://github.com/bumoproject/bumo/blob/master/src/web/jslint/ContractRules.md>`_ 。
+详情请参考： `ContractRules.md <https://github.com/bumoproject/bumo/blob/master/src/web/jslint/ContractRules.md>`_ 。
 
 语法规范
 ^^^^^^^^^
