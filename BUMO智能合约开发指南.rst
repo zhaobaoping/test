@@ -1979,14 +1979,14 @@ JavaScript 异常
 线上demo请看: `TriggerContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/TriggerContractDemo.java>`_。
 
 
-本场景的具体执行过程包括 `创建SDK实例`_、`获取资方账户的序列号`_、`组装分配CGO和转移CGO`_、`序列化交易`_、`签名交易`_、`发送交易`_、`查询交易是否执行成功`_。
+本场景的具体执行过程包括 :ref:`创建SDK实例-2`、:ref:`获取资方账户的序列号-2`、`组装分配CGO和转移CGO`_、:ref:`序列化交易-2`、:ref:`签名交易`、:ref:`发送交易`、:ref:`查询交易是否执行成功`。
 
 
 
 
 
 
-
+.. _创建SDK实例-2:
 
 创建SDK实例
 ~~~~~~~~~~~
@@ -2009,6 +2009,9 @@ JavaScript 异常
 +-------------------------+--------------------+------------------+----------------------------------+
 | 测试                    | seed1.bumotest.io  | 26002            | http://explorer.bumotest.io      |
 +-------------------------+--------------------+------------------+----------------------------------+
+
+
+.. _获取资方账户的序列号-2:
 
 获取资方账户的序列号
 ~~~~~~~~~~~~~~~~~~~
@@ -2123,7 +2126,7 @@ JavaScript 异常
 
 
 
-
+.. _序列化交易-2:
 
 序列化交易
 ~~~~~~~~~~
@@ -2201,7 +2204,7 @@ JavaScript 异常
 
 
 
-
+.. _签名交易-2:
 
 签名交易
 ~~~~~~~~
@@ -2240,7 +2243,7 @@ JavaScript 异常
 
 
 
-
+.. _发送交易-2:
 
 发送交易
 ~~~~~~~~
@@ -2271,6 +2274,9 @@ JavaScript 异常
 ::
 
  hash: 6434743a136c0d03d41bb48146c65ebefc7014154b4160f3b9d3b9c50eb47054
+
+
+.. _查询交易是否执行成功-2:
 
 查询交易是否执行成功
 ~~~~~~~~~~~~~~~~~~~~
@@ -2337,10 +2343,10 @@ JavaScript 异常
 ^^^^^^^^^^
 
 在 BuChain 上通过智能合约账户 ``buQcEk2dpUv6uoXjAqisVRyP1bBSeWUHCtF2`` 查询账户 ``buQXPeTjT173kagZ7j8NWAPJAgJCpJHFdyc7`` 的 CGO 的余额。
-本节主要讲解 :ref:`创建SDK实例-2`_ 和 `查询余额`_ 。
+本节主要讲解 :ref:`创建SDK实例-`3_ 和 `查询余额`_ 。
 
 
-.. _创建SDK实例-2:
+.. _创建SDK实例-3:
 
 创建SDK实例
 ~~~~~~~~~~~~
@@ -2414,9 +2420,9 @@ JavaScript 异常
 
 .. |warnings| image:: /image/try/warnings.png
 .. |nowarnings| image:: /image/try/nowarnings.png
-.. |compressedString| /image:: image/try/compressedString.png
+.. |compressedString| image:: /image/try/compressedString.png
 .. |BUBrowser| image:: /image/try/BUBrowser.png
-.. |execution_result_of_transaction| /image:: image/try/execution_result_of_transaction.png
+.. |execution_result_of_transaction| image:: /image/try/execution_result_of_transaction.png
 
 
 
