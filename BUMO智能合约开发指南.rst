@@ -125,8 +125,9 @@ Bumo 智能合约使用 ``JaveScript`` 语言进行编写，为了方便开发�
 ^^^^^^^^^
 
 本章节主要介绍智能合约开发过程涉及的一些函数，包括 ``getBalance``、``storageStore``、``storageLoad``、``storageDel``、``getAccountAsset``、
-``getBlockHash``、``addressCheck``、``stoI64Check``、``int64Add``、``int64Sub``、``int64Mul``、``int64Div``、``int64Mod``、``int64Compare``、
-``toBaseUnit``、``log``、``tlog``、``issueAsset``、``payAsset``、``payCoin``、``assert``。
+``getBlockHash``、``addressCheck``、``stoI64Check``、``int64Add``、``int64Sub``、
+``int64Mul``、``int64Div``、``int64Mod``、``int64Compare``、``toBaseUnit``、``log``、
+``tlog``、``issueAsset``、``payAsset``、``payCoin``、``assert``。
 
 getBalance
 ~~~~~~~~~~~
@@ -1190,7 +1191,7 @@ JavaScript 异常
 
 
 本场景的具体执行过程包括 `验证代码是否有效`_、`文本压缩`_、:ref:`创建SDK实例-1`、`创建资方账户`_、`激活资方账户`_、:ref:`获取资方账户的序列号-1`、`组装创建合约账户并发行CGO代币操作`_、
-:ref:`序列化交易-1`_、:ref:`签名交易-1`_、:ref:`发送交易-1`_、:ref:`查询交易是否执行成功-1`_。
+:ref:`序列化交易-1`、:ref:`签名交易-1`、:ref:`发送交易-1`、:ref:`查询交易是否执行成功-1`。
 
 
 
@@ -2333,14 +2334,16 @@ JavaScript 异常
 
 
 实例场景三
------------
+^^^^^^^^^^
 
 在 BuChain 上通过智能合约账户 ``buQcEk2dpUv6uoXjAqisVRyP1bBSeWUHCtF2`` 查询账户 ``buQXPeTjT173kagZ7j8NWAPJAgJCpJHFdyc7`` 的 CGO 的余额。
-本节主要讲解 `创建SDK实例`_ 和 `查询余额`_ 。
+本节主要讲解 :ref:`创建SDK实例-2`_ 和 `查询余额`_ 。
 
+
+.. _创建SDK实例-2:
 
 创建SDK实例
-^^^^^^^^^^^^
+~~~~~~~~~~~~
 
 创建实例并设置url(部署的某节点的IP和端口)。
 
@@ -2361,7 +2364,7 @@ JavaScript 异常
 +-------------------------+--------------------+------------------+----------------------------------+
 
 查询余额
-^^^^^^^^^
+~~~~~~~~
 
 查询余额的代码示例如下：
 
