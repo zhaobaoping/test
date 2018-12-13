@@ -68,11 +68,12 @@ BUMO NODEJS SDK 指南
 	result: {}
  }
 
-.. note:: - errorCode: 错误码。0表示无错误，大于0表示有错误。
+.. note:: 
+          - errorCode: 错误码。0表示无错误，大于0表示有错误。
 
-       - errorDesc: 错误描述。 
+          - errorDesc: 错误描述。 
 
-       - result:返回结果。
+          - result:返回结果。
 
  因响应数据结构固定，方便起见，后续接口说明中的响应数据均指 result 对象的属性。
 
@@ -708,25 +709,21 @@ buildBlob
 +-----------------+--------+-----------------------------------+
 
 错误码如下表：
-+--------------------------------------+------------+---------------------------------------------------+ 
-| 异常                                 | 错误码     | 描述                                              | 
-+======================================+============+===================================================+ 
-| INVALID_SOURCEADDRESS_ERROR          | 11002      | Invalid sourceAddress                             |  
-+--------------------------------------+------------+---------------------------------------------------+ 
-| INVALID_NONCE_ERROR                  | 11048      | Nonce must be between 1 and max(int64)            | 
-+--------------------------------------+------------+---------------------------------------------------+ 
-| INVALID_GASPRICE_ERROR               | 11049      | GasPrice must be between 1 and max(int64)         | 
-+--------------------------------------+------------+---------------------------------------------------+ 
-| INVALID_FEELIMIT_ERROR               | 11050      | FeeLimit must be between 1 and max(int64)         | 
-+--------------------------------------+------------+---------------------------------------------------+ 
-| OPERATIONS_EMPTY_ERROR               | 11051      | Operations cannot be empty                        | 
-+--------------------------------------+------------+---------------------------------------------------+ 
-| INVALID_CEILLEDGERSEQ_ERROR          | 11052      | CeilLedgerSeq must be equal or greater than 0     | 
-+--------------------------------------+------------+---------------------------------------------------+ 
-| INVALID_METADATA_ERROR               | 11053      | Invalid metadata                                  | 
-+--------------------------------------+------------+---------------------------------------------------+  
-| SYSTEM_ERROR                         | 20000      | System error                                      | 
-+--------------------------------------+------------+---------------------------------------------------+     
+
+======================================   ========   ====================================================
+  异常                                   错误码       描述                                                
+======================================   ========   ====================================================
+  INVALID_SOURCEADDRESS_ERROR            11002        Invalid sourceAddress                                
+  INVALID_NONCE_ERROR                    11048        Nonce must be between 1 and max(int64)              
+  INVALID_GASPRICE_ERROR                 11049        GasPrice must be between 1 and max(int64)          
+  INVALID_FEELIMIT_ERROR                 11050        FeeLimit must be between 1 and max(int64)           
+  OPERATIONS_EMPTY_ERROR                 11051        Operations cannot be empty                         
+  INVALID_CEILLEDGERSEQ_ERROR            11052        CeilLedgerSeq must be equal or greater than 0      
+  INVALID_METADATA_ERROR                 11053        Invalid metadata                                     
+  SYSTEM_ERROR                           20000        System error                                       
+======================================   ========   ====================================================   
+
+
 
 
 具体示例如下所示：
