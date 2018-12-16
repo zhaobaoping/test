@@ -13,4 +13,4 @@ Contents:
    
    
    
-  BUMO NODEJS SDK指南
+  BUMO_NODEJS_SDK_Guide
