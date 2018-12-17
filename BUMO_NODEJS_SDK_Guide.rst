@@ -4,8 +4,8 @@ BUMO NODEJS SDK Guide
 Overview
 ---------
 
-This document details the common interfaces of the BUMO NODEJS SDK, making
-it easier for developers to operate and query BuChain.
+This document details the common interfaces of BUMO SDK in ``NODEJS``, making
+it easier for developers to write to BuChain and query data from it.
 
 Terminology
 -----------
@@ -14,13 +14,11 @@ This section gives details about the terms used in this document.
 
 **Operate BuChain** 
 
-Operate BuChain refers to writing data to or modifying data in
-BuChain.
+Operate BuChain refers to writing data to or modifying data on BuChain.
 
-**Submit Transactions**
+**Broadcast Transactions**
 
-Submit Transactions refers to sending a request to write data to or
-modify data on BuChain.
+Broadcast Transactions refers to sending transactions to BuChain to trigger execution of the transactions.
 
 **Query BuChain** 
 
@@ -28,7 +26,7 @@ Query BuChain refers to querying data on BuChain.
 
 **Account Services** 
 
-Account Services provide account validity check and query interfaces.
+Account Services provide account-related validity check interfaces and query interfaces.
 
 **Asset Services** 
 
@@ -46,13 +44,12 @@ Block Services provide interfaces to query the block.
 **Account Nonce Value** 
 
 Account Nonce Value is used to identify the order in which the
-transaction is executed when the user submits the transaction.
+transactions are executed. Each account maintains a **nonce** value.
 
 Format of Request Parameters and Response Data
 -----------------------------------------------
 
-This section details the format of the request parameters and response
-data.
+This section details the format of the request parameters and the response data.
 
 Request Parameters
 ~~~~~~~~~~~~~~~~~~~
@@ -76,23 +73,23 @@ The response data of the interfaces are ``JavaScript`` object, and the following
  }
 
 .. note:: 
-          - errorCode: error code. 0 means no error, greater than 0 means there is an error.
+          - errorCode: error code. 0 means no error, and the number greater than 0 means there is an error.
 
           - errorDesc: error description. Null means no error, otherwise there is an error. 
 
-          - result: returns the result. 
+          - result: the result. 
 
 
-Because the response data structure is fixed, the response data in the subsequent description refers to the attribute of the result.
+Since the structure of the response data is fixed, the response data mentioned in the subsequent description refers to the parameters of the result.
 
 
 Usage
 --------
 
 
-This section describes the process of using the SDK. First you need to generate the SDK instance and then call the interface of the corresponding service. 
-Services include `account services`_, `asset services`_, `contract services`_, `transaction services`_, and `block services`_. 
-Interfaces are classified into public-private key address interfaces, validity check interfaces, query interfaces, and transaction-related interfaces.
+This section describes the process of using BUMO SDK. First you have to generate the SDK instance and then call the interfaces of the corresponding service. 
+The services include `account services`_, `asset services`_, `contract services`_, `transaction services`_ and `block services`_. 
+Interfaces are classified into public-private key address interfaces, validity check interfaces, query interfaces and transaction-related interfaces.
 
 
 Installing SDK
@@ -109,16 +106,16 @@ Generating SDK Instances
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-When generating SDK instances, the input parameter is an **options** object, and the **options** object includes the following parameters：
+When generating SDK instances, the input parameter is an **options** object, and the **options** object includes the following parameters:
 
 ============      ========     ============================== 
   Parameter        Type         Description                          
 ============      ========     ============================== 
-  host             String       ip address:port                   
+  host             String       Ip address:port                   
 ============      ========     ============================== 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
  
@@ -130,11 +127,11 @@ The specific example is as follows:
 
  const sdk = new BumoSDK(options);
 
-Querying
-~~~~~~~~
+Querying Information
+~~~~~~~~~~~~~~~~~~~~
 
 The query interface is used to query data on BuChain, and data
-query can be implemented by directly invoking the corresponding
+query can be implemented by calling the corresponding
 interface. For example, to query the account information, the specific
 call is as follows:
 
@@ -174,11 +171,10 @@ The process of submitting transactions consists of the following steps:
 
 
 The developer can maintain the nonce value of each account, and
-automatically increments by 1 for the nounce value after submitting a
+automatically increments it by 1 after submitting a
 transaction, so that multiple transactions can be sent in a short time;
-otherwise, the nonce value of the account must be added 1 after the
-execution of the previous transaction is completed. The specific
-interface call is as follows:
+otherwise, the nonce value of the account must be incremented by 1 after the
+execution of the previous transaction is completed. The interface call is as follows:
 
 ::
 
@@ -194,16 +190,16 @@ interface call is as follows:
   const nonce = new BigNumber(info.result.nonce).plus(1).toString(10);
  });
 
- // In this example, big-number.js is used to increase ** nonce ** by 1，returning a string
+ // In this example, big-number.js is used to increment ** nonce ** by 1, and a string will be returned.
 
 2. Building Operations
 ^^^^^^^^^^^^^^^^^^^^^^
 
 
 
-The operations refer to some of the actions that are done in the
+The operations refer to the actions operated in the
 transaction. For example, to build an operation to send BU
-(BUSendOperation), the specific interface call is as follows:
+(BUSendOperation), the interface call is as follows:
 
 ::
 
@@ -219,7 +215,7 @@ transaction. For example, to build an operation to send BU
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-The building transaction blob interface is for generating transaction blob string. The specific interface call is as follows:
+The building transaction blob interface is for generating transaction blob string. The interface call is as follows:
 
 ::
 
@@ -240,8 +236,7 @@ The building transaction blob interface is for generating transaction blob strin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The signing transaction interface is used by the transaction initiator
-to sign the transaction using the private key of the account. The specific
-interface call is as follows:
+to sign the transaction using the private key of the account. The interface call is as follows:
 
 ::
 
@@ -255,8 +250,8 @@ interface call is as follows:
 5. Broadcasting Transactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The broadcasting transaction interface is used to send transactions to BuChain and trigger the execution of transactions.
-The specific interface call is as follows:
+The broadcasting transaction interface is used to send transactions to BuChain and trigger the execution of the transactions.
+The interface call is as follows:
 
 ::
 
@@ -270,7 +265,7 @@ The specific interface call is as follows:
 Account Services
 ----------------
 
-Account Services provide account-related interfaces, which include：``create``, ``checkValid``, ``getInfo-Account``, ``getNonce``, 
+Account services provide account-related interfaces, which include:``create``, ``checkValid``, ``getInfo-Account``, ``getNonce``, 
 ``getBalance``, ``getAssets`` and ``GetMetadata``.
 
 create
@@ -284,7 +279,7 @@ The method to call this interface is as follows:
 
  sdk.account.create()
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 ============        ======== ============
   Parameter         Type     Description
@@ -296,7 +291,7 @@ The response data is shown in the following table:
   address           String   Address  
 ============        ======== ============
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -319,7 +314,7 @@ The method to call this interface is as follows:
 
  sdk.account.checkValid(address)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------+--------+-------------------------------------+
 | Parameter | Type   | Description                         |
@@ -327,7 +322,7 @@ The request parameter is shown in the following table:
 | address   | String | The account address to be checked   |
 +-----------+--------+-------------------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+--------+-------------------------------------+
 | Parameter | Type   | Description                         |
@@ -337,7 +332,7 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The exception is described in the following table:
 
 +--------------+------------+--------------+
 | Exception    | Error Code | Description  |
@@ -347,7 +342,7 @@ The error code is shown in the following table:
 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -364,7 +359,7 @@ getInfo-Account
 ~~~~~~~~~~~~~~~~
 
 
-The ``getInfo-Account`` interface is used to obtain the specified account information.
+The ``getInfo-Account`` interface is used to get the specified account information.
 
 The method to call this interface is as follows:
 
@@ -372,7 +367,7 @@ The method to call this interface is as follows:
 
  sdk.account.getInfo(address);
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------+--------+-------------------------------------+
 | Parameter | Type   | Description                         |
@@ -380,7 +375,7 @@ The request parameter is shown in the following table:
 | address   | String | The account address to be checked   |
 +-----------+--------+-------------------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+---------+-----------------------------------+
 | Parameter | Type    | Description                       |
@@ -396,7 +391,7 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +-----------------------+------------+-------------------------+
 | Exception             | Error Code | Description             |
@@ -410,7 +405,7 @@ The error code is shown in the following table:
 +-----------------------+------------+-------------------------+
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -484,7 +479,7 @@ getNonce
 ~~~~~~~~~
 
 
-The ``getNonce`` interface is used to obtain the nonce value of the
+The ``getNonce`` interface is used to get the nonce value of the
 specified account.
 
 The method to call this interface is as follows:
@@ -492,7 +487,7 @@ The method to call this interface is as follows:
 
  sdk.account.getNonce(address);
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +--------------+--------+------------------------------------+
 | Parameter    | Type   | Description                        |
@@ -500,7 +495,7 @@ The request parameter is shown in the following table:
 | address      | String | The account address to be queried  |
 +--------------+--------+------------------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+--------+-----------------------------------+
 | Parameter | Type   | Description                       |
@@ -509,7 +504,7 @@ The response data is shown in the following table:
 +-----------+--------+-----------------------------------+
 
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +-----------------------+------------+-------------------------+
 | Exception             | Error Code | Description             |
@@ -523,7 +518,7 @@ The error code is shown in the following table:
 +-----------------------+------------+-------------------------+
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -549,7 +544,7 @@ The method to call this interface is as follows:
 
  sdk.account.getBalance(address);
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +--------------+--------+------------------------------------+
 | Parameter    | Type   | Description                        |
@@ -559,7 +554,7 @@ The request parameter is shown in the following table:
 
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+-------+-------------------+
 | Parameter | Type  | Description       |
@@ -569,7 +564,7 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +-----------------------+------------+-------------------------+
 | Exception             | Error Code | Description             |
@@ -584,7 +579,7 @@ The error code is shown in the following table:
 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -607,17 +602,17 @@ The method to call this interface is as follows:
 
  sdk.account.getAssets(address);
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +--------------+--------+------------------------------------+
 | Parameter    | Type   | Description                        |
 +==============+========+====================================+
-| Address      | String | The account address to be queried  |
+| address      | String | The account address to be queried  |
 +--------------+--------+------------------------------------+
 
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+----------------+---------------+
 | Parameter | Type           | Description   |
@@ -626,7 +621,7 @@ The response data is shown in the following table:
 +-----------+----------------+---------------+
 
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 +-----------------------+------------+-------------------------+
 | Exception             | Error Code | Description             |
@@ -641,7 +636,7 @@ The error code is shown in the following table:
 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -668,9 +663,9 @@ The description of object parameters of the ``getAssets`` interface is as follow
 Asset Services
 ----------------
 
-Account services provide an asset-related interface. Currently there is one interface: ``getInfo-Asset``.
+Asset services provide an asset-related interface: ``getInfo-Asset``.
 
-The ``getInfo-Asset`` interface is used to obtain the specified asset information of the specified account.
+The ``getInfo-Asset`` interface is used to get the specified asset information of the specified account.
 
 The method to call this interface is as follows:
 
@@ -679,7 +674,7 @@ The method to call this interface is as follows:
  sdk.token.asset.getInfo(args);
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+------------------+---------------+
 | Parameter | Type             | Description   |
@@ -688,7 +683,7 @@ The response data is shown in the following table:
 +-----------+------------------+---------------+
 
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 +--------------------------+-----------+------------------+
 | Exception                | Error Code| Description      |
@@ -710,7 +705,7 @@ The error code is shown in the following table:
 +--------------------------+-----------+------------------+
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -743,7 +738,7 @@ The parameter **args** of ``getInfo-Asset`` interface is **Object**, and the fol
 | issuer    | String | Required, the account address for issuing assets |
 +-----------+--------+--------------------------------------------------+
 
-The elements of the parameter **asset** of ``getInfo-Asset`` interface are **Object**，and the object parameters are：
+The elements of the parameter **asset** of ``getInfo-Asset`` interface are **Object**, and the object parameters are:
 
 
 =============  ========= =========================================================
@@ -757,8 +752,7 @@ The elements of the parameter **asset** of ``getInfo-Asset`` interface are **Obj
 Transaction Services
 -----------------------
 
-Transaction Services provide transaction-related interfaces and
-currently have five interfaces:``buildBlob``, ``evaluateFee``, 
+Transaction services provide transaction-related interfaces:``buildBlob``, ``evaluateFee``, 
 ``sign``, ``submit`` and ``getInfo-transaction``.
 
 buildBlob
@@ -767,7 +761,7 @@ buildBlob
 The ``buildBlob`` interface is used to serialize transactions and generate
 transaction blob strings for network transmission.
 
-Before you can call buildBlob, you need to build some
+Before you call buildBlob, you need to build some
 operations. Please refer to `BaseOperation`_.
 
 The method to call this interface is as follows:
@@ -777,7 +771,7 @@ The method to call this interface is as follows:
 
  sdk.transaction.buildBlob(args)
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------------+--------+-----------------------------------+
 | Parameter       | Type   | Description                       |
@@ -787,7 +781,7 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 ======================================   ==========   ====================================================
   Exception                              Error Code   Description                                                
@@ -797,7 +791,7 @@ The error code is shown in the following table:
   INVALID_GASPRICE_ERROR                 11049        GasPrice must be between 1 and max(int64)          
   INVALID_FEELIMIT_ERROR                 11050        FeeLimit must be between 1 and max(int64)           
   OPERATIONS_EMPTY_ERROR                 11051        Operations cannot be empty                         
-  INVALID_CEILLEDGERSEQ_ERROR            11052        CeilLedgerSeq must be equal or greater than 0      
+  INVALID_CEILLEDGERSEQ_ERROR            11052        CeilLedgerSeq must be equal to or greater than 0      
   INVALID_METADATA_ERROR                 11053        Invalid metadata                                     
   SYSTEM_ERROR                           20000        System error                                       
 ======================================   ========   ====================================================   
@@ -805,7 +799,7 @@ The error code is shown in the following table:
 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -863,7 +857,7 @@ Before calling the ``buildBlob`` interface, some operation objects shall be buil
 AccountActivateOperation
 ++++++++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -904,7 +898,7 @@ The return value of the AccountActivateOperation is as follows:
 **Error Code**
 
 
-The common error codes of the AccountActivateOperation are as follows:
+The common exceptions of the AccountActivateOperation are as follows:
 
 +---------------------------------------------+------------+----------------------------------------------+
 | Exception                                   | Error code | Description                                  |
@@ -927,7 +921,7 @@ The common error codes of the AccountActivateOperation are as follows:
 AccountSetMetadataOperation
 ++++++++++++++++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -968,7 +962,7 @@ The return value of the AccountSetMetadataOperation is as follows:
 
 **Error Code**
 
-The common error codes of the AccountSetMetadataOperation are as follows:
+The common exceptions of the AccountSetMetadataOperation are as follows:
 
 
 +---------------------------------------------+------------+---------------------------------------------------+
@@ -991,7 +985,7 @@ The common error codes of the AccountSetMetadataOperation are as follows:
 AccountSetPrivilegeOperation
 ++++++++++++++++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -1035,7 +1029,7 @@ The return value of the AccountSetPrivilegeOperation is as follows:
 
 **Error Code**
 
-The common error codes of the AccountSetPrivilegeOperation are as follows:
+The common exceptions of the AccountSetPrivilegeOperation are as follows:
 
 
 +---------------------------------------------+-------------+---------------------------------------------------+
@@ -1075,19 +1069,19 @@ The elements of **signers** parameter of **args** are **Object**, and the object
 
 The elements of **typeThresholds** parameter of **args** are **Object**, and the object parameters are as follows:
 
-+-----------+-----------+----------------------------------------------+
-| Parameter | Type      | Description                                  |
-+===========+===========+==============================================+
-| type      | String    | Optional,the operation type,size limit[0,100]|
-+-----------+-----------+----------------------------------------------+
-| threshold | String    | Optional,threshold, size limit[0,max(int64)] |
-+-----------+-----------+----------------------------------------------+
++-----------+-----------+-------------------------------------------------+
+| Parameter | Type      | Description                                     |
++===========+===========+=================================================+
+| type      | String    | Optional, the operation type, size limit[0,100] |
++-----------+-----------+-------------------------------------------------+
+| threshold | String    | Optional, threshold, size limit[0,max(int64)]   |
++-----------+-----------+-------------------------------------------------+
 
 
 BUSendOperation
 ++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -1124,7 +1118,7 @@ The return value of the BUSendOperation is as follows:
 
 **Error Code**
 
-The common error codes of the BUSendOperation are as follows:
+The common exceptions of the BUSendOperation are as follows:
 
 +---------------------------------------------+-------------+---------------------------------------------------+
 | Exception                                   | Error Code  | Description                                       |
@@ -1151,7 +1145,7 @@ TokenIssueOperation
 ++++++++++++++++++++++++
 
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -1187,7 +1181,7 @@ The return value of the TokenIssueOperation is as follows:
 
 **Error Code**
 
-The common error codes of the TokenIssueOperation are as follows:
+The common exceptions of the TokenIssueOperation are as follows:
 
 +---------------------------------------------+------------+---------------------------------------------------+
 | Exception                                   | Error Code | Description                                       |
@@ -1207,7 +1201,7 @@ The common error codes of the TokenIssueOperation are as follows:
 TokenTransferOperation
 ++++++++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -1249,7 +1243,7 @@ The return value of the TokenTransferOperation is as follows:
 
 **Error Code**
 
-The common error codes of the TokenTransferOperation are as follows:
+The common exceptions of the TokenTransferOperation are as follows:
 
 
 +---------------------------------------------+------------+----------------------------------------------------+
@@ -1276,7 +1270,7 @@ The common error codes of the TokenTransferOperation are as follows:
 ContractCreateOperation
 ++++++++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -1315,7 +1309,7 @@ The return value of the ContractCreateOperation is as follows:
 
 **Error Code**
 
-The common error codes of the ContractCreateOperation are as follows:
+The common exceptions of the ContractCreateOperation are as follows:
 
 
 +---------------------------------------------+------------+----------------------------------------------------+
@@ -1339,7 +1333,7 @@ ContractInvokeByAssetOperation
 +++++++++++++++++++++++++++++++++
 
 
-The type of ContractInvokeByAssetOperation is **Promise**, and the specific call of the interface is as follows:
+The type of ContractInvokeByAssetOperation is **Promise**, and the call of the interface is as follows:
 
 ::
 
@@ -1392,7 +1386,7 @@ The return value of the ContractInvokeByAssetOperation is as follows:
 
 **Error Code**
 
-The common error codes of the ContractInvokeByAssetOperation are as follows:
+The common exceptions of the ContractInvokeByAssetOperation are as follows:
 
 
 +---------------------------------------------+------------+----------------------------------------------------+
@@ -1426,7 +1420,7 @@ The common error codes of the ContractInvokeByAssetOperation are as follows:
 ContractInvokeByBUOperation
 ++++++++++++++++++++++++++++++++
 
-The type of ContractInvokeByBUOperation is **Promise**, and the specific call of the interface is as follows:
+The type of ContractInvokeByBUOperation is **Promise**, and the call of the interface is as follows:
 
 ::
 
@@ -1474,7 +1468,7 @@ The return value of the ContractInvokeByBUOperation is as follows:
 
 **Error Code**
 
-The common error codes of the ContractInvokeByBUOperation are as follows:
+The common exceptions of the ContractInvokeByBUOperation are as follows:
 
 
 +---------------------------------------------+------------+----------------------------------------------------+
@@ -1503,7 +1497,7 @@ The common error codes of the ContractInvokeByBUOperation are as follows:
 LogCreateOperation
 +++++++++++++++++++
 
-The specific call of the interface is as follows:
+The call of the interface is as follows:
 
 ::
 
@@ -1520,10 +1514,10 @@ The parameter **args** of the LogCreateOperation is **Object**, and the paramete
 | sourceAddress      | String       | Optional, source account address   |
 |                    |              | of the operation                   |
 +--------------------+--------------+------------------------------------+
-| topic              | String       | Required,log topic,                |
+| topic              | String       | Required, log topic,               |
 |                    |              | size limit [1, 128]                |
 +--------------------+--------------+------------------------------------+
-| data               | String       | Required,log content, the length   |
+| data               | String       | Required, log content, the length  |
 |                    |              | of each string is between [1, 1024]|
 +--------------------+--------------+------------------------------------+
 | metadata           | String       | Optional, note                     |
@@ -1544,7 +1538,7 @@ The return value of the LogCreateOperation is as follows:
 
 **Error Code**
 
-The common error codes of the LogCreateOperation are as follows:
+The common exceptions of the LogCreateOperation are as follows:
 
 +---------------------------------------------+------------+----------------------------------------------------+
 | Exception                                   | Error Code | Description                                        |
@@ -1568,7 +1562,7 @@ The common error codes of the LogCreateOperation are as follows:
 evaluateFee
 ~~~~~~~~~~~~
 
-The ``evaluateFee`` interface implements the cost estimate for the transaction.
+The ``evaluateFee`` interface is used to estimate the transaction fee.
 
 The method to call this interface is as follows:
 
@@ -1576,7 +1570,7 @@ The method to call this interface is as follows:
 
  sdk.transaction.evaluateFee(args)
 
-The request parameters are shown in the following table:
+The request parameter is described in the following table:
 
 +----------+-------+-------------------------------------------+
 | Parameter| Type  | Description                               |
@@ -1588,7 +1582,7 @@ The request parameters are shown in the following table:
 
 
 
-The common error codes are as follows:
+The common exceptions are as follows:
 
 +-------------------------+------------+----------------------------+
 | Exception               | Error Code | Description                |
@@ -1603,7 +1597,7 @@ The common error codes are as follows:
 | SYSTEM_ERROR            | 20000      | System error               |
 +-------------------------+------------+----------------------------+ 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -1658,7 +1652,7 @@ The method to call this interface is as follows:
 
  sdk.transaction.sign(args)
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +------------+------------------+------------------+
 | Parameter  | Type             | Description      |
@@ -1668,7 +1662,7 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 
 +------------------------+------------+---------------------------------------+
@@ -1681,7 +1675,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR           | 20000      | System error                          |
 +------------------------+------------+---------------------------------------+
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -1730,7 +1724,7 @@ The method to call this interface is as follows:
 
  sdk.transaction.submit(args)
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 
 +-----------+--------+------------------+
@@ -1739,7 +1733,7 @@ The response data is shown in the following table:
 | hash      | String | Transaction hash |
 +-----------+--------+------------------+
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 +--------------------------+------------+--------------------+
 | Exception                | Error Code | Description        |
@@ -1751,7 +1745,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR             | 20000      | System error       |
 +--------------------------+------------+--------------------+
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -1779,9 +1773,9 @@ The parameter **args** of the ``submit`` interface is **Object**, and the parame
 Block Services
 -----------------
 
-Block services provide block-related interfaces. There are: ``getNumber``、``checkStatus``、``getTransactions``、``getInfo-block``、``getLatestInfo``、
-``getValidators``、``getLatestValidators``、``getReward``、``getLatestReward``、``getFees``、
-``getLatestFees``。
+Block services provide block-related interfaces: ``getNumber``, ``checkStatus``, ``getTransactions``, ``getInfo-block``, ``getLatestInfo``, 
+``getValidators``, ``getLatestValidators``, ``getReward``, ``getLatestReward``, ``getFees`` and 
+``getLatestFees``.
 
 getNumber
 ~~~~~~~~~~
@@ -1794,7 +1788,7 @@ The method to call this interface is as follows:
 
  sdk.block.getNumber()
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-------------------+---------------------+----------------------------+
 | Parameter         | Type                | Description                |
@@ -1804,7 +1798,7 @@ The response data is shown in the following table:
 | BlockNumber       | String              | The latest block height    |
 +-------------------+---------------------+----------------------------+
 
-The error code is shown in the following table:
+The exception is described in the following table:
 
 +----------------------+------------+-------------------------+
 | Exception            | Error Code | Description             |
@@ -1813,7 +1807,7 @@ The error code is shown in the following table:
 +----------------------+------------+-------------------------+
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -1823,12 +1817,12 @@ The specific example is as follows:
   console.log(err.message);
  });
 
+
 checkStatus
 ~~~~~~~~~~~~
 
 
-
-The ``checkStatus`` interface is used to check if the local node block is synchronized.
+The ``checkStatus`` interface is used to check whether the local node block is synchronized.
 
 The method to call this interface is as follows:
 
@@ -1836,7 +1830,7 @@ The method to call this interface is as follows:
 
  sdk.block.checkStatus()
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 
 +---------------+---------+-----------------------------------+
@@ -1845,7 +1839,7 @@ The response data is shown in the following table:
 | isSynchronous | bool    | Whether the block is synchronized |
 +---------------+---------+-----------------------------------+
 
-The error code is shown in the following table:
+The exception is shown in the following table:
 
 +----------------------+------------+-------------------------+
 | Exception            | Error Code | Description             |
@@ -1854,7 +1848,7 @@ The error code is shown in the following table:
 +----------------------+------------+-------------------------+
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -1877,7 +1871,7 @@ The method to call this interface is as follows:
 
  sdk.block.getTransactions(blockNumber)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 
 +-------------------+---------------------+----------------------------+
@@ -1887,7 +1881,7 @@ The request parameter is shown in the following table:
 |                   |                     | the block to be queried    |
 +-------------------+---------------------+----------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------------------+------------------------------+----------------------------------------+
 | Parameter             | Type                         | Description                            |
@@ -1898,7 +1892,7 @@ The response data is shown in the following table:
 +-----------------------+------------------------------+----------------------------------------+
 
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 +--------------------------+------------+--------------------------------------+
 | Exception                | Error Code | Description                          |
@@ -1910,7 +1904,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR             | 20000      | System error                         |
 +--------------------------+------------+--------------------------------------+
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -1926,7 +1920,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^
 
-The following are parameters of **Object** type in the ``getTransactions`` interface.
+The following are parameters of **Object** type of the ``getTransactions`` interface.
 
 transactions
 +++++++++++++
@@ -1937,7 +1931,7 @@ The elements of **transactions** in the response data are **Object**, and the pa
 +----------------+-------------------------+-----------------------------+
 | Parameter      |  Type                   | Description                 |
 +================+=========================+=============================+
-| actual_fee     | String                  | Actual transaction cost     |
+| actual_fee     | String                  | Actual transaction fee      |
 +----------------+-------------------------+-----------------------------+
 | close_time     | String                  | Transaction closure time    |
 +----------------+-------------------------+-----------------------------+
@@ -1959,7 +1953,7 @@ The elements of **transactions** in the response data are **Object**, and the pa
 transactionInfoObject
 ++++++++++++++++++++++++++
 
-The **transaction** parameter in **transactions** is **transactionInfoObject** type, and the parameters of **transaction** are as follows:
+The **transaction** parameter in **transactions** is **transactionInfoObject**, and the parameters of **transaction** are as follows:
 
 +-----------------------+-----------------------+-----------------------+
 | Parameter             | Type                  | Description           |
@@ -1984,7 +1978,7 @@ The **transaction** parameter in **transactions** is **transactionInfoObject** t
 signatureObject
 ++++++++++++++++++
 
-The **signatures** parameter in **transactions** is **signatureObject** type, and the parameters of **signatures** are as follows:
+The **signatures** parameter in **transactions** is **signatureObject**, and the parameters of **signatures** are as follows:
 
 +----------------+-------------------------+-----------------------+
 | Parameter      | Type                    | Description           |
@@ -2008,7 +2002,7 @@ The method to call this interface is as follows:
 
  sdk.block.getInfo(blockNumber)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-------------+-------+-------------------------------------------------+
 | Parameter   | Type  | Description                                     |
@@ -2017,7 +2011,7 @@ The request parameter is shown in the following table:
 +-------------+-------+-------------------------------------------------+
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+--------+-------------------------------+
 | Parameter | Type   | Description                   |
@@ -2031,7 +2025,7 @@ The response data is shown in the following table:
 | version   | String | Block version                 |
 +-----------+--------+-------------------------------+
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +---------------------------+------------+------------------------------------+
 | Exception                 | Error Code | Description                        |
@@ -2041,7 +2035,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR              | 20000      | System error                       |
 +---------------------------+------------+------------------------------------+   
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2064,7 +2058,7 @@ The method to call this interface is as follows:
 
  sdk.block. getLatestInfo()
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+--------+---------------------------+
 | Parameter | Type   | Description               |
@@ -2079,7 +2073,7 @@ The response data is shown in the following table:
 +-----------+--------+---------------------------+
 
 
-The error code is shown in the following table:
+The exception is shown in the following table:
 
 +----------------------+------------+-------------------------+
 |  Exception           | Error Code | Description             |
@@ -2088,7 +2082,7 @@ The error code is shown in the following table:
 +----------------------+------------+-------------------------+   
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2111,7 +2105,7 @@ The method to call this interface is as follows:
 
  sdk.block.getValidators(blockNumber)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 
 +-------------------+---------------------+----------------------------+
@@ -2121,7 +2115,7 @@ The request parameter is shown in the following table:
 |                   |                     | to be queried              |
 +-------------------+---------------------+----------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +------------+-----------------------+-----------------+
 | Parameter  | Type                  | Description     |
@@ -2129,7 +2123,7 @@ The response data is shown in the following table:
 | validators | Array                 | Validators list |
 +------------+-----------------------+-----------------+
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +---------------------------+------------+--------------------------+
 | Exception                 | Error Code |  Description             |
@@ -2140,7 +2134,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR              | 20000      | System error             |
 +---------------------------+------------+--------------------------+  
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2177,7 +2171,7 @@ The method to call this interface is as follows:
 
  sdk.block.getLatestValidators()
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +------------+-----------------------+-----------------+
 | Parameter  | Type                  | Description     |
@@ -2186,7 +2180,7 @@ The response data is shown in the following table:
 +------------+-----------------------+-----------------+
 
 
-The error code is shown in the following table:
+The exception is described in the following table:
 
 +---------------------------+------------+----------------------------+
 | Exception                 | Error Code | Description                |
@@ -2194,7 +2188,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR              | 20000      | System error               |
 +---------------------------+------------+----------------------------+ 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2230,7 +2224,7 @@ The method to call this interface is as follows:
 
  sdk.block.getReward(blockNumber)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-------------------+---------------------+----------------------------+
 | Parameter         | Type                | Description                |
@@ -2240,7 +2234,7 @@ The request parameter is shown in the following table:
 +-------------------+---------------------+----------------------------+
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 
 +-----------------------+-------------------------+-------------------+
@@ -2252,7 +2246,7 @@ The response data is shown in the following table:
 +-----------------------+-------------------------+-------------------+
 
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 +---------------------------+------------+------------------------------------+
 | Exception                 | Error Code | Description                        |
@@ -2263,7 +2257,7 @@ The error code is shown in the following table:
 +---------------------------+------------+------------------------------------+  
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2292,7 +2286,7 @@ getLatestReward
 ~~~~~~~~~~~~~~~~
 
 
-The ``getLatestReward`` interface gets the block rewards and validator
+The ``getLatestReward`` interface is used to get the block rewards and validator
 rewards in the latest block.
 
 The method to call this interface is as follows:
@@ -2301,7 +2295,7 @@ The method to call this interface is as follows:
  sdk.block.getLatestReward()
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------------------+-----------------------+-----------------------+
 | Parameter             | Type                  | Description           |
@@ -2312,7 +2306,7 @@ The response data is shown in the following table:
 +-----------------------+-----------------------+-----------------------+
 
 
-The error code is shown in the following table:
+The exception is described in the following table:
 
 +----------------------+------------+-------------------------+
 | Exception            | Error Code | Description             |
@@ -2321,7 +2315,7 @@ The error code is shown in the following table:
 +----------------------+------------+-------------------------+ 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2348,7 +2342,7 @@ getFees
 ~~~~~~~~
 
 
-The ``getFees`` interface gets the minimum asset limit and fuel price of the
+The ``getFees`` interface is used to get the minimum asset limit and fuel price of the
 account in the specified block.
 
 The method to call this interface is as follows:
@@ -2357,7 +2351,7 @@ The method to call this interface is as follows:
 
  sdk.block.getFees(blockNumber)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-------------------+---------------------+----------------------------+
 | Parameter         | Type                | Description                |
@@ -2366,7 +2360,7 @@ The request parameter is shown in the following table:
 |                   |                     | the block to be queried    |
 +-------------------+---------------------+----------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+---------+-------------+
 | Parameter | Type    | Description |
@@ -2375,7 +2369,7 @@ The response data is shown in the following table:
 +-----------+---------+-------------+
 
 
-The error code is shown in the following table:
+The exceptions are shown in the following table:
 
 +---------------------------+------------+--------------------------------+
 | Exception                 | Error Code | Description                    |
@@ -2387,7 +2381,7 @@ The error code is shown in the following table:
 +---------------------------+------------+--------------------------------+ 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2414,7 +2408,7 @@ getLatestFees
 ~~~~~~~~~~~~~~
 
 
-The ``getLatestFees`` interface is used to obtain the minimum asset limit
+The ``getLatestFees`` interface is used to get the minimum asset limit
 and fuel price of the account in the latest block.
 
 The method to call this interface is as follows:
@@ -2423,7 +2417,7 @@ The method to call this interface is as follows:
 
  sdk.block.getLatestFees()
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+----------+-------------+
 | Parameter | Type     | Description |
@@ -2432,7 +2426,7 @@ The response data is shown in the following table:
 +-----------+----------+-------------+
 
 
-The error code is shown in the following table:
+The exception is described in the following table:
 
 +----------------------+------------+-------------------------+
 | Exception            | Error Code | Description             |
@@ -2441,7 +2435,7 @@ The error code is shown in the following table:
 +----------------------+------------+-------------------------+  
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2457,7 +2451,7 @@ The specific example is as follows:
 Contract Services
 ------------------
 
-Contract Services provide contract-related interfaces and they are: ``getInfo-contract``、``checkValid-contract``、``getAddress-contract``。
+Contract Services provide contract-related interfaces and they are: ``getInfo-contract``, ``checkValid-contract`` and ``getAddress-contract``.
 
 
 getInfo-contract
@@ -2472,7 +2466,7 @@ The method to call this interface is as follows:
 
  sdk.contract.getInfo(contractAddress)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------------+--------+----------------------------------------------------+
 | Parameter       | Type   | Description                                        |
@@ -2481,7 +2475,7 @@ The request parameter is shown in the following table:
 +-----------------+--------+----------------------------------------------------+
 
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------------+------------------+---------------------+
 | Parameter       | Type             | Description         |
@@ -2493,7 +2487,7 @@ The response data is shown in the following table:
 | payload         | String           | Contract code       |
 +-----------------+------------------+---------------------+
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +-------------------------+------------+-------------------------+
 | Exception               | Error Code | Description             |
@@ -2512,7 +2506,7 @@ The error code is shown in the following table:
 
 
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2536,7 +2530,7 @@ The method to call this interface is as follows:
 
  sdk.contract.checkValid(contractAddress)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------+--------+----------------------------------------------+
 | Parameter | Type   | Description                                  |
@@ -2544,7 +2538,7 @@ The request parameter is shown in the following table:
 | address   | String | The contract account address to be checked   |
 +-----------+--------+----------------------------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------+--------+-------------------------------------+
 | Parameter | Type   | Description                         |
@@ -2553,7 +2547,7 @@ The response data is shown in the following table:
 +-----------+--------+-------------------------------------+
 
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 +-------------------------------------------+------------+------------------------------------------+
 | Exception                                 | Error Code | Description                              |
@@ -2565,7 +2559,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR                              | 20000      | System error                             |
 +-------------------------------------------+------------+------------------------------------------+
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2588,13 +2582,13 @@ getAddress-contract
 
 The ``getAddress`` interface is used to query the contract address.
 
-The method call is as follows:
+The method to call this interface is as follows:
 
 ::
 
  sdk.contract.getAddress(hash)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------+--------+------------------------------------------------+
 | Parameter | Type   | Description                                    |
@@ -2602,7 +2596,7 @@ The request parameter is shown in the following table:
 | hash      | String | The hash used to create a contract transaction |
 +-----------+--------+------------------------------------------------+
 
-The response data is shown in the following table:
+The response data is described in the following table:
 
 +-----------------------+----------------------------+-----------------------+
 | Parameter             | Type                       | Description           |
@@ -2612,7 +2606,7 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The exceptions are described in the following table:
 
 
 +-------------------------+------------+-------------------------+
@@ -2623,7 +2617,7 @@ The error code is shown in the following table:
 | SYSTEM_ERROR            | 20000      | System error            |
 +-------------------------+------------+-------------------------+
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2651,20 +2645,20 @@ The elements of **contractAddressList** of the response data are **Object**, and
 Tools
 --------------
 
-In this section we describe some interfaces for converting strings, they are ``utfToHex``、``hexToUtf``、``buToMo`` and ``moToBu``.
+In this section we describe some interfaces for converting strings, and they are ``utfToHex``, ``hexToUtf``, ``buToMo`` and ``moToBu``.
 
 utfToHex
 ~~~~~~~~~
 
 The ``utfToHex`` interface is used to convert a utf8 string to a hex string.
 
-The method call is as follows:
+The method to call this interface is as follows:
 
 ::
 
  sdk.util.utfToHex(str)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------------+------------------+--------------------------------+
 | Parameter       | Type             | Description                    |
@@ -2675,7 +2669,7 @@ The request parameter is shown in the following table:
 
 The response data is a hex string if the parameter is correct, and **undefined** if the parameter is incorrect.
 
-The specific example is as follows:
+The example is as follows:
 
 ::
   
@@ -2688,13 +2682,13 @@ hexToUtf
 
 The ``hexToUtf`` interface is used to convert a hex string to a utf8 string.
 
-The method call is as follows:
+The method to call this interface is as follows:
 
 ::
 
  sdk.util.hexToUtf(str)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------------+------------------+--------------------------------+
 | Parameter       | Type             | Description                    |
@@ -2705,7 +2699,7 @@ The request parameter is shown in the following table:
 
 The response data is a utf8 string if the parameter is correct, and **undefined** if the parameter is incorrect.
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2718,13 +2712,13 @@ buToMo
 The ``buToMo`` interface is used to convert bu to mo.
 
 
-The method call is as follows:
+The method to call this interface is as follows:
 
 ::
 
  sdk.util.buToMo(str)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------------+------------------+----------------------------------------------------------------------------+
 | Parameter       | Type             | Description                                                                |
@@ -2735,7 +2729,7 @@ The request parameter is shown in the following table:
 
 The response data is a string if the parameter is correct, and ``''`` if the parameter is incorrect.
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2748,13 +2742,13 @@ moToBu
 
 The ``moToBu`` interface is used to convert mo to bu.
 
-The method call is as follows:
+The method to call this interface is as follows:
 
 ::
 
  sdk.util.moToBu(str)
 
-The request parameter is shown in the following table:
+The request parameter is described in the following table:
 
 +-----------------+------------------+--------------------------------+
 | Parameter       | Type             | Description                    |
@@ -2765,7 +2759,7 @@ The request parameter is shown in the following table:
 
 The response data is a string if the parameter is correct, and ``''`` if the parameter is incorrect.
 
-The specific example is as follows:
+The example is as follows:
 
 ::
 
@@ -2777,7 +2771,7 @@ Error Code
 ------------
 
 
-
+The common exceptions are as follows:
 
 
 +---------------------------------------------+--------+----------------------------------------------------+
