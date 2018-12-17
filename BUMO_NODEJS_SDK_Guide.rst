@@ -1779,7 +1779,9 @@ The parameter **args** of the ``submit`` interface is **Object**, and the parame
 Block Services
 -----------------
 
-Block services provide block-related interfaces. There are: ``getNumber``、``checkStatus``、``getTransactions``、``getInfo-block``、``getLatestInfo``、``getValidators``、``getLatestValidators``、``getReward``、``getLatestReward``、``getFees``、``getLatestFees``。
+Block services provide block-related interfaces. There are: ``getNumber``、``checkStatus``、``getTransactions``、``getInfo-block``、``getLatestInfo``、
+``getValidators``、``getLatestValidators``、``getReward``、``getLatestReward``、``getFees``、
+``getLatestFees``。
 
 getNumber
 ~~~~~~~~~~
@@ -2101,7 +2103,7 @@ getValidators
 
 
 The ``getValidators`` interface is used to get the number of all the
-authentication nodes in the specified block.
+validator nodes in the specified block.
 
 The method to call this interface is as follows:
 
@@ -2220,7 +2222,7 @@ getReward
 
 
 The ``getReward`` interface is used to retrieve the block reward and
-valicator node rewards in the specified block.
+validator node rewards in the specified block.
 
 The method to call this interface is as follows:
 
