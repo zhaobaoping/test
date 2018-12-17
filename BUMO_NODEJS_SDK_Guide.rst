@@ -12,9 +12,9 @@ Terminology
 
 This section gives details about the terms used in this document.
 
-**Operate the BU Blockchain** 
+**Operate the BuChain** 
 
-Operate the BU Blockchain refers to writing data to or modifying data in
+Operate the BuChain refers to writing data to or modifying data in
 the BuChain.
 
 **Submit Transactions**
@@ -22,9 +22,9 @@ the BuChain.
 Submit Transactions refers to sending a request to write data to or
 modify data in the BuChain.
 
-**Query the BU Blockchain** 
+**Query the BuChain** 
 
-Query the BU Blockchain refers to querying data in the BuChain.
+Query the BuChain refers to querying data in the BuChain.
 
 **Account Services** 
 
@@ -35,7 +35,7 @@ Account Services provide account validity check and query interfaces.
 Asset Services provide asset-related query interfaces.
 
 
-**交易服务**
+**Transaction Services**
 
 Transaction Services provide interfaces to write to or query the BuChain.
 
@@ -90,8 +90,8 @@ Usage
 --------
 
 
-This section describes the process of using the SDK. First you need to generate the SDK instance and then call the interface of thecorresponding service. 
-Services include `account services`_, `assetservices`_, `contract services`_, `transaction services`_,and `block services`_. 
+This section describes the process of using the SDK. First you need to generate the SDK instance and then call the interface of the corresponding service. 
+Services include `account services`_, `asset services`_, `contract services`_, `transaction services`_, and `block services`_. 
 Interfaces are classified into public-private key address interfaces, validity check interfaces, query interfaces, and transaction-related interfaces.
 
 
@@ -133,7 +133,7 @@ The specific example is as follows:
 Querying
 ~~~~~~~~
 
-The query interface is used to query data on the BU blockchain, and data
+The query interface is used to query data on the BuChain, and data
 query can be implemented by directly invoking the corresponding
 interface. For example, to query the account information, the specific
 call is as follows:
@@ -234,7 +234,7 @@ The building transaction blob interface is for generating transaction blob strin
 
   const blob = blobInfo.result;
 
-.. note:: **nonce**、**gasPrice** and **feeLimit** are strings include only numbers, and they can not start with 0.
+.. note:: **nonce**、**gasPrice** and **feeLimit** are strings include only numbers, and they cannot start with 0.
 
 4. Signing Transactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -255,7 +255,7 @@ interface call is as follows:
 5. Broadcasting Transactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The broadcasting transaction interface is used to send transactions to BU blockchain and trigger the execution of transactions.
+The broadcasting transaction interface is used to send transactions to BuChain and trigger the execution of transactions.
 The specific interface call is as follows:
 
 ::
@@ -731,7 +731,7 @@ Object Parameters
 ^^^^^^^^^^^^^^^^^^
 
 
-The parameter **args** of ``getInfo-Asset`` interface is Object, and the following are its parameters:
+The parameter **args** of ``getInfo-Asset`` interface is **Object**, and the following are its parameters:
 
 +-----------+--------+--------------------------------------------------+
 | Parameter | Type   | Description                                      |
@@ -743,7 +743,7 @@ The parameter **args** of ``getInfo-Asset`` interface is Object, and the followi
 | issuer    | String | Required, the account address for issuing assets |
 +-----------+--------+--------------------------------------------------+
 
-The elements of the parameter **asset** of ``getInfo-Asset`` interface are Object，and the object parameters are：
+The elements of the parameter **asset** of ``getInfo-Asset`` interface are **Object**，and the object parameters are：
 
 
 =============  ========= =========================================================
@@ -822,7 +822,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^^
 
-The parameter **args** of the ``buildBlob`` interface is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ``buildBlob`` interface is **Object**, and the parameters of **args** are as follows:
 
 
 +-------------------+---------------------+----------------------------+
@@ -851,7 +851,7 @@ The parameter **args** of the ``buildBlob`` interface is Object, and the paramet
 | metadata          | String              | Optional, note             |
 +-------------------+---------------------+----------------------------+
 
-.. note:: gasPrice、feeLimit、nonce、ceilLedgerSeq are strings include only numbers and cannot start with 0.
+.. note:: **gasPrice**、**feeLimit**、**nonce** and **ceilLedgerSeq** are strings include only numbers and cannot start with 0.
 
 BaseOperation
 ^^^^^^^^^^^^^^
@@ -871,7 +871,7 @@ The specific call of the interface is as follows:
 
 **Parameter Description**
 
-The parameter **args** of the AccountActivateOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the AccountActivateOperation is **Object**, and the parameters of **args** are as follows:
 
 
 +----------------+---------+-------------------------------------------+
@@ -889,7 +889,7 @@ The parameter **args** of the AccountActivateOperation is Object, and the parame
 | metadata       | String  | Optional, note                            |
 +----------------+---------+-------------------------------------------+
 
-.. note:: 1 BU=10^8 MO。
+.. note:: 1 BU=10^8 MO.
 
 **Return Value**
 
@@ -936,7 +936,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the AccountSetMetadataOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the AccountSetMetadataOperation is **Object**, and the parameters of **args** are as follows:
 
 
 +---------------+---------+------------------------------------------------------+
@@ -1000,7 +1000,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the AccountSetPrivilegeOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the AccountSetPrivilegeOperation is **Object**, and the parameters of **args** are as follows:
 
 
 +------------------+-----------------+--------------------------------------+
@@ -1061,7 +1061,7 @@ The common error codes of the AccountSetPrivilegeOperation are as follows:
 
 **Object Parameters**
 
-The elements of **signers** parameter of **args** are Object, and the object parameters are as follows:
+The elements of **signers** parameter of **args** are **Object**, and the object parameters are as follows:
 
 
 +------------+--------+-------------------------------------------------------------+
@@ -1073,7 +1073,7 @@ The elements of **signers** parameter of **args** are Object, and the object par
 +------------+--------+-------------------------------------------------------------+
 
 
-The elements of **typeThresholds** parameter of **args** are Object, and the object parameters are as follows:
+The elements of **typeThresholds** parameter of **args** are **Object**, and the object parameters are as follows:
 
 +-----------+-----------+----------------------------------------------+
 | Parameter | Type      | Description                                  |
@@ -1096,7 +1096,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the BUSendOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the BUSendOperation is **Object**, and the parameters of **args** are as follows:
 
 +---------------+--------+---------------------------------------------------------------+
 | Parameter     | Type   | Description                                                   |
@@ -1160,7 +1160,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the TokenIssueOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the TokenIssueOperation is **Object**, and the parameters of **args** are as follows:
 
 +---------------+--------+--------------------------------------------------------+
 | Parameter     | Type   | Description                                            |
@@ -1216,7 +1216,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the TokenTransferOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the TokenTransferOperation is **Object**, and the parameters of **args** are as follows:
 
 +--------------------+--------------+-------------------------------------------------+
 | Parameter          | Type         | Description                                     |
@@ -1285,7 +1285,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the ContractCreateOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ContractCreateOperation is **Object**, and the parameters of **args** are as follows:
 
 +--------------------+--------------+----------------------------------+
 | Parameter          | Type         | Description                      |
@@ -1339,7 +1339,7 @@ ContractInvokeByAssetOperation
 +++++++++++++++++++++++++++++++++
 
 
-The type of ContractInvokeByAssetOperation is Promise, and the specific call of the interface is as follows:
+The type of ContractInvokeByAssetOperation is **Promise**, and the specific call of the interface is as follows:
 
 ::
 
@@ -1348,7 +1348,7 @@ The type of ContractInvokeByAssetOperation is Promise, and the specific call of 
 **Parameter Description**
 
 
-The parameter **args** of the ContractInvokeByAssetOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ContractInvokeByAssetOperation is **Object**, and the parameters of **args** are as follows:
 
 +--------------------+--------------+----------------------------------+
 | Parameter          | Type         | Description                      |
@@ -1426,7 +1426,7 @@ The common error codes of the ContractInvokeByAssetOperation are as follows:
 ContractInvokeByBUOperation
 ++++++++++++++++++++++++++++++++
 
-The type of ContractInvokeByBUOperation is Promise, and the specific call of the interface is as follows:
+The type of ContractInvokeByBUOperation is **Promise**, and the specific call of the interface is as follows:
 
 ::
 
@@ -1435,7 +1435,7 @@ The type of ContractInvokeByBUOperation is Promise, and the specific call of the
 **Parameter Description**
 
 
-The parameter **args** of the ContractInvokeByBUOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ContractInvokeByBUOperation is **Object**, and the parameters of **args** are as follows:
 
 
 
@@ -1512,7 +1512,7 @@ The specific call of the interface is as follows:
 **Parameter Description**
 
 
-The parameter **args** of the LogCreateOperation is Object, and the parameters of **args** are as follows:
+The parameter **args** of the LogCreateOperation is **Object**, and the parameters of **args** are as follows:
 
 +--------------------+--------------+------------------------------------+
 | Parameter          | Type         | Description                        |
@@ -1623,7 +1623,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^
 
-The parameter **args** of the ``evaluateFee`` interface is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ``evaluateFee`` interface is **Object**, and the parameters of **args** are as follows:
 
 +-------------------+---------------------+----------------------------+
 | Parameter         | Type                | Description                |
@@ -1696,7 +1696,7 @@ Object Parameters
 ^^^^^^^^^^^^^^^^^^
 
 
-The parameter **args** of the ``sign`` interface is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ``sign`` interface is **Object**, and the parameters of **args** are as follows:
 
 
 +-------------+----------+-------------------------------------------------+
@@ -1709,7 +1709,7 @@ The parameter **args** of the ``sign`` interface is Object, and the parameters o
 
 
 
-The elements of the response data signature of the ``sign`` interface are Object, and the parameters of the elements are as follows:
+The elements of the response data signature of the ``sign`` interface are **Object**, and the parameters of the elements are as follows:
 
 +-----------+-------+-------------------+
 | Parameter | Type  | Description       |
@@ -1765,7 +1765,7 @@ Object Parameters
 ^^^^^^^^^^^^^^^^^^^
 
 
-The parameter **args** of the ``submit`` interface is Object, and the parameters of **args** are as follows:
+The parameter **args** of the ``submit`` interface is **Object**, and the parameters of **args** are as follows:
 
 +-----------+------------------+----------------------------+
 | Parameter | Type             | Description                |
@@ -1779,9 +1779,7 @@ The parameter **args** of the ``submit`` interface is Object, and the parameters
 Block Services
 -----------------
 
-Block services provide block-related interfaces. There are: ``getNumber``、``checkStatus``、``getTransactions``、
-``getInfo-block``、``getLatestInfo``、``getValidators``、``getLatestValidators``、``getReward``、
-``getLatestReward``、``getFees``、``getLatestFees``。
+Block services provide block-related interfaces. There are: ``getNumber``、``checkStatus``、``getTransactions``、``getInfo-block``、``getLatestInfo``、``getValidators``、``getLatestValidators``、``getReward``、``getLatestReward``、``getFees``、``getLatestFees``。
 
 getNumber
 ~~~~~~~~~~
@@ -1926,13 +1924,13 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^
 
-The following are parameters of Object type in the ``getTransactions`` interface.
+The following are parameters of **Object** type in the ``getTransactions`` interface.
 
 transactions
 +++++++++++++
 
 
-The elements of transactions in the response data are Object, and the parameters of the elements are:
+The elements of **transactions** in the response data are **Object**, and the parameters of the elements are:
 
 +----------------+-------------------------+-----------------------------+
 | Parameter      |  Type                   | Description                 |
@@ -1959,7 +1957,7 @@ The elements of transactions in the response data are Object, and the parameters
 transactionInfoObject
 ++++++++++++++++++++++++++
 
-The transaction parameter in transactions is transactionInfoObject type, and the parameters of transaction are as follows:
+The **transaction** parameter in **transactions** is **transactionInfoObject** type, and the parameters of **transaction** are as follows:
 
 +-----------------------+-----------------------+-----------------------+
 | Parameter             | Type                  | Description           |
@@ -1984,7 +1982,7 @@ The transaction parameter in transactions is transactionInfoObject type, and the
 signatureObject
 ++++++++++++++++++
 
-The signatures parameter in transactions is signatureObject type, and the parameters of signatures are as follows:
+The **signatures** parameter in **transactions** is **signatureObject** type, and the parameters of **signatures** are as follows:
 
 +----------------+-------------------------+-----------------------+
 | Parameter      | Type                    | Description           |
@@ -2153,7 +2151,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^^
 
-The elements of validators of the response data are Object, and the parameters of the elements are as follows:
+The elements of **validators** of the response data are **Object**, and the parameters of the elements are as follows:
 
 +-------------------+--------+------------------------+
 | Parameter         | Type   | Description            |
@@ -2207,7 +2205,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^
 
-The elements of validators of the response data are Object, and the parameters of the elements are as follows:
+The elements of **validators** of the response data are **Object**, and the parameters of the elements are as follows:
 
 +-------------------+--------+------------------------+
 | Parameter         | Type   | Description            |
@@ -2277,7 +2275,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^
 
-The elements of validatorsReward of the response data are Object, and the parameters of the elements are as follows:
+The elements of **validatorsReward** of the response data are **Object**, and the parameters of the elements are as follows:
 
 +-----------+--------+-------------------+
 | Parameter | Type   | Description       |
@@ -2334,7 +2332,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
-The elements of validatorsReward of the response data are Object, and the parameters of the elements are as follows:
+The elements of **validatorsReward** of the response data are **Object**, and the parameters of the elements are as follows:
 
 +-----------+--------+-------------------+
 | Parameter | Type   | Description       |
@@ -2400,7 +2398,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^
 
-The elements of fees of the response data are Object, and the parameters of the elements are as follows:
+The elements of **fees** of the response data are **Object**, and the parameters of the elements are as follows:
 
 +-------------+------+-------------------------------------------------+
 | Parameter   | Type | Description                                     |
@@ -2637,7 +2635,7 @@ The specific example is as follows:
 Object Parameters
 ^^^^^^^^^^^^^^^^^^^
 
-The elements of contractAddressList of the response data are Object, and the parameters of the elements are as follows:
+The elements of **contractAddressList** of the response data are **Object**, and the parameters of the elements are as follows:
 
 +------------------+------------------+---------------------------+
 | Parameter        | Type             | Description               |
