@@ -4,27 +4,27 @@ BUMO NODEJS SDK Guide
 Overview
 ---------
 
-This document details the common interfaces of the Bumo NODEJS SDK, making
-it easier for developers to operate and query the BuChain.
+This document details the common interfaces of the BUMO NODEJS SDK, making
+it easier for developers to operate and query BuChain.
 
 Terminology
 -----------
 
 This section gives details about the terms used in this document.
 
-**Operate the BuChain** 
+**Operate BuChain** 
 
-Operate the BuChain refers to writing data to or modifying data in
-the BuChain.
+Operate BuChain refers to writing data to or modifying data in
+BuChain.
 
 **Submit Transactions**
 
 Submit Transactions refers to sending a request to write data to or
-modify data in the BuChain.
+modify data on BuChain.
 
-**Query the BuChain** 
+**Query BuChain** 
 
-Query the BuChain refers to querying data in the BuChain.
+Query BuChain refers to querying data on BuChain.
 
 **Account Services** 
 
@@ -37,7 +37,7 @@ Asset Services provide asset-related query interfaces.
 
 **Transaction Services**
 
-Transaction Services provide interfaces to write to or query the BuChain.
+Transaction Services provide interfaces to write to or query BuChain.
 
 **Block Services** 
 
@@ -64,7 +64,7 @@ Response Data
 ~~~~~~~~~~~~~~~~
 
 
-The response data of the interfaces are ``JavaScript`` object,  the following is the structure of the response data.
+The response data of the interfaces are ``JavaScript`` object, and the following is the structure of the response data.
 
 ::
 
@@ -78,12 +78,12 @@ The response data of the interfaces are ``JavaScript`` object,  the following is
 .. note:: 
           - errorCode: error code. 0 means no error, greater than 0 means there is an error.
 
-          - errorDesc: error description. null means no error, otherwise there is an error 
+          - errorDesc: error description. Null means no error, otherwise there is an error. 
 
           - result: returns the result. 
 
 
-For the response data structure is fixed, for convenience, the response data in the subsequent description refers to the attribute of the result.
+Because the response data structure is fixed, the response data in the subsequent description refers to the attribute of the result.
 
 
 Usage
@@ -109,7 +109,7 @@ Generating SDK Instances
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-When generating SDK instances, the input parameter is an **options** object, the **options** object includes the following parameters：
+When generating SDK instances, the input parameter is an **options** object, and the **options** object includes the following parameters：
 
 ============      ========     ============================== 
   Parameter        Type         Description                          
@@ -133,7 +133,7 @@ The specific example is as follows:
 Querying
 ~~~~~~~~
 
-The query interface is used to query data on the BuChain, and data
+The query interface is used to query data on BuChain, and data
 query can be implemented by directly invoking the corresponding
 interface. For example, to query the account information, the specific
 call is as follows:
@@ -234,7 +234,7 @@ The building transaction blob interface is for generating transaction blob strin
 
   const blob = blobInfo.result;
 
-.. note:: **nonce**、**gasPrice** and **feeLimit** are strings include only numbers, and they cannot start with 0.
+.. note:: **nonce**, **gasPrice** and **feeLimit** are strings include only numbers, and they cannot start with 0.
 
 4. Signing Transactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -270,13 +270,13 @@ The specific interface call is as follows:
 Account Services
 ----------------
 
-Account Services provide account-related interfaces, which include：``create``、``checkValid``、``getInfo-Account``、``getNonce``、
-``getBalance``、``getAssets``、``GetMetadata``。
+Account Services provide account-related interfaces, which include：``create``, ``checkValid``, ``getInfo-Account``, ``getNonce``, 
+``getBalance``, ``getAssets`` and ``GetMetadata``.
 
 create
 ~~~~~~
 
-The ``create`` interface is used to generate private key.
+The ``create`` interface is used to generate private keys.
 
 The method to call this interface is as follows:
 
@@ -541,7 +541,7 @@ getBalance
 ~~~~~~~~~~~
 
 
-The ``getBalance`` interface is used to get the Balance value of the specific account.
+The ``getBalance`` interface is used to get the **balance** value of the specific account.
 
 The method to call this interface is as follows:
 
@@ -758,8 +758,8 @@ Transaction Services
 -----------------------
 
 Transaction Services provide transaction-related interfaces and
-currently have five interfaces:``buildBlob``、``evaluateFee``、
-``sign``、``submit``、``getInfo-transaction``。
+currently have five interfaces:``buildBlob``, ``evaluateFee``, 
+``sign``, ``submit`` and ``getInfo-transaction``.
 
 buildBlob
 ~~~~~~~~~
@@ -851,14 +851,14 @@ The parameter **args** of the ``buildBlob`` interface is **Object**, and the par
 | metadata          | String              | Optional, note             |
 +-------------------+---------------------+----------------------------+
 
-.. note:: **gasPrice**、**feeLimit**、**nonce** and **ceilLedgerSeq** are strings include only numbers and cannot start with 0.
+.. note:: **gasPrice**, **feeLimit**, **nonce** and **ceilLedgerSeq** are strings include only numbers and cannot start with 0.
 
 BaseOperation
 ^^^^^^^^^^^^^^
 
 Before calling the ``buildBlob`` interface, some operation objects shall be built, and they are:
-`AccountActivateOperation`_、`AccountSetMetadataOperation`_、`AccountSetPrivilegeOperation`_、`BUSendOperation`_、`TokenIssueOperation`_、`TokenTransferOperation`_、`ContractCreateOperation`_、`ContractInvokeByAssetOperation`_、
-`ContractInvokeByBUOperation`_、`LogCreateOperation`_。
+`AccountActivateOperation`_, `AccountSetMetadataOperation`_, `AccountSetPrivilegeOperation`_, `BUSendOperation`_, `TokenIssueOperation`_, `TokenTransferOperation`_, `ContractCreateOperation`_, `ContractInvokeByAssetOperation`_, 
+`ContractInvokeByBUOperation`_ and `LogCreateOperation`_.
 
 AccountActivateOperation
 ++++++++++++++++++++++++
@@ -882,9 +882,9 @@ The parameter **args** of the AccountActivateOperation is **Object**, and the pa
 +----------------+---------+-------------------------------------------+
 | destAddress    | String  | Required, target account address          |
 +----------------+---------+-------------------------------------------+
-| initBalance    | String  | Required, initialize the asset,includes   |
+| initBalance    | String  | Required, initialize the asset, includes  |
 |                |         | only numbers and cannot start with 0,     |
-|                |         | size [1, max(int64)]，unit MO             |
+|                |         | size [1, max(int64)], unit MO             |
 +----------------+---------+-------------------------------------------+
 | metadata       | String  | Optional, note                            |
 +----------------+---------+-------------------------------------------+
@@ -1067,9 +1067,9 @@ The elements of **signers** parameter of **args** are **Object**, and the object
 +------------+--------+-------------------------------------------------------------+
 | Parameter  | Type   | Description                                                 |
 +============+========+=============================================================+
-| address    | String | Optional,the account address of the signer                  |
+| address    | String | Optional, the account address of the signer                 |
 +------------+--------+-------------------------------------------------------------+
-| weight     | String | Optional,the signer weight, size limit[0, max(int32)]       |
+| weight     | String | Optional, the signer weight, size limit[0, max(int32)]      |
 +------------+--------+-------------------------------------------------------------+
 
 
@@ -1232,9 +1232,9 @@ The parameter **args** of the TokenTransferOperation is **Object**, and the para
 +--------------------+--------------+-------------------------------------------------+
 | metadata           | String       | Optional, note                                  |
 +--------------------+--------------+-------------------------------------------------+
-| code               | String       | Required,token code                             |
+| code               | String       | Required, token code                             |
 +--------------------+--------------+-------------------------------------------------+
-| issuer             | String       | Required,the account address issuing assets     |
+| issuer             | String       | Required, the account address issuing assets     |
 +--------------------+--------------+-------------------------------------------------+   
 
 **Return Value**
