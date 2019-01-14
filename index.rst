@@ -13,4 +13,4 @@ Contents:
    
    
    
-  BUMO_NODEJS_SDK_Guide
+  test
