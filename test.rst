@@ -1,5 +1,5 @@
 
-:标题  reStructuredText语法说明
+:标题：  reStructuredText语法说明
 
 :作者
  - Seay
