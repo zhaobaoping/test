@@ -1,8 +1,14 @@
 
-  
-术语1
-  术语1的定义
+:标题: reStructuredText语法说明
 
-术语 2
-  术语2的定义,这是第一段
+:作者:
+ - Seay
+ - Seay1
+ - Seay2
 
+:时间: 2016年06月21日
+
+:概述: 这是一篇
+ 关于reStructuredText
+
+ 语法说明。
