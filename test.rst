@@ -21,7 +21,7 @@
               arguments
 /V            DOS/VMS-style options too
 
-a   aaaaaaaaaaaaaaaaaaaaa
-b   bbbbbbbbbbbbbbbbbbbbb
-c   ccccccccccccccccccccc
-d   dddddddddddddddddddddd
+-a   aaaaaaaaaaaaaaaaaaaaa
+-b   bbbbbbbbbbbbbbbbbbbbb
+-c   ccccccccccccccccccccc
+-d   dddddddddddddddddddddd
