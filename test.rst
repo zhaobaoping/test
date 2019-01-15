@@ -1,1 +1,7 @@
-想访问BUMO文档内容,请参考 `BUMO DOCS <https://github.com/bumoproject/bumo-docs-cn>`_。
+更多信息参考 引用文档_
+
+这里是其他内容
+
+.. _引用文档:
+
+这是引用部分的内容
