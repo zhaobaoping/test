@@ -1,7 +1,3 @@
-更多信息参考 引用文档_
+这篇文章参考的是：`Quick reStructuredText`__。
 
-这里是其他内容
-
-.. _引用文档:
-
-这是引用部分的内容
+.. __: http://docutils.sourceforge.net/docs/user/rst/quickref.html
