@@ -1,4 +1,15 @@
-这是 |logo| BUMO的Logo，BUMO文档中心的地址为:|name|。
+脚注引用一 [1]_
+脚注引用二 [#]_
+脚注引用三 [#链接]_
+脚注引用四 [*]_
+脚注引用五 [*]_
+脚注引用六 [*]_
 
-.. |logo| image:: https://help.github.com/assets/images/site/favicon.ico
-.. |name| replace:: https://github.com/bumoproject/bumo-docs-cn
+.. [1] 脚注内容一
+.. [2] 脚注内容二
+.. [#] 脚注内容三
+.. [#链接] 脚注内容四 链接_
+.. [*] 脚注内容五
+.. [*] 脚注内容六
+.. [*] 脚注内容七
+
