@@ -2,4 +2,4 @@
 
 .. _SeayXu: https://github.com/SeayXu/
 
-__ SeayXu
+__ SeayXu_
