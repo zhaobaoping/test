@@ -1,3 +1,5 @@
-BUMO文档内容可参考：`BUMO DOCS`__。
+SeayXu_ 是 `我的 GitHub 用户名`__。
 
-.. __: https://github.com/bumoproject/bumo-docs-cn
+.. _SeayXu: https://github.com/SeayXu/
+
+__ SeayXu_
