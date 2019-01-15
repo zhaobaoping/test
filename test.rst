@@ -1,5 +1,3 @@
-下面是BUMO在GIT中的网址：
+这篇文章来自我的Github,请参考 reference_。
 
-https://github.com/zhaobaoping/bumo
-
-欢迎访问里面的内容
+.. _reference: https://github.com/SeayXu/
