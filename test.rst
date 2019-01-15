@@ -1,5 +1,6 @@
-参考BUMO文档请访问 `BOMO 文档`__。
+第一节 BUMO介绍
+==============
 
-.. _BUDOC: https://github.com/bumoproject/bumo-docs-cn
+其他内容
 
-__ BUDOC_
+隐式链接到 `第一节 BUMO介绍`_，即可生成超链接。
