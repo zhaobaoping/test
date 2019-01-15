@@ -1,5 +1,5 @@
-这是 `我的 GitHub 用户名`__。
+参考BUMO文档请访问 `BOMO 文档`__。
 
-.. _SeayXu: https://github.com/SeayXu/
+.. _BUDOC: https://github.com/bumoproject/bumo-docs-cn
 
-__ SeayXu_
+__ BUDOC_
