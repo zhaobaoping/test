@@ -1,3 +1,3 @@
-这篇文章参考的是：`Quick reStructuredText`_。
+这篇文章参考的是：`Quick reStructuredText`__。
 
-.. _: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. __: http://docutils.sourceforge.net/docs/user/rst/quickref.html
