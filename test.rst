@@ -1,6 +1,4 @@
-第一节 BUMO介绍
-==============
+这是 |logo| BUMO的Logo，BUMO文档中心的地址为:|name|。
 
-其他内容
-
-隐式链接到 `第一节 BUMO介绍`_，即可生成超链接。
+.. |logo| image:: https://github.com/bumoproject/bumo-docs-cn/tree/master/docs/image/logo.png
+.. |name| replace:: https://github.com/bumoproject/bumo-docs-cn
