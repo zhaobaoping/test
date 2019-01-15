@@ -1,3 +1,3 @@
-这篇文章参考的是：`Quick reStructuredText`__。
+BUMO文档内容可参考：`BUMO DOCS`__。
 
-.. __: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+.. __: https://github.com/bumoproject/bumo-docs-cn
